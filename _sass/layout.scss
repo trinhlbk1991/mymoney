@@ -685,3 +685,110 @@ footer {
 .hidden {
 	display: none;
 }
+
+// Hero Section Styles
+.heroSection {
+	text-align: center;
+	padding: 80px 20px 40px;
+	max-width: 900px;
+	margin: 0 auto;
+	grid-column: 1 / -1;
+}
+
+.heroTitle {
+	font-size: 4rem;
+	font-weight: 700;
+	color: $app-title-color;
+	margin-bottom: 20px;
+	line-height: 1.2;
+	font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.heroDescription {
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: $app-description-color;
+	margin-bottom: 40px;
+	line-height: 1.6;
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.heroButtonContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+}
+
+.heroButton {
+	display: inline-block;
+	background-color: #262626;
+	color: #e7e7e7;
+	padding: 16px 32px;
+	border-radius: 12px;
+	text-decoration: none;
+	font-size: 1.125rem;
+	font-weight: 600;
+	border: 0.5px solid rgba(255, 255, 255, 0.2);
+	transition: all 0.3s ease;
+	font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.heroButton:hover {
+	background-color: #333;
+	transform: translateY(-2px);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 992px) {
+	.heroSection {
+		padding: 60px 20px 30px;
+	}
+
+	.heroTitle {
+		font-size: 3rem;
+	}
+
+	.heroDescription {
+		font-size: 1.25rem;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.heroSection {
+		padding: 40px 15px 20px;
+	}
+
+	.heroTitle {
+		font-size: 2.5rem;
+	}
+
+	.heroDescription {
+		font-size: 1.125rem;
+		padding: 0 10px;
+	}
+
+	.heroButton {
+		font-size: 1rem;
+		padding: 14px 28px;
+	}
+}
+
+// Modern body styling
+body {
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// Update container for better hero section spacing
+.container {
+	grid-template-rows: 115px auto 876px auto auto;
+}
+
+@media only screen and (max-width: 768px) {
+	.container {
+		grid-template-rows: 80px auto 811px auto auto;
+	}
+}

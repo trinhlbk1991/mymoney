@@ -1,17 +1,17 @@
-page_title: myMoney
+page_title: Habit Tracker - Rotina
 
 # App Info
-ios_app_id: 6475389461
+ios_app_id:
 ios_app_country: us
 
-appstore_link: https://apps.apple.com/vn/app/mymoney-finance/id6475389461
-playstore_link: https://play.google.com/store/apps/details?id=com.icedtealabs.mymoney&hl=en_US&gl=US 
+appstore_link: https://testflight.apple.com/join/rcwWafmj
+playstore_link:
 presskit_download_link:
 
-app_icon: https://play-lh.googleusercontent.com/OLd0c_wU9b8DaRd7TOVerwlhkIbHjLSve86rTExck39R7jbY5XrWxBTrmOQMsfXNnQ=w480-h960-rw
-app_name: myMoney
-app_price: Free
-app_description: myMoney is an optimized application to help you manage your personal finance effectively.
+app_icon: assets/QCXQ1Bx4xiXuFmpYqLrfkr2Np8I.png
+app_name: Rotina
+app_price: Try now
+app_description: Build better habits, one day at a time! Track your progress with beautiful calendars, organize with groups, and stay motivated with streak tracking.
 
 enable_smart_app_banner: true # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -28,47 +28,47 @@ youtube_username:
 mastodon_link: 
 
 features:
-  - title: Manage Expenses and Incomes Effortlessly
-    description: Super easy and simple to record expense, income, debt, bill, and payment with just a few taps
-    fontawesome_icon_name: money-bill
+  - title: Build Your Habits to Become Your Best Self
+    description: Add habits in seconds with full personalization. Choose from 300+ icons, 16+ vibrant colors, and set which days of the week you want to track each habit.
+    fontawesome_icon_name: check-circle
 
-  - title: Cash Flow at a Glance
-    description: Easy to read reports of the total expense, total income, spending by each category, or pending bills help you understand the cash flow better
+  - title: Routine Mode
+    description: Create a complete daily schedule with timed habits. Set durations for each activity and receive three smart reminders before it starts, at start time, and when it's time to finish.
+    fontawesome_icon_name: clock
+
+  - title: Track Your Progress
+    description: View beautiful visualizations of your habit streaks and completion rates. Stay motivated with personalized celebrations and intelligent routine management.
     fontawesome_icon_name: chart-line
-
-  - title: Create Weekly, Monthly, and Annual Budgets
-    description: Easily set spending limits for different timeframes and categories.
-    fontawesome_icon_name: piggy-bank
 
 # Theme Settings
 topbar_color: "#000000"
-topbar_transparency: 0.1
-topbar_title_color: "#ffffff"
+topbar_transparency: 0
+topbar_title_color: "#e7e7e7"
 
 cover_image: assets/headerimage.png # Replace with alternative image path or image URL.
-cover_overlay_color: "#363b3d"
-cover_overlay_transparency: 0.8
+cover_overlay_color: "#000000"
+cover_overlay_transparency: 0.95
 
 device_color: black # Set to: blue, black, yellow, coral or white.
 
-body_background_color: "#ffffff"
+body_background_color: "#000000"
 
-link_color: "#1d63ea"
+link_color: "#e7e7e7"
 
-app_title_color: "#ffffff"
-app_price_color: "#ffffff"
-app_description_color: "#ffffff"
+app_title_color: "#e7e7e7"
+app_price_color: "#e7e7e7"
+app_description_color: "#878787"
 
-feature_title_color: "#000000"
-feature_text_color: "#666666"
+feature_title_color: "#e7e7e7"
+feature_text_color: "#878787"
 
-feature_icons_foreground_color: "#1d63ea"
-feature_icons_background_color: "#e6e6e6"
+feature_icons_foreground_color: "#e7e7e7"
+feature_icons_background_color: "#262626"
 
-social_icons_foreground_color: "#666666"
-social_icons_background_color: "#e6e6e6"
+social_icons_foreground_color: "#878787"
+social_icons_background_color: "#262626"
 
-footer_text_color: "#666666"
+footer_text_color: "#878787"
 
 ####################################################
 ### Jekyll Configuration. No need to touch this. ###

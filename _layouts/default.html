@@ -8,6 +8,18 @@
             <div class="headerBackground">
                 <div class="container">
                     {% include header.html %}
+
+                    <!-- Hero Section -->
+                    <div class="heroSection">
+                        <h1 class="heroTitle">Build Unbreakable Routines</h1>
+                        <p class="heroDescription">With beautiful visuals, personalized celebrations, and intelligent routine management, build habits that stick.</p>
+                        <div class="heroButtonContainer">
+                            <a class="heroButton" href="{{site.appstore_link}}" target="_blank">
+                                <span>Download on the App Store</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="iphonePreview">
 
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 0 0" style="position: absolute;">
@@ -19,14 +31,14 @@
                         <div class="videoContainer hidden">
                             <video class="screenvideo" autoplay="autoplay" controls="controls">
                             </video>
-                        </div>  
-                        
+                        </div>
+
                         <img class="iphoneScreen hidden" src="" alt="">
 
                         {% include screencontent.html %}
 
                     </div>
-                    <div class="appInfo">
+                    <div class="appInfo" style="display:none;">
                         <div class="appIconShadow">
                             <svg width="0" height="0">
                                 <defs>
