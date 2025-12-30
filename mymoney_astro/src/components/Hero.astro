@@ -1,0 +1,136 @@
+---
+// Hero section component
+---
+
+<section id="hero" class="hero section">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Build <span class="text-gradient">Unbreakable</span> Routines
+        </h1>
+        <p class="hero-description">
+          With beautiful visuals, personalized celebrations, and intelligent routine management, build habits that stick.
+        </p>
+        <div class="hero-cta">
+          <a href="#features" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            Try Now
+          </a>
+          <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="/images/eMN8L9kYJige7AmNr2c812UAVcI.png"
+          alt="Rotina App Screenshot showing habit tracking interface"
+          class="animate-float"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="hero-gradient"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: calc(72px + var(--space-12));
+    overflow: hidden;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .hero-text {
+    max-width: 560px;
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-description {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+    color: var(--color-text-secondary);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+  }
+
+  .hero-gradient {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-text {
+      max-width: 100%;
+      order: 1;
+    }
+
+    .hero-image {
+      order: 2;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding-block: calc(72px + var(--space-8)) var(--space-16);
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-cta .btn {
+      justify-content: center;
+    }
+  }
+</style>

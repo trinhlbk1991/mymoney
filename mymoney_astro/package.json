@@ -1,0 +1,15 @@
+{
+  "name": "habit-tracker-rotina",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Build better habits, one day at a time! Track your progress with beautiful calendars, organize with groups, and stay motivated with streak tracking.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}

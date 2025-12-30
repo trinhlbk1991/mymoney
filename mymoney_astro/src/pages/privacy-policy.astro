@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Privacy Policy - Rotina';
+const description = 'Privacy Policy for Rotina Habit Tracker app. Learn how we protect your data and privacy.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main class="legal-page">
+    <div class="container">
+      <article class="legal-content">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: January 2025</p>
+
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            Welcome to Rotina ("we," "our," or "us"). We are committed to protecting your privacy and ensuring you have a positive experience while using our habit tracking application ("App"). This Privacy Policy explains how we collect, use, and protect your information.
+          </p>
+        </section>
+
+        <section>
+          <h2>Information We Collect</h2>
+          <h3>Data Stored Locally</h3>
+          <p>
+            Rotina is designed with privacy in mind. All your habit data, including:
+          </p>
+          <ul>
+            <li>Habit names and descriptions</li>
+            <li>Tracking history and streaks</li>
+            <li>Routine schedules</li>
+            <li>Personal settings and preferences</li>
+          </ul>
+          <p>
+            This data is stored locally on your device and is not transmitted to our servers. We do not have access to your personal habit data.
+          </p>
+
+          <h3>No Account Required</h3>
+          <p>
+            Rotina does not require you to create an account. You can use all features without providing any personal information such as email addresses, names, or phone numbers.
+          </p>
+        </section>
+
+        <section>
+          <h2>Data Security</h2>
+          <p>
+            Since your data is stored locally on your device, its security is tied to your device's security measures. We recommend:
+          </p>
+          <ul>
+            <li>Using a strong device passcode or biometric authentication</li>
+            <li>Keeping your device's operating system up to date</li>
+            <li>Using the export feature to backup your data regularly</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Third-Party Services</h2>
+          <p>
+            Our App may contain links to third-party websites or services (such as app stores). These third parties have their own privacy policies, and we encourage you to review them.
+          </p>
+        </section>
+
+        <section>
+          <h2>Children's Privacy</h2>
+          <p>
+            Our App is not directed to children under 13. We do not knowingly collect personal information from children under 13. Since no account is required and data is stored locally, children can use the app safely under parental supervision.
+          </p>
+        </section>
+
+        <section>
+          <h2>Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions about this Privacy Policy, please contact us at:
+          </p>
+          <p>
+            <a href="mailto:support@habitrotina.com">support@habitrotina.com</a>
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-top: calc(72px + var(--space-12));
+    padding-bottom: var(--space-16);
+    min-height: 100vh;
+  }
+
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .legal-content h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .last-updated {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-12);
+  }
+
+  .legal-content section {
+    margin-bottom: var(--space-10);
+  }
+
+  .legal-content h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+  }
+
+  .legal-content h3 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    color: var(--color-text-primary);
+  }
+
+  .legal-content p {
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal-content ul {
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-6);
+  }
+
+  .legal-content li {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal-content a {
+    color: var(--color-accent);
+  }
+
+  .legal-content a:hover {
+    color: var(--color-accent-light);
+  }
+</style>

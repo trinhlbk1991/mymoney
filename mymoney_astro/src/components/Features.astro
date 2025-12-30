@@ -1,0 +1,133 @@
+---
+// Features section component
+
+const features = [
+  {
+    title: 'Build Your Habits',
+    description: 'Add habits in seconds with full personalization. Choose from 300+ icons, 16+ vibrant colors, and set which days of the week you want to track each habit.',
+    image: '/images/1EoWVvEmJbEc0q2tIWNKKwn2vh0.png',
+    alt: 'Habit creation interface'
+  },
+  {
+    title: 'Routine Mode',
+    description: 'Create a complete daily schedule with timed habits. Set durations for each activity and receive three smart reminders: before it starts, at start time, and when it\'s time to finish.',
+    image: '/images/vuMkVXr1u7fRlveDdNk8Meru4vM.png',
+    alt: 'Routine mode interface'
+  },
+  {
+    title: 'Track Your Habits',
+    description: 'Monitor your daily progress with a beautiful visual calendar. Watch your habit colors fill the grid as you complete them each day and build consistency that transforms your life.',
+    image: '/images/2xkDiMmNVCIoBw10ZvyjyhAt2s.png',
+    alt: 'Habit tracking calendar'
+  }
+];
+---
+
+<section id="features" class="features section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Build Your Habits to Become Your Best Self</h2>
+      <p>Everything you need to create lasting habits and transform your daily routine.</p>
+    </div>
+
+    <div class="features-list">
+      {features.map((feature, index) => (
+        <div class={`feature-item ${index % 2 === 1 ? 'reverse' : ''}`}>
+          <div class="feature-content">
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+            <a href="#hero" class="btn btn-primary">Try Now</a>
+          </div>
+          <div class="feature-image">
+            <img src={feature.image} alt={feature.alt} loading="lazy" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    background: var(--color-background);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-16);
+  }
+
+  .section-header h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .section-header p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-inline: auto;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+  }
+
+  .feature-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .feature-item.reverse .feature-content {
+    order: 2;
+  }
+
+  .feature-item.reverse .feature-image {
+    order: 1;
+  }
+
+  .feature-content h3 {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-primary);
+  }
+
+  .feature-content p {
+    margin-bottom: var(--space-6);
+    color: var(--color-text-secondary);
+  }
+
+  .feature-image {
+    position: relative;
+  }
+
+  .feature-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    transition: transform var(--transition-slow);
+  }
+
+  .feature-image:hover img {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 1024px) {
+    .feature-item {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .feature-item.reverse .feature-content,
+    .feature-item.reverse .feature-image {
+      order: unset;
+    }
+
+    .feature-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

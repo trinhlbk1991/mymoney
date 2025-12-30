@@ -1,0 +1,117 @@
+---
+// Benefits/Features Grid section
+
+const benefits = [
+  {
+    icon: '🎉',
+    title: 'Celebration',
+    description: 'Complete all your habits for the day and unlock a beautiful celebration screen.'
+  },
+  {
+    icon: '📱',
+    title: 'Widgets',
+    description: 'View your completion calendar or today\'s habits at a glance without opening the app.'
+  },
+  {
+    icon: '📤',
+    title: 'Social Sharing',
+    description: 'Share your wins with stunning visual cards designed for social media.'
+  },
+  {
+    icon: '🔔',
+    title: 'Smart Reminders',
+    description: 'Set durations for each activity and receive three smart reminders: before it starts, at start time, and when it\'s time to finish.'
+  },
+  {
+    icon: '💾',
+    title: 'Import / Export',
+    description: 'Export your habits, save it wherever you want and restore it at a later time.'
+  },
+  {
+    icon: '🔒',
+    title: 'Privacy',
+    description: 'No login required, everything stays on your device.'
+  }
+];
+---
+
+<section id="benefits" class="benefits section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Discover Rotina Features</h2>
+      <p>Powerful tools designed to help you build lasting habits.</p>
+    </div>
+
+    <div class="benefits-grid">
+      {benefits.map((benefit) => (
+        <div class="benefit-card card">
+          <span class="benefit-icon">{benefit.icon}</span>
+          <h4>{benefit.title}</h4>
+          <p>{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background: var(--color-surface);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .section-header p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-inline: auto;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .benefit-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+    padding: var(--space-8);
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .benefit-card h4 {
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+  }
+
+  .benefit-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
