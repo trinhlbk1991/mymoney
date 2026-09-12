@@ -5,3 +5,8 @@ compatibility_date = "2026-09-12"
 # script — Jekyll's output in _site is served directly.
 [assets]
 directory = "./_site"
+
+# _site is gitignored, so the Cloudflare build container has no site to upload
+# until Jekyll runs. Wrangler executes this before uploading the assets.
+[build]
+command = "bundle exec jekyll build"
