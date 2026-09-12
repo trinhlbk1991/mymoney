@@ -1,3 +1,7 @@
 name = "mymoney"
 compatibility_date = "2026-09-12"
-pages_build_output_dir = "_site"
+
+# Assets-only Worker: no `main` and no `binding`, because there is no Worker
+# script — Jekyll's output in _site is served directly.
+[assets]
+directory = "./_site"

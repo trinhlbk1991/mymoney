@@ -33,30 +33,39 @@ Long-form pages live in `_pages/` as Markdown and render through `_layouts/page.
 
 Styles are a single file, `main.scss`, compiled by Jekyll to `/main.css`.
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare
 
-`wrangler.toml` already declares `_site` as the build output directory.
+The site deploys as an **assets-only Worker**: Jekyll builds `_site`, and
+`wrangler.toml` points `[assets] directory` at it. There is no Worker script.
 
-**Via the dashboard (recommended — deploys on every push):**
+### Workers Builds (deploys on every push to `main`)
 
-1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git.
-2. Pick this repo and the `main` branch.
-3. Build command: `bundle exec jekyll build`
-4. Build output directory: `_site`
-5. Deploy. Then add the custom domain under the project's **Custom domains** tab,
-   and set `url:` in `_config.yml` to match.
+In the Cloudflare dashboard, open the Worker, then **Settings → Build**:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `bundle exec jekyll build` |
+| Deploy command | `npx wrangler deploy` (the default) |
+| Branch control | `main` |
+
+The build command is what generates `_site`. Without it the deploy fails with
+`Missing entry-point to Worker script or to assets directory`, because there is
+nothing in the assets directory to upload.
 
 Cloudflare's build image ships Ruby 3.4.4 by default, which is what this site
 needs (every gem requires only >= 3.2), so no version pin is required. To force
 a specific one, add a `RUBY_VERSION` environment variable in the project's
 build settings or commit a `.ruby-version` file.
 
-**From your machine:**
+Then add the custom domain under the Worker's **Domains & Routes**, and set
+`url:` in `_config.yml` to match.
+
+### From your machine
 
 ```sh
 bundle exec jekyll build
-npx wrangler pages deploy _site --project-name=mymoney
+npx wrangler deploy
 ```
 
 `_headers` sets long cache lifetimes for `/assets/*` and basic security headers;
-Cloudflare reads it from the build output.
+Workers static assets reads it from the build output.
