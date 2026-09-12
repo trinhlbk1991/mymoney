@@ -209,6 +209,35 @@ a.brand:hover .brandName { color: var(--ink); }
 .btnInk { background: var(--ink); color: #FFFFFF !important; }
 .btnInk:hover { background: oklch(0.14 0.012 155); }
 
+/* --------------------------------------------------------- store buttons */
+
+.storeRow { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.storeBtn {
+  height: 62px;
+  padding: 0 24px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.storeIcon { flex: none; }
+
+.storeLabel { display: flex; flex-direction: column; gap: 2px; }
+
+.storeLabelSmall { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; }
+
+.storeLabelBig { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+
+.storeBtnInk { background: var(--ink); color: #FFFFFF !important; }
+.storeBtnInk:hover { background: oklch(0.14 0.012 155); }
+.storeBtnInk .storeLabelSmall { color: oklch(0.82 0.012 155); }
+
+.storeBtnLight { background: var(--card); color: var(--ink) !important; }
+.storeBtnLight:hover { background: var(--muted); }
+.storeBtnLight .storeLabelSmall { color: oklch(0.48 0.015 155); }
+
 .trustRow {
   display: flex;
   flex-wrap: wrap;

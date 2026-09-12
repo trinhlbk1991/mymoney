@@ -28,7 +28,7 @@
 			{%- endif -%}
 			<p class="lede">{{ site.hero.lede }}</p>
 			<div class="btnRow">
-				<a class="btn btnPrimary" href="#get">Download free</a>
+				<a class="btn btnPrimary" href="#get">Get myMoney</a>
 				<a class="btn btnGhost" href="#how">See a walkthrough</a>
 			</div>
 			{% if site.hero.trust %}
@@ -115,12 +115,7 @@
 			<h2>{{ site.cta.headline }}</h2>
 			<p>{{ site.cta.body }}</p>
 		</div>
-		<div class="btnRow">
-			<a class="btn btnInk" href="{{ site.appstore_link }}" target="_blank" rel="noopener">App Store</a>
-			{% if site.playstore_link %}
-			<a class="btn btnGhost" href="{{ site.playstore_link }}" target="_blank" rel="noopener">Google Play</a>
-			{% endif %}
-		</div>
+		{% include store-buttons.html %}
 	</section>
 
 	{% include site-footer.html %}

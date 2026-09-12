@@ -13,7 +13,6 @@ presskit_download_link:
 
 app_icon: https://play-lh.googleusercontent.com/OLd0c_wU9b8DaRd7TOVerwlhkIbHjLSve86rTExck39R7jbY5XrWxBTrmOQMsfXNnQ=w480-h960-rw
 app_name: myMoney
-app_price: Free
 app_description: Log a spend in two taps and see what's left before you spend it. myMoney is a fast, on-device personal finance app for iOS and Android.
 
 enable_smart_app_banner: true # Set to true to show a smart app banner at top of page on mobile devices.
@@ -63,7 +62,7 @@ hero:
   trust:
     - On device by default
     - Works offline
-    - Free, no ads
+    - Paid once, no ads
 
 steps:
   - title: Log it in two taps
@@ -106,8 +105,8 @@ facts:
 cta:
   headline: Start with today's spending.
   body: >-
-    Free forever for one person. Sync across devices is 39,000 ₫ a month if you
-    ever want it.
+    Buy it once on either store. Every update after that is included — no
+    subscription, no ads, nothing sold on.
 
 ####################################################
 ### Jekyll Configuration. No need to touch this. ###

@@ -39,7 +39,7 @@ Along the same lines, Trinh Le cannot always take responsibility for the way you
 
 ## Purchases and subscriptions
 
-Some features of the App may be offered as a paid one-time purchase or subscription. Payment is taken and managed by the App Store or Google Play, not by Trinh Le directly. Subscriptions renew automatically unless cancelled, and cancellation, refunds, and billing disputes are handled under the rules of the store you purchased through. Free features available at the time of your download may be changed with reasonable notice.
+Some features of the App may be offered as a paid one-time purchase or subscription. Payment is taken and managed by the App Store or Google Play, not by Trinh Le directly. Subscriptions renew automatically unless cancelled, and cancellation, refunds, and billing disputes are handled under the rules of the store you purchased through.
 
 ## Updates and ending the Service
 
