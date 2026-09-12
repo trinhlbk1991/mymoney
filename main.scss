@@ -67,17 +67,14 @@ img { max-width: 100%; }
 
 .brand { display: flex; align-items: center; gap: 11px; }
 
+/* The app's launcher icon, paper background baked in — the ring keeps it from
+   dissolving into the page, which is nearly the same shade. */
 .brandMark {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: var(--ink);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-  font-weight: 800;
+  display: block;
+  box-shadow: inset 0 0 0 1px oklch(0.86 0.006 155);
 }
 
 .brandName { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
@@ -308,25 +305,6 @@ a.brand:hover .brandName { color: var(--ink); }
   max-width: 22ch;
 }
 
-.stepGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-}
-
-.step {
-  background: var(--card);
-  border-radius: 22px;
-  padding: 26px 24px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 0;
-}
-
-.step h3 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
-.step p { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 500; color: var(--ink-3); text-wrap: pretty; }
-
 .shotGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -337,100 +315,6 @@ a.brand:hover .brandName { color: var(--ink); }
 .shotCaption { display: flex; flex-direction: column; gap: 6px; }
 .shotCaption h3 { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
 .shotCaption p { margin: 0; font-size: 14.5px; line-height: 1.5; font-weight: 500; color: var(--ink-3); text-wrap: pretty; }
-
-/* ------------------------------------------------------------------ craft */
-
-.craft { display: flex; flex-wrap: wrap; gap: 14px; }
-
-.craftPanel {
-  flex: 1 1 420px;
-  min-width: 0;
-  border-radius: 26px;
-  background: var(--ink);
-  color: #FFFFFF;
-  padding: clamp(28px, 3.4vw, 40px);
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-
-.craftPanel .eyebrow { color: oklch(0.78 0.02 155); }
-
-.craftPanel h2 {
-  margin: 0;
-  font-size: clamp(28px, 3.4vw, 38px);
-  line-height: 1.08;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  text-wrap: pretty;
-}
-
-.craftPanel h2 em { font-style: normal; color: var(--accent); }
-
-.pace { display: flex; flex-direction: column; gap: 10px; }
-
-.paceBar {
-  position: relative;
-  height: 10px;
-  border-radius: 999px;
-  background: oklch(0.32 0.012 155);
-  display: flex;
-}
-
-.paceFill { width: 66%; border-radius: 999px 0 0 999px; background: var(--accent); }
-
-.paceMark {
-  position: absolute;
-  top: -5px;
-  bottom: -5px;
-  left: 72%;
-  width: 2px;
-  background: #FFFFFF;
-}
-
-.paceLegend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  font-size: 13px;
-  font-weight: 700;
-  color: oklch(0.84 0.015 155);
-}
-
-.paceLegend .ok { color: var(--accent); }
-
-.craftPanel p {
-  margin: 0;
-  font-size: 15.5px;
-  line-height: 1.6;
-  font-weight: 500;
-  color: oklch(0.82 0.015 155);
-  max-width: 52ch;
-  text-wrap: pretty;
-}
-
-.facts { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-
-.fact {
-  flex: 1;
-  background: var(--card);
-  border-radius: 22px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-
-.factStat {
-  font-size: clamp(26px, 3vw, 34px);
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-}
-
-.factLabel { font-size: 14.5px; line-height: 1.5; font-weight: 600; color: var(--ink-3); text-wrap: pretty; }
 
 /* -------------------------------------------------------------------- cta */
 

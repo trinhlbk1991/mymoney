@@ -11,7 +11,10 @@ appstore_link: https://apps.apple.com/vn/app/mymoney-finance/id6475389461
 playstore_link: https://play.google.com/store/apps/details?id=com.icedtealabs.mymoney&hl=en_US&gl=US
 presskit_download_link:
 
-app_icon: https://play-lh.googleusercontent.com/OLd0c_wU9b8DaRd7TOVerwlhkIbHjLSve86rTExck39R7jbY5XrWxBTrmOQMsfXNnQ=w480-h960-rw
+# The app's own launcher icon, from mymoney-mobile's assets/ic_launcher.png,
+# resized to 180px — the largest size anything here asks for (iOS home
+# screen). Serves as favicon, touch icon and the header brand mark.
+app_icon: /assets/app-icon.png
 app_name: myMoney
 app_description: Log a spend in two taps and see what's left before you spend it. myMoney is a fast, on-device personal finance app for iOS and Android.
 
@@ -64,20 +67,6 @@ hero:
     - Works offline
     - Paid once, no ads
 
-steps:
-  - title: Log it in two taps
-    body: >-
-      Amount, then category. The keypad sits under your thumb and the six
-      categories you actually use are on the first row.
-  - title: Set one cap
-    body: >-
-      A monthly budget is enough to start. myMoney divides it by the days left
-      and shows one number: what's safe to spend today.
-  - title: Get a verdict, not a chart
-    body: >-
-      On pace, behind, or done — in words, with the one action that fixes it.
-      No dashboards to interpret.
-
 screens_build_label: Sep 2026 build
 
 screens:
@@ -93,14 +82,6 @@ screens:
     body: Every field stays editable, receipt photo included.
     image: /assets/store/shot-transaction.png
     alt: myMoney transaction detail with account, category, date and memo
-
-facts:
-  - stat: 2 taps
-    label: To record a cash expense, from a cold start
-  - stat: 0 banks
-    label: Connected unless you choose to. Cash-first, like most wallets here
-  - stat: 18 MB
-    label: The whole app. It opens instantly on a five-year-old phone
 
 cta:
   headline: Start with today's spending.
