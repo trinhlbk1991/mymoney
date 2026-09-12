@@ -11,7 +11,21 @@
 	<section class="hero">
 		<div class="heroCopy">
 			<div class="eyebrow">{{ site.hero.eyebrow }}</div>
+			{%- assign currencies = site.hero.currencies -%}
+			{%- if currencies and currencies.size > 0 -%}
+			{%- assign first = currencies | first -%}
+			{%- comment -%}
+			  Punctuation up to the suffix's first space is glued to the reel, so the
+			  headline can never wrap between the currency word and its comma.
+			{%- endcomment -%}
+			{%- assign tight = site.hero.headline_suffix | split: " " | first -%}
+			{%- assign rest = site.hero.headline_suffix | remove_first: tight -%}
+			<h1>{{ site.hero.headline_prefix }} <span class="reelWrap"><span class="reel" data-currency-reel aria-hidden="true"><span class="reelTrack">
+				{%- for pass in (1..2) -%}{%- for c in currencies -%}<span class="reelItem"><span class="reelSymbol">{{ c.symbol }}</span>{{ c.name }}</span>{%- endfor -%}{%- endfor -%}
+			</span></span><span class="srOnly">{{ first.name }}</span>{{ tight }}</span>{{ rest }}</h1>
+			{%- else -%}
 			<h1>{{ site.hero.headline }}</h1>
+			{%- endif -%}
 			<p class="lede">{{ site.hero.lede }}</p>
 			<div class="btnRow">
 				<a class="btn btnPrimary" href="#get">Download free</a>
@@ -112,5 +126,7 @@
 	{% include site-footer.html %}
 
 </div>
+
+<script src="{{ '/assets/js/hero-reel.js' | relative_url }}" defer></script>
 </body>
 </html>

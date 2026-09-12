@@ -35,7 +35,28 @@ accent_color: "oklch(0.90 0.17 128)"
 
 hero:
   eyebrow: Personal finance · iOS & Android
+  # The headline spins its currency word. `headline` is the flat fallback used
+  # when `currencies` is empty, and stays the source for <title>/OG copy.
   headline: Every đồng, accounted for.
+  headline_prefix: Every
+  headline_suffix: ", accounted for."
+  currencies:
+    - symbol: ₫
+      name: đồng
+    - symbol: $
+      name: dollar
+    - symbol: €
+      name: euro
+    - symbol: ¥
+      name: yen
+    - symbol: ₩
+      name: won
+    - symbol: ₹
+      name: rupee
+    - symbol: ₱
+      name: peso
+    - symbol: £
+      name: pound
   lede: >-
     Log a spend in two taps. See what's left before you spend it. No net-worth
     dashboards, no bank scraping you didn't ask for — just the number you need today.

@@ -125,10 +125,57 @@ a.brand:hover .brandName { color: var(--ink); }
 .heroCopy h1 {
   margin: 0;
   font-size: clamp(42px, 6.4vw, 76px);
-  line-height: 0.98;
+  /* 1.02 rather than 0.98: the reel's 1.14em line boxes need the room. */
+  line-height: 1.02;
   font-weight: 800;
   letter-spacing: -0.04em;
   text-wrap: balance;
+}
+
+/* Spinning currency word in the headline. The mask clips one line box; JS
+   scrolls the track behind it and animates the mask width to the next word. */
+.reel {
+  display: inline-block;
+  height: 1.14em;
+  overflow: hidden;
+  vertical-align: -0.26em;
+  white-space: nowrap;
+  color: var(--link);
+}
+
+.reelWrap { white-space: nowrap; }
+
+.reelTrack { display: block; will-change: transform; }
+
+.reelItem {
+  display: block;
+  width: max-content;
+  height: 1.14em;
+  line-height: 1.14em;
+}
+
+.reelSymbol {
+  font-size: 0.66em;
+  font-weight: 700;
+  opacity: 0.5;
+  margin-right: 0.16em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel { transition: none !important; }
+  .reelTrack { transform: none !important; filter: none !important; }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .lede {
