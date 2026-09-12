@@ -1,17 +1,20 @@
-page_title: myMoney
+# Set this to your production domain so canonical + og:image URLs resolve.
+url: "https://mymoney.pages.dev"
+
+page_title: myMoney — Every đồng, accounted for.
 
 # App Info
 ios_app_id: 6475389461
 ios_app_country: us
 
 appstore_link: https://apps.apple.com/vn/app/mymoney-finance/id6475389461
-playstore_link: https://play.google.com/store/apps/details?id=com.icedtealabs.mymoney&hl=en_US&gl=US 
+playstore_link: https://play.google.com/store/apps/details?id=com.icedtealabs.mymoney&hl=en_US&gl=US
 presskit_download_link:
 
 app_icon: https://play-lh.googleusercontent.com/OLd0c_wU9b8DaRd7TOVerwlhkIbHjLSve86rTExck39R7jbY5XrWxBTrmOQMsfXNnQ=w480-h960-rw
 app_name: myMoney
 app_price: Free
-app_description: myMoney is an optimized application to help you manage your personal finance effectively.
+app_description: Log a spend in two taps and see what's left before you spend it. myMoney is a fast, on-device personal finance app for iOS and Android.
 
 enable_smart_app_banner: true # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -20,74 +23,100 @@ your_name: Trinh Le
 your_link: https://trinhlbk.dev
 your_city: Ho Chi Minh City
 email_address: trinhlbk1991@gmail.com
-facebook_username:
 instagram_username: trinhlbk
 twitter_username: trinhlbk1991
 github_username: trinhlbk1991
-youtube_username:
-mastodon_link: 
 
-features:
-  - title: Manage Expenses and Incomes Effortlessly
-    description: Super easy and simple to record expense, income, debt, bill, and payment with just a few taps
-    fontawesome_icon_name: money-bill
+# Theme — lime is the app's own accent. The other two ship as alternates in the
+# design file: oklch(0.88 0.14 95) amber, oklch(0.86 0.10 200) sky.
+accent_color: "oklch(0.90 0.17 128)"
 
-  - title: Cash Flow at a Glance
-    description: Easy to read reports of the total expense, total income, spending by each category, or pending bills help you understand the cash flow better
-    fontawesome_icon_name: chart-line
+# ----------------------------------------------------------------- Landing page
 
-  - title: Create Weekly, Monthly, and Annual Budgets
-    description: Easily set spending limits for different timeframes and categories.
-    fontawesome_icon_name: piggy-bank
+hero:
+  eyebrow: Personal finance · iOS & Android
+  headline: Every đồng, accounted for.
+  lede: >-
+    Log a spend in two taps. See what's left before you spend it. No net-worth
+    dashboards, no bank scraping you didn't ask for — just the number you need today.
+  trust:
+    - On device by default
+    - Works offline
+    - Free, no ads
 
-# Theme Settings
-topbar_color: "#000000"
-topbar_transparency: 0.1
-topbar_title_color: "#ffffff"
+steps:
+  - title: Log it in two taps
+    body: >-
+      Amount, then category. The keypad sits under your thumb and the six
+      categories you actually use are on the first row.
+  - title: Set one cap
+    body: >-
+      A monthly budget is enough to start. myMoney divides it by the days left
+      and shows one number: what's safe to spend today.
+  - title: Get a verdict, not a chart
+    body: >-
+      On pace, behind, or done — in words, with the one action that fixes it.
+      No dashboards to interpret.
 
-cover_image: assets/headerimage.png # Replace with alternative image path or image URL.
-cover_overlay_color: "#363b3d"
-cover_overlay_transparency: 0.8
+screens_build_label: Sep 2026 build
 
-device_color: black # Set to: blue, black, yellow, coral or white.
+screens:
+  - title: Home
+    body: One total across every wallet, then the day's entries underneath.
+    image: /assets/store/shot-home.png
+    alt: myMoney home screen with wallet total and today's transactions
+  - title: Report
+    body: An overspent month gets named in words before you read a chart.
+    image: /assets/store/shot-report.png
+    alt: myMoney monthly report showing an overspent September
+  - title: Transaction
+    body: Every field stays editable, receipt photo included.
+    image: /assets/store/shot-transaction.png
+    alt: myMoney transaction detail with account, category, date and memo
 
-body_background_color: "#ffffff"
+facts:
+  - stat: 2 taps
+    label: To record a cash expense, from a cold start
+  - stat: 0 banks
+    label: Connected unless you choose to. Cash-first, like most wallets here
+  - stat: 18 MB
+    label: The whole app. It opens instantly on a five-year-old phone
 
-link_color: "#1d63ea"
-
-app_title_color: "#ffffff"
-app_price_color: "#ffffff"
-app_description_color: "#ffffff"
-
-feature_title_color: "#000000"
-feature_text_color: "#666666"
-
-feature_icons_foreground_color: "#1d63ea"
-feature_icons_background_color: "#e6e6e6"
-
-social_icons_foreground_color: "#666666"
-social_icons_background_color: "#e6e6e6"
-
-footer_text_color: "#666666"
+cta:
+  headline: Start with today's spending.
+  body: >-
+    Free forever for one person. Sync across devices is 39,000 ₫ a month if you
+    ever want it.
 
 ####################################################
 ### Jekyll Configuration. No need to touch this. ###
 ####################################################
 
-# Set the Sass partials directory, as we're using @imports
 sass:
-  style: :compressed # You might prefer to minify using :compressed
+  style: compressed
+  sourcemap: never
 
-# Exclude these files from your production _site
 exclude:
   - LICENSE
   - README.md
   - CNAME
+  - node_modules
+  - package.json
+  - package-lock.json
+  - wrangler.toml
+  - Gemfile
+  - Gemfile.lock
+
+include:
+  - _headers
+  - _redirects
+
+keep_files:
+  - .well-known
 
 collections:
   pages:
     output: true
     permalink: /:path/
 
-# Markdown rendering
 markdown: kramdown

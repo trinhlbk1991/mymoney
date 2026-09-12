@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+{% include head.html %}
+
+<body>
+<div class="shell">
+
+	{% include site-header.html %}
+
+	<section class="hero">
+		<div class="heroCopy">
+			<div class="eyebrow">{{ site.hero.eyebrow }}</div>
+			<h1>{{ site.hero.headline }}</h1>
+			<p class="lede">{{ site.hero.lede }}</p>
+			<div class="btnRow">
+				<a class="btn btnPrimary" href="#get">Download free</a>
+				<a class="btn btnGhost" href="#how">See a walkthrough</a>
+			</div>
+			{% if site.hero.trust %}
+			<div class="trustRow">
+				{% for item in site.hero.trust %}<span>{{ item }}</span>{% endfor %}
+			</div>
+			{% endif %}
+		</div>
+
+		<div class="heroShot">
+			<div class="phone phoneLg">
+				<img src="{{ '/assets/store/shot-budget.png' | relative_url }}" width="660" height="1354"
+				     alt="myMoney budget screen showing 850,158 ₫ safe to spend per day">
+			</div>
+		</div>
+	</section>
+
+	<section class="section" id="how">
+		<div class="sectionHead">
+			<h2>Three taps a day is the whole commitment.</h2>
+			<div class="eyebrow">01 — 03</div>
+		</div>
+		<div class="stepGrid">
+			{% for step in site.steps %}
+			<div class="step">
+				<div class="eyebrow">{{ forloop.index | prepend: '0' }}</div>
+				<h3>{{ step.title }}</h3>
+				<p>{{ step.body }}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="sectionHead">
+			<h2>The three screens you'll live in.</h2>
+			<div class="eyebrow">Real app · {{ site.screens_build_label }}</div>
+		</div>
+		<div class="shotGrid">
+			{% for screen in site.screens %}
+			<div class="shot">
+				<div class="phone phoneSm">
+					<img src="{{ screen.image | relative_url }}" width="660" height="1354"
+					     alt="{{ screen.alt }}" loading="lazy">
+				</div>
+				<div class="shotCaption">
+					<h3>{{ screen.title }}</h3>
+					<p>{{ screen.body }}</p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="craft" id="craft">
+		<div class="craftPanel">
+			<div class="eyebrow">Budgets that answer a question</div>
+			<h2>Not “how much have I spent?” — <em>how much can I spend today?</em></h2>
+			<div class="pace">
+				<div class="paceBar">
+					<div class="paceFill"></div>
+					<div class="paceMark"></div>
+				</div>
+				<div class="paceLegend">
+					<div>66% of September used</div>
+					<div class="ok">Pace marker says you're fine</div>
+				</div>
+			</div>
+			<p>Every bar in the app carries the same pace marker, so budgets and savings goals read identically. Learn it once.</p>
+		</div>
+
+		<div class="facts">
+			{% for fact in site.facts %}
+			<div class="fact">
+				<div class="factStat">{{ fact.stat }}</div>
+				<div class="factLabel">{{ fact.label }}</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="cta" id="get">
+		<div class="ctaCopy">
+			<h2>{{ site.cta.headline }}</h2>
+			<p>{{ site.cta.body }}</p>
+		</div>
+		<div class="btnRow">
+			<a class="btn btnInk" href="{{ site.appstore_link }}" target="_blank" rel="noopener">App Store</a>
+			{% if site.playstore_link %}
+			<a class="btn btnGhost" href="{{ site.playstore_link }}" target="_blank" rel="noopener">Google Play</a>
+			{% endif %}
+		</div>
+	</section>
+
+	{% include site-footer.html %}
+
+</div>
+</body>
+</html>

@@ -1,8 +1,12 @@
 ---
 layout: page
 title: What's New
+eyebrow: Release notes
+description: Every myMoney release, newest first.
+prose_variant: changelog
 include_in_header: true
 ---
+
 # VERSION 1.15.2
 - Fix censor money not working in Manage Wallets screen 🐞
 - Fix filter week mode not working 🥹

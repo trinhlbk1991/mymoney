@@ -7,16 +7,23 @@
 
 {% include head.html %}
 
-<body class="subPageBody">
-    <div class="headerBackground subPageHeaderBackground">
-        <div class="container subPageContainer">
-        {% include header.html %}
-            <article class="page markdown-body">
-                {{ content }}
-            </article>
-        </div>
-        {% include appstoreimages.html %}
-    </div>
-</body>
+<body>
+<div class="pageShell">
 
+	{% include site-header.html %}
+
+	<main>
+		<div class="pageHead">
+			{% if page.eyebrow %}<div class="eyebrow">{{ page.eyebrow }}</div>{% endif %}
+			<h1>{{ page.title }}</h1>
+		</div>
+		<article class="prose {% if page.prose_variant %}prose--{{ page.prose_variant }}{% endif %}">
+			{{ content }}
+		</article>
+	</main>
+
+	{% include site-footer.html %}
+
+</div>
+</body>
 </html>

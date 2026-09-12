@@ -1,74 +1,58 @@
 ---
 layout: page
 title: Terms & Conditions
+eyebrow: Last updated 12 September 2026
+description: The terms you agree to when you use the myMoney app.
 include_in_header: false
 ---
 
-# Privacy Policy
+By downloading or using the myMoney app ("the App"), these terms will automatically apply to you. Please read them carefully before using the App. You are not allowed to copy or modify the App, any part of the App, or its trademarks in any way. You are not allowed to attempt to extract the source code of the App, translate the App into other languages, or make derivative versions. The App itself, and all the trademarks, copyright, database rights, and other intellectual property rights related to it, still belong to Trinh Le.
 
-Trinh Le built the myMoney app as an Ad Supported app. This SERVICE is provided by Trinh Le at no cost and is intended for use as is.
+Trinh Le is committed to ensuring that the App is as useful and efficient as possible. For that reason, the right is reserved to make changes to the App or to charge for its services, at any time and for any reason. You will never be charged for the App or its services without it being made very clear to you exactly what you are paying for.
 
-This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+## Your data is yours
 
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+myMoney stores your financial records on your device. You are responsible for keeping your device, and any backup you create, secure. Trinh Le cannot recover data that is lost because a device was lost, reset, or wiped, and cannot recover a backup stored in your own Google Drive account on your behalf.
 
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at myMoney unless otherwise defined in this Privacy Policy.
+How your information is handled is described in the [Privacy Policy]({{ '/privacypolicy/' | relative_url }}), which forms part of these terms.
 
-# Information Collection and Use
+## Not financial advice
 
-For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Name, Email. The information that I request will be retained on your device and is not collected by me in any way.
+myMoney is a record-keeping and budgeting tool. Nothing in the App is investment, tax, or financial advice, and no figure it shows should be treated as a professional recommendation. You remain solely responsible for your own financial decisions and for verifying the accuracy of the data you enter.
 
-The app does use third-party services that may collect information used to identify you.
+## Third-party services
 
-Link to the privacy policy of third-party service providers used by the app
+The App does use third-party services that declare their own Terms and Conditions. Links to the Terms and Conditions of third-party service providers used by the App:
 
-*   [Google Play Services](https://www.google.com/policies/privacy/)
-*   [AdMob](https://support.google.com/admob/answer/6128543?hl=en)
-*   [Google Analytics for Firebase](https://firebase.google.com/policies/analytics)
-*   [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
-*   [Facebook](https://www.facebook.com/about/privacy/update/printable)
+*   [Google Play Services](https://policies.google.com/terms)
+*   [Google Analytics for Firebase](https://firebase.google.com/terms/analytics)
+*   [Firebase Crashlytics](https://firebase.google.com/terms/crashlytics)
+*   [AdMob](https://developers.google.com/admob/terms)
 
-# Log Data
+## Connection and device
 
-I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+Please be aware that Trinh Le does not take responsibility for certain things. Some functions of the App require the App to have an active internet connection. The connection can be Wi-Fi or provided by your mobile network provider, but Trinh Le cannot take responsibility for the App not working at full functionality if you do not have access to Wi-Fi or if you do not have any of your data allowance left.
 
-# Cookies
+If you are using the App outside of an area with Wi-Fi, your mobile network provider's agreement still applies. You may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the App, or other third-party charges. In using the App, you accept responsibility for any such charges, including roaming data charges if you use the App outside of your home territory. If you are not the bill payer for the device on which you are using the App, you are assumed to have received permission from the bill payer.
 
-Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
+Along the same lines, Trinh Le cannot always take responsibility for the way you use the App. You need to make sure that your device stays charged. If it runs out of battery and you cannot turn it on to make use of the Service, Trinh Le cannot accept responsibility.
 
-This Service does not use these “cookies” explicitly. However, the app may use third-party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+## Purchases and subscriptions
 
-# Service Providers
+Some features of the App may be offered as a paid one-time purchase or subscription. Payment is taken and managed by the App Store or Google Play, not by Trinh Le directly. Subscriptions renew automatically unless cancelled, and cancellation, refunds, and billing disputes are handled under the rules of the store you purchased through. Free features available at the time of your download may be changed with reasonable notice.
 
-I may employ third-party companies and individuals due to the following reasons:
+## Updates and ending the Service
 
-*   To facilitate our Service;
-*   To provide the Service on our behalf;
-*   To perform Service-related services; or
-*   To assist us in analyzing how our Service is used.
+Trinh Le may wish to update the App at some point. The App is currently available on iOS and Android; the requirements for those systems (and for any additional systems it is extended to) may change, and you will need to download the updates if you want to keep using the App. Trinh Le does not promise to always update the App so that it is relevant to you and/or works with the iOS or Android version that you have installed on your device. However, you promise to always accept updates to the App when offered to you.
 
-I want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+Trinh Le may also wish to stop providing the App, and may terminate use of it at any time without giving notice of termination to you. Unless otherwise stated, upon any termination: (a) the rights and licences granted to you in these terms will end; and (b) you must stop using the App and, if needed, delete it from your device.
 
-# Security
+## Changes to these Terms and Conditions
 
-I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+These Terms and Conditions may be updated from time to time. You are advised to review this page periodically for any changes. You will be notified of any changes by the new Terms and Conditions being posted on this page.
 
-# Links to Other Sites
+These terms are effective as of 12 September 2026.
 
-This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+## Contact
 
-# Children’s Privacy
-
-These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13 years of age. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do the necessary actions.
-
-# Changes to This Privacy Policy
-
-I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
-
-This policy is effective as of 2021-11-24
-
-# Contact Us
-
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at trinhlbk1991@gmail.com.
-
-This privacy policy page was created at [privacypolicytemplate.net](https://privacypolicytemplate.net) and modified/generated by [App Privacy Policy Generator](https://app-privacy-policy-generator.nisrulz.com/)
+If you have any questions or suggestions about these Terms and Conditions, do not hesitate to make contact at [{{ site.email_address }}](mailto:{{ site.email_address }}).

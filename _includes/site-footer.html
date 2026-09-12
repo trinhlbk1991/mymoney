@@ -1,0 +1,14 @@
+<footer class="siteFooter">
+	<div class="footerNote">
+		{{ site.app_name }} · made by
+		{% if site.your_link %}<a href="{{ site.your_link }}" target="_blank" rel="noopener">{{ site.your_name }}</a>{% else %}{{ site.your_name }}{% endif %}
+		{%- if site.your_city %} in {{ site.your_city }}{% endif %}
+	</div>
+	<div class="footerLinks">
+		<a href="{{ '/privacypolicy/' | relative_url }}">Privacy</a>
+		<a href="{{ '/terms/' | relative_url }}">Terms</a>
+		<a href="{{ '/changelog/' | relative_url }}">Changelog</a>
+		<a href="{{ '/deleteaccount/' | relative_url }}">Delete account</a>
+		<a href="mailto:{{ site.email_address }}">Support</a>
+	</div>
+</footer>
