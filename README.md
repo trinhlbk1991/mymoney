@@ -46,8 +46,10 @@ Styles are a single file, `main.scss`, compiled by Jekyll to `/main.css`.
 5. Deploy. Then add the custom domain under the project's **Custom domains** tab,
    and set `url:` in `_config.yml` to match.
 
-The Ruby version is pinned in `.ruby-version`. If the build image needs it
-spelled out, add an environment variable `RUBY_VERSION = 3.3.5`.
+Cloudflare's build image ships Ruby 3.4.4 by default, which is what this site
+needs (every gem requires only >= 3.2), so no version pin is required. To force
+a specific one, add a `RUBY_VERSION` environment variable in the project's
+build settings or commit a `.ruby-version` file.
 
 **From your machine:**
 
