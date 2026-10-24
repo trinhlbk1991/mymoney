@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Privacy Policy
-eyebrow: Last updated 12 September 2026
+eyebrow: Last updated 24 October 2026
 description: How myMoney handles your data — what stays on your device, what third-party services see, and how to delete everything.
 include_in_header: false
 ---
@@ -14,7 +14,7 @@ Terms used in this Privacy Policy have the same meaning as in the [Terms & Condi
 
 ## Information collection and use
 
-Your financial records — transactions, wallets, categories, budgets, and any receipt photos you attach — are stored on your device. They are not collected or transmitted by the Service unless you explicitly enable backup or sync.
+Your financial records — transactions, wallets, categories, budgets, and any receipt photos you attach — are stored on your device. They are not collected or transmitted by the Service unless you explicitly enable backup, sync, or reading transactions from notifications (described below).
 
 For a better experience, the Service may ask you to provide certain personally identifiable information, including but not limited to your name and email address. That information is retained on your device and is used to identify your account if you choose to sign in.
 
@@ -27,7 +27,26 @@ The app does use third-party services that may collect information used to ident
 *   [Google Analytics for Firebase](https://firebase.google.com/policies/analytics)
 *   [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
 *   [Firebase Authentication](https://firebase.google.com/support/privacy/)
+*   [Firebase AI Logic and the Gemini API](https://ai.google.dev/gemini-api/terms) (only if you turn on reading transactions from notifications)
 *   [Facebook](https://www.facebook.com/about/privacy/update/printable)
+
+## Reading transactions from notifications (Android)
+
+myMoney Pro on Android can turn notifications from your banking and payment apps into transactions. This is off until you turn it on, and Android asks you to grant notification access first.
+
+**What is read.** Only notifications from the apps you add to the list in Settings. Notifications from every other app are ignored: they are never stored or sent anywhere. Of a listed app's notifications, only those containing a number are read.
+
+**What leaves your phone.** For each notification read, myMoney sends the following to Google's Gemini AI, through Firebase AI Logic, so it can work out the amount, the direction, the currency and the category:
+
+*   the notification's title and text, exactly as the app posted it. Depending on your bank, this can include amounts, merchant or counterparty names, transfer messages, your account balance, and all or part of an account number;
+*   the name of the app that posted it;
+*   your category names and the currency of the wallet the transaction goes to.
+
+Google processes this to return the result and acts as a service provider. Trinh Le does not receive or store any of it.
+
+**What is kept, and where.** The result is kept only in the app's database on your phone, waiting for you to confirm it, or saved as a transaction if you chose to save automatically. Items you have confirmed or dismissed are deleted after 30 days. None of it is included in backups.
+
+**How to stop.** Turn it off in Settings, or revoke myMoney's notification access in Android's settings. Once it is off, nothing more is read, and any notifications waiting to be read are discarded.
 
 ## Log data
 
@@ -70,7 +89,7 @@ You can delete your account and all associated data from inside the app at any t
 
 This Privacy Policy may be updated from time to time. You are advised to review this page periodically for any changes. You will be notified of any changes by the new Privacy Policy being posted on this page.
 
-This policy is effective as of 12 September 2026.
+This policy is effective as of 24 October 2026.
 
 ## Contact
 
