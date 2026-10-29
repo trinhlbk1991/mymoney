@@ -4,8 +4,9 @@ Marketing site, changelog, and legal pages for [myMoney](https://apps.apple.com/
 Static site built with Jekyll 4 and deployed to Cloudflare Pages.
 
 The landing page design comes from the `Landing Page.dc.html` artboard in the
-myMoney Claude Design project; the app screenshots in `assets/store/` are
-exported from the same project.
+myMoney Claude Design project. The app screenshots in `assets/shots/` are the
+7.0 raw captures from mymoney-mobile's `screenshots/raw/en/iphone/`, resized to
+603px wide WebP (`cwebp -q 82 -resize 603 1311`).
 
 ## Local development
 
@@ -20,13 +21,23 @@ Almost everything on the landing page is data in `_config.yml` — no HTML neede
 
 | Key | What it controls |
 | --- | --- |
-| `hero` | Eyebrow, headline, lede, and the three trust bullets |
-| `steps` | The "Three taps a day" cards (numbered automatically) |
-| `screens` | The three phone screenshots and their captions |
-| `facts` | The stat cards next to the dark panel |
+| `hero` | "New" badge, headline, lede, and the three trust bullets |
+| `capture` | The dark AI auto-capture section: copy, points, platforms, and the examples the animated demo loops through |
+| `setup` | The "Set it up once" cards (numbered automatically) |
+| `features` | The phone screenshots and their captions |
+| `faq` | The FAQ — also emitted as FAQPage structured data |
 | `cta` | The lime call-to-action block |
+| `seo_title`, `app_description` | The home page `<title>` and the meta/OG description (keep it under 160 characters) |
 | `accent_color` | The lime accent. The design file also ships amber `oklch(0.88 0.14 95)` and sky `oklch(0.86 0.10 200)` |
 | `url` | Production domain — used for canonical and `og:image` URLs |
+
+## Link previews and SEO
+
+Every page shares `assets/social-card.jpg` (1200×630) as its `og:image`. It is
+rendered from `tool/social-card.html`; after editing that file run
+`tool/render-social-card.sh` (needs Google Chrome). The home page also carries
+`MobileApplication` and `FAQPage` JSON-LD, built in `_includes/head.html` from
+`_config.yml`. `sitemap.xml` and `robots.txt` are generated from `url:`.
 
 Long-form pages live in `_pages/` as Markdown and render through `_layouts/page.html`:
 `privacypolicy.md`, `terms.md`, `changelog.md`, `deleteaccount.md`.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 {% include head.html %}
 
@@ -8,9 +8,11 @@
 
 	{% include site-header.html %}
 
+	<main class="landing">
+
 	<section class="hero">
 		<div class="heroCopy">
-			<div class="eyebrow">{{ site.hero.eyebrow }}</div>
+			<a class="newBadge" href="#capture"><span class="newBadgeDot" aria-hidden="true"></span>{{ site.hero.badge }}</a>
 			{%- assign currencies = site.hero.currencies -%}
 			{%- if currencies and currencies.size > 0 -%}
 			{%- assign first = currencies | first -%}
@@ -28,41 +30,137 @@
 			{%- endif -%}
 			<p class="lede">{{ site.hero.lede }}</p>
 			<div class="btnRow">
-				<a class="btn btnPrimary" href="#get">Get myMoney</a>
-				<a class="btn btnGhost" href="#screens">See the screens</a>
+				<a class="btn btnPrimary" href="#get">Get myMoney free</a>
+				<a class="btn btnGhost" href="#capture">See auto-capture</a>
 			</div>
 			{% if site.hero.trust %}
-			<div class="trustRow">
-				{% for item in site.hero.trust %}<span>{{ item }}</span>{% endfor %}
-			</div>
+			<ul class="trustRow">
+				{% for item in site.hero.trust %}<li>{{ item }}</li>{% endfor %}
+			</ul>
 			{% endif %}
 		</div>
 
 		<div class="heroShot">
 			<div class="phone phoneLg">
-				<img src="{{ '/assets/store/shot-budget.png' | relative_url }}" width="660" height="1354"
-				     alt="myMoney budget screen showing 850,158 ₫ safe to spend per day">
+				<img src="{{ '/assets/shots/home.webp' | relative_url }}" width="603" height="1311"
+				     alt="myMoney home screen with a 15,177.59 dollar total and the day's transactions"
+				     fetchpriority="high">
 			</div>
 		</div>
 	</section>
 
-	<section class="section" id="screens">
-		<div class="sectionHead">
-			<h2>The three screens you'll live in.</h2>
-			<div class="eyebrow">Real app · {{ site.screens_build_label }}</div>
+	{% assign cap = site.capture %}
+	{% assign ex = cap.examples | first %}
+	<section class="capture" id="capture" aria-labelledby="capture-title">
+		<div class="captureCopy">
+			<div class="eyebrow eyebrowOnDark">{{ cap.eyebrow }}</div>
+			<h2 id="capture-title">{{ cap.headline }}</h2>
+			<p class="captureBody">{{ cap.body }}</p>
+			<ul class="capturePoints">
+				{% for point in cap.points %}
+				<li><strong>{{ point.title }}</strong><span>{{ point.body }}</span></li>
+				{% endfor %}
+			</ul>
+			<ul class="platformRow" aria-label="Where auto-capture works">
+				{% for p in cap.platforms %}
+				<li><span class="platformName">{{ p.name }}</span><span class="platformDetail">{{ p.detail }}</span></li>
+				{% endfor %}
+			</ul>
 		</div>
-		<div class="shotGrid">
-			{% for screen in site.screens %}
-			<div class="shot">
-				<div class="phone phoneSm">
-					<img src="{{ screen.image | relative_url }}" width="660" height="1354"
-					     alt="{{ screen.alt }}" loading="lazy">
+
+		{%- comment -%}
+		  The demo starts on its last frame, so without JS (or with reduced motion)
+		  it already tells the whole story. capture-demo.js rewinds and loops it.
+		{%- endcomment -%}
+		<figure class="demo" data-capture-demo data-step="3" aria-label="Animated example: a bank notification is read by AI and saved as a transaction">
+			<script type="application/json" data-examples>{{ cap.examples | jsonify }}</script>
+			<div class="demoScreen">
+				<div class="demoClock" aria-hidden="true">9:41</div>
+
+				<div class="demoNotif">
+					<div class="demoNotifIcon" data-f="glyph">{{ ex.glyph }}</div>
+					<div class="demoNotifText">
+						<div class="demoNotifHead"><span data-f="app">{{ ex.app }}</span><span>now</span></div>
+						<div class="demoNotifBody">Card ending <span data-f="card">{{ ex.card }}</span> paid <span data-f="amount">{{ ex.amount }}</span> at <span data-f="merchant">{{ ex.merchant }}</span></div>
+					</div>
+					<div class="demoSweep" aria-hidden="true"></div>
 				</div>
-				<div class="shotCaption">
-					<h3>{{ screen.title }}</h3>
-					<p>{{ screen.body }}</p>
+
+				<div class="demoChips" aria-hidden="true">
+					<span class="chip">•••• <span data-f="card">{{ ex.card }}</span></span>
+					<span class="chip chipStrong" data-f="amount">{{ ex.amount }}</span>
+					<span class="chip" data-f="merchant">{{ ex.merchant }}</span>
+				</div>
+
+				<div class="demoTxn">
+					<div class="demoTxnIcon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+					</div>
+					<div class="demoTxnText">
+						<div class="demoTxnTitle" data-f="category">{{ ex.category }}</div>
+						<div class="demoTxnMeta"><span data-f="wallet">{{ ex.wallet }}</span> · <span data-f="merchant">{{ ex.merchant }}</span></div>
+					</div>
+					<div class="demoTxnAmount">−<span data-f="amount">{{ ex.amount }}</span></div>
+					<div class="demoSaved">Saved for you</div>
 				</div>
 			</div>
+			<figcaption class="demoSteps">
+				<ol>
+					<li data-for="1">A payment notification comes in…</li>
+					<li data-for="2">Gemini reads the card, amount and place</li>
+					<li data-for="3">Recorded. You didn't type a thing.</li>
+				</ol>
+			</figcaption>
+		</figure>
+	</section>
+
+	<section class="section" id="how" aria-labelledby="how-title">
+		<div class="sectionHead">
+			<h2 id="how-title">Set it up once. Then just pay.</h2>
+			<div class="eyebrow">About two minutes</div>
+		</div>
+		<ol class="setupGrid">
+			{% for step in site.setup %}
+			<li class="setupCard">
+				<span class="setupNum">{{ forloop.index | prepend: '0' }}</span>
+				<h3>{{ step.title }}</h3>
+				<p>{{ step.body }}</p>
+			</li>
+			{% endfor %}
+		</ol>
+	</section>
+
+	<section class="section" id="features" aria-labelledby="features-title">
+		<div class="sectionHead">
+			<h2 id="features-title">Everything else, still two taps away.</h2>
+			<div class="eyebrow">Real app · {{ site.features_build_label }}</div>
+		</div>
+		<div class="shotGrid">
+			{% for f in site.features %}
+			<div class="shot">
+				<div class="phone phoneSm">
+					<img src="{{ f.image | relative_url }}" width="603" height="1311"
+					     alt="{{ f.alt }}" loading="lazy" decoding="async">
+				</div>
+				<div class="shotCaption">
+					<h3>{{ f.title }}</h3>
+					<p>{{ f.body }}</p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="section" id="faq" aria-labelledby="faq-title">
+		<div class="sectionHead">
+			<h2 id="faq-title">Questions, answered.</h2>
+		</div>
+		<div class="faqList">
+			{% for item in site.faq %}
+			<details class="faqItem"{% if forloop.first %} open{% endif %}>
+				<summary>{{ item.q }}</summary>
+				<p>{{ item.a }}</p>
+			</details>
 			{% endfor %}
 		</div>
 	</section>
@@ -75,10 +173,13 @@
 		{% include store-buttons.html %}
 	</section>
 
+	</main>
+
 	{% include site-footer.html %}
 
 </div>
 
 <script src="{{ '/assets/js/hero-reel.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/capture-demo.js' | relative_url }}" defer></script>
 </body>
 </html>

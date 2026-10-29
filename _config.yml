@@ -1,9 +1,14 @@
-# Set this to your production domain so canonical + og:image URLs resolve.
-url: "https://mymoney.pages.dev"
+# Production domain — canonical, og:url, og:image and the sitemap resolve
+# against it, so it has to be the host people actually reach.
+url: "https://mymoney.icedtealabs.com"
 
 page_title: myMoney — Every đồng, accounted for.
+# What the home page's <title> says. Leads with the words people search for;
+# page_title above stays the brand line.
+seo_title: "myMoney: AI Expense Tracker & Budget App for iPhone and Android"
 
 # App Info
+app_version: 7.0.0
 ios_app_id: 6475389461
 ios_app_country: us
 
@@ -16,7 +21,16 @@ presskit_download_link:
 # screen). Serves as favicon, touch icon and the header brand mark.
 app_icon: /assets/app-icon.png
 app_name: myMoney
-app_description: Log a spend in two taps and see what's left before you spend it. myMoney is a fast, on-device personal finance app for iOS and Android.
+# Kept under 160 characters: search results cut the rest.
+app_description: >-
+  Budget & expense tracker for iPhone and Android. AI auto-capture turns your
+  bank's payment notifications into transactions — no bank login, no typing.
+
+# 1200x630 link preview, rendered from tool/social-card.html.
+social_image: /assets/social-card.jpg
+social_image_alt: >-
+  myMoney: a bank payment notification read by AI and saved as a transaction,
+  beside the app's home screen.
 
 enable_smart_app_banner: true # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -36,7 +50,8 @@ accent_color: "oklch(0.90 0.17 128)"
 # ----------------------------------------------------------------- Landing page
 
 hero:
-  eyebrow: Personal finance · iOS & Android
+  badge: New in 7.0 · AI auto-capture
+  eyebrow: Expense tracker · iOS & Android
   # The headline spins its currency word. `headline` is the flat fallback used
   # when `currencies` is empty, and stays the source for <title>/OG copy.
   headline: Every đồng, accounted for.
@@ -60,34 +75,127 @@ hero:
     - symbol: £
       name: pound
   lede: >-
-    Log a spend in two taps. See what's left before you spend it. No net-worth
-    dashboards, no bank scraping you didn't ask for — just the number you need today.
+    Pay the way you always do. myMoney reads the payment notifications your
+    bank already sends and writes each one down for you. Anything else takes
+    two taps.
   trust:
-    - On device by default
-    - Works offline
-    - Paid once, no ads
+    - No bank login
+    - Pay once, no subscription
+    - English & Tiếng Việt
 
-screens_build_label: Sep 2026 build
+capture:
+  eyebrow: New in 7.0 · AI auto-capture
+  headline: Pay as usual. It's already written down.
+  body: >-
+    Auto-capture reads the payment notifications from your bank and e-wallet
+    apps, and Gemini AI turns each one into a transaction — amount, place,
+    category and the right wallet. No typing.
+  points:
+    - title: Only the apps you pick
+      body: Notifications from every other app are never read, stored or sent.
+    - title: The right wallet, by card digits
+      body: Add the last 3–4 digits of a card and its payments land in that wallet.
+    - title: Review first, or let it save
+      body: Confirm each one from an inbox, or have it saved straight away and fix it later.
+    - title: Your first 3 are free
+      body: Try it before you buy. Premium reads every one after that.
+  platforms:
+    - name: Android
+      detail: Reads notifications with your permission
+    - name: iPhone
+      detail: iOS 27+, through one Shortcuts automation
+  # The looping demo. Each example is one notification and what it becomes.
+  examples:
+    - app: Your bank
+      glyph: B
+      card: "4821"
+      amount: "$6.40"
+      merchant: Corner Café
+      category: Coffee
+      wallet: Credit card
+    - app: E-wallet
+      glyph: W
+      card: "0937"
+      amount: "85.000 ₫"
+      merchant: Grab
+      category: Transport
+      wallet: Everyday
+    - app: Your bank
+      glyph: B
+      card: "5512"
+      amount: "€23.10"
+      merchant: Lidl
+      category: Grocery
+      wallet: Debit card
 
-screens:
-  - title: Home
-    body: One total across every wallet, then the day's entries underneath.
-    image: /assets/store/shot-home.png
-    alt: myMoney home screen with wallet total and today's transactions
-  - title: Report
-    body: An overspent month gets named in words before you read a chart.
-    image: /assets/store/shot-report.png
-    alt: myMoney monthly report showing an overspent September
-  - title: Transaction
-    body: Every field stays editable, receipt photo included.
-    image: /assets/store/shot-transaction.png
-    alt: myMoney transaction detail with account, category, date and memo
+setup:
+  - title: Pick your bank and e-wallet apps
+    body: Choose which apps myMoney may read, and the wallet each one fills.
+  - title: Add your cards' last digits
+    body: Payments that mention a card go to that card's wallet automatically.
+  - title: Pay with your card or phone
+    body: The notification arrives, Gemini reads it, and the transaction is there.
+
+features_build_label: Version 7.0
+
+features:
+  - title: Accounts
+    body: Cash, cards, bank and e-wallets on cards styled your way, with one net worth on top.
+    image: /assets/shots/wallets.webp
+    alt: myMoney accounts screen with Everyday, Cash, Credit Card and PayPal wallets
+  - title: Budget
+    body: One monthly budget becomes what's safe to spend today, updated as you spend.
+    image: /assets/shots/budget.webp
+    alt: myMoney budget screen showing 177.08 dollars safe to spend per day
+  - title: Goals
+    body: Pick a target and a date; myMoney works out the monthly amount.
+    image: /assets/shots/goals.webp
+    alt: myMoney savings goals for an emergency fund, a trip to Japan and a laptop
+  - title: Reports
+    body: Money kept, savings rate and daily spend — in light or dark.
+    image: /assets/shots/report-dark.webp
+    alt: myMoney monthly report in dark mode with savings rate and daily spend chart
+
+faq:
+  - q: How does myMoney record transactions automatically?
+    a: >-
+      Your bank and e-wallet apps already send a notification for every
+      payment. With auto-capture on, myMoney reads those notifications from
+      the apps you pick, and Google's Gemini AI turns each one into a
+      transaction with the amount, place, category and wallet filled in.
+  - q: Do I have to give myMoney my bank login?
+    a: >-
+      No. myMoney never connects to your bank. It only reads the payment
+      notifications that already appear on your phone, from the apps you
+      choose.
+  - q: Does auto-capture work on iPhone?
+    a: >-
+      Yes, on iOS 27 or later. You set up one Shortcuts automation, guided
+      step by step in the app, and it sends payment notifications to myMoney.
+      On Android, myMoney reads notifications directly once you allow
+      notification access.
+  - q: What is sent to the AI?
+    a: >-
+      Only the text of a notification from an app you added, that app's name,
+      and your category names, so Gemini can work out the amount and
+      category. Notifications from every other app are never read, stored or
+      sent, and you can turn capture off or remove an app at any time.
+  - q: Is myMoney free?
+    a: >-
+      myMoney is free to download, and your first 3 auto-captured
+      transactions are free. Premium is a one-time purchase — no subscription
+      — that removes ads and limits and keeps auto-capture reading every
+      payment.
+  - q: Which languages and currencies does it support?
+    a: >-
+      The app is in English and Vietnamese, and works with any currency, from
+      the Vietnamese đồng to the dollar, euro or yen.
 
 cta:
-  headline: Start with today's spending.
+  headline: Let your next payment log itself.
   body: >-
-    Buy it once on either store. Every update after that is included — no
-    subscription, no ads, nothing sold on.
+    Free on both stores. Premium is bought once — every update after that is
+    included. No subscription, nothing sold on.
 
 ####################################################
 ### Jekyll Configuration. No need to touch this. ###
@@ -98,6 +206,9 @@ sass:
   sourcemap: never
 
 exclude:
+  - tool
+  - _refs
+  - habita/node_modules
   - LICENSE
   - README.md
   - CNAME

@@ -1,0 +1,23 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>{{ '/' | absolute_url }}</loc>
+		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	{%- assign docs = site.documents | where: 'collection', 'pages' -%}
+	{%- for p in docs -%}
+	{%- if p.sitemap != false %}
+	<url>
+		<loc>{{ p.url | absolute_url }}</loc>
+		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+		<priority>{% if p.url contains 'changelog' %}0.6{% else %}0.3{% endif %}</priority>
+	</url>
+	{%- endif -%}
+	{%- endfor %}
+</urlset>
