@@ -54,10 +54,10 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="{{ '/main.css' | relative_url }}">
+	{% if is_home %}<link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">{% else %}<link rel="stylesheet" href="{{ '/main.css' | relative_url }}">{% endif %}
 
 	{% if is_home %}
-	<link rel="preload" as="image" href="{{ '/assets/shots/home.webp' | relative_url }}" fetchpriority="high">
+	<link rel="preload" as="image" href="{{ '/assets/real/en-light-capture-inbox.webp' | relative_url }}" fetchpriority="high">
 	{%- capture app_desc -%}{{ site.capture.body | strip_newlines | strip }}{%- endcapture -%}
 	<script type="application/ld+json">
 	{

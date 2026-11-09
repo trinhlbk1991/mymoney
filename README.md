@@ -3,10 +3,12 @@
 Marketing site, changelog, and legal pages for [myMoney](https://apps.apple.com/vn/app/mymoney-finance/id6475389461).
 Static site built with Jekyll 4 and deployed to Cloudflare Pages.
 
-The landing page design comes from the `Landing Page.dc.html` artboard in the
-myMoney Claude Design project. The app screenshots in `assets/shots/` are the
-7.0 raw captures from mymoney-mobile's `screenshots/raw/en/iphone/`, resized to
-603px wide WebP (`cwebp -q 82 -resize 603 1311`).
+The home page is a product-page layout: a gradient hero with a timed feature
+switcher, a four-step workflow, accordion feature sections, pricing and FAQ.
+Its screenshots in `assets/real/` are the light raw captures from
+mymoney-mobile's `screenshots/raw/<en|vi>/iphone/light/`, resized to 660px wide
+WebP (`cwebp -q 80 -resize 660 0`); the page swaps them with the language.
+`assets/guide/` holds two crops from the app's Shortcuts setup guide.
 
 ## Local development
 
@@ -17,19 +19,19 @@ bundle exec jekyll serve   # http://localhost:4000
 
 ## Editing content
 
-Almost everything on the landing page is data in `_config.yml` — no HTML needed:
+The home page has its own files and carries its copy in English and Vietnamese:
 
-| Key | What it controls |
+| File | What it holds |
 | --- | --- |
-| `hero` | "New" badge, headline, lede, and the three trust bullets |
-| `capture` | The dark AI auto-capture section: copy, points, platforms, and the examples the animated demo loops through |
-| `setup` | The "Set it up once" cards (numbered automatically) |
-| `features` | The phone screenshots and their captions |
-| `faq` | The FAQ — also emitted as FAQPage structured data |
-| `cta` | The lime call-to-action block |
+| `_layouts/home.html` | The page markup and its English copy (`data-i18n` keys) |
+| `assets/js/home.js` | The Vietnamese copy (`VI`), and the hero switcher, workflow and accordion content in both languages, including which screenshot and crop each one shows |
+| `assets/css/home.css` | The home page styles |
+| `_config.yml` `capture`, `features`, `faq` | Only the link preview and structured data; keep them in step with the page |
 | `seo_title`, `app_description` | The home page `<title>` and the meta/OG description (keep it under 160 characters) |
-| `accent_color` | The lime accent. The design file also ships amber `oklch(0.88 0.14 95)` and sky `oklch(0.86 0.10 200)` |
-| `url` | Production domain — used for canonical and `og:image` URLs |
+| `url` | Production domain, used for canonical and `og:image` URLs |
+
+`/get/` (`_pages/get.html`) sends phones to their store; the QR code in the
+closing section points there.
 
 ## Link previews and SEO
 
@@ -42,7 +44,7 @@ rendered from `tool/social-card.html`; after editing that file run
 Long-form pages live in `_pages/` as Markdown and render through `_layouts/page.html`:
 `privacypolicy.md`, `terms.md`, `changelog.md`, `deleteaccount.md`.
 
-Styles are a single file, `main.scss`, compiled by Jekyll to `/main.css`.
+The long-form pages are styled by `main.scss`, compiled by Jekyll to `/main.css`; the home page uses `assets/css/home.css`.
 
 ## Deploying to Cloudflare
 

@@ -1,0 +1,16 @@
+---
+layout: page
+title: Get myMoney
+eyebrow: iPhone & Android
+description: Download myMoney on the App Store or Google Play.
+sitemap: false
+---
+<p>Pick your store. On a phone, this page opens the right one for you.</p>
+{% include store-buttons.html %}
+<script>
+(function () {
+	var ua = navigator.userAgent;
+	if (/iPhone|iPad|iPod/.test(ua)) location.replace({{ site.appstore_link | jsonify }});
+	else if (/Android/.test(ua)) location.replace({{ site.playstore_link | jsonify }});
+})();
+</script>
