@@ -1,0 +1,1214 @@
+# myMoney blog schedule. Read docs/blog/README.md first: it says how to turn an
+# entry into a post, the writing rules, the checks and the status workflow.
+#
+# Fields per post:
+#   id, status (planned | drafted | published | blocked), series
+#   publish_date   the day it should go live (the reviewer merges on/after it)
+#   draft_date     when the automation should write it (about 7 days earlier)
+#   seasonal       true: don't write it after publish_date (README §5)
+#   langs          per language: slug, title, seo_title (≤60), description
+#                  (≤155), keyword (primary), secondary
+#   intent, audience, angle   what the reader wants and the post's point of view
+#   outline        the ## sections, in order
+#   worked_example the đồng example to compute (money-basics, cashless)
+#   app_tie_in     the one place myMoney is mentioned, and where it links
+#   internal_links site pages to link in the body
+#   faq_seed       questions for the FAQ
+#   words          target length per language
+#   needs_author_input / author_questions / author_notes   README §1, step 4
+#   sources        external sources allowed for facts, if any
+#   promote_on     where the person should share it after publishing
+#   files          filled in by the automation
+
+series:
+  money-basics: "Tiền đi đâu? Everyday money in Vietnam: budgets, saving, Tết"
+  cashless: "Tracking money when you pay by QR and e-wallet (ties to auto-capture)"
+  compare: "Comparisons and roundups (need the author's own testing)"
+  build: "Build in public: how myMoney is made (English, for links)"
+
+key_dates:
+  tet_2027: 2027-02-06          # Mùng 1 Tết Đinh Mùi
+  ong_tao_2027: 2027-01-30      # 23 tháng Chạp
+  ram_thang_gieng_2027: 2027-02-20
+
+posts:
+
+  # ------------------------------------------------------------ prerequisite
+  - id: B00
+    status: planned
+    kind: infrastructure
+    draft_date: 2026-11-17
+    publish_date: 2026-11-20
+    summary: >-
+      Build the blog section before any post: _layouts/post.html (same look as
+      _layouts/page.html, with author box, date, series and related posts),
+      /blog/ and /vi/blog/ index pages listing posts by language, RSS feeds
+      (/blog/feed.xml, /vi/blog/feed.xml), posts in sitemap.xml with lastmod
+      and hreflang, Article + FAQPage + BreadcrumbList JSON-LD, the download
+      box at the end of each post, "Blog" in the header/footer links in
+      _data/ui.yml and _data/home/*.yml, and a Blog section in llms.txt.
+      Author box: Trinh Le, builds myMoney in Ho Chi Minh City, links to
+      trinhlbk.dev.
+
+  # ---------------------------------------------------------------- Nov 2026
+  - id: P01
+    status: planned
+    series: money-basics
+    draft_date: 2026-11-17
+    publish_date: 2026-11-24
+    pillar: true
+    langs:
+      vi:
+        slug: cach-quan-ly-chi-tieu-ca-nhan
+        title: "Cách quản lý chi tiêu cá nhân: hướng dẫn đầy đủ từ con số 0"
+        seo_title: "Cách quản lý chi tiêu cá nhân hiệu quả (từ A–Z)"
+        description: "Biết tiền đi đâu, đặt ngân sách tháng, chi theo mức mỗi ngày và giữ thói quen ghi chép. Hướng dẫn từng bước kèm ví dụ bằng đồng."
+        keyword: cách quản lý chi tiêu cá nhân
+        secondary: [quản lý tài chính cá nhân, ghi chép chi tiêu, lập ngân sách hàng tháng]
+      en:
+        slug: how-to-manage-your-spending
+        title: "How to manage your personal spending: a complete guide"
+        seo_title: "How to Manage Your Spending: A Step-by-Step Guide"
+        description: "See where your money goes, set a monthly budget, spend by a daily number and keep tracking. A step-by-step guide with worked examples."
+        keyword: how to manage your spending
+        secondary: [how to track expenses, personal budget, monthly budget plan]
+    intent: informational, broad. The reader feels money disappears each month and wants a system.
+    audience: Working adults 22–35, paid monthly, paying mostly by card, QR and e-wallet.
+    angle: >-
+      A system in four steps, not a list of tips: (1) see where it goes for one
+      month, (2) set a spending budget after savings and fixed bills, (3) spend
+      by a daily number, (4) make tracking automatic so it lasts. This is the
+      hub page; later posts go deeper on each step and link back here.
+    outline:
+      - "Bước 1: Biết tiền đi đâu trong 30 ngày (ghi lại mọi khoản, chưa cần cắt giảm)"
+      - "Bước 2: Chia thu nhập: tiết kiệm trước, hóa đơn cố định, phần còn lại để chi tiêu"
+      - "Bước 3: Đặt ngân sách tháng và hạn mức cho 2–3 danh mục hay vượt"
+      - "Bước 4: Chi theo mức mỗi ngày (link guide safe-to-spend)"
+      - "Bước 5: Làm cho việc ghi chép tự động để không bỏ cuộc"
+      - "Cuối tháng: 15 phút xem lại"
+      - "Những sai lầm hay gặp (ngân sách quá chặt, quên tiền mặt, không có quỹ dự phòng)"
+    worked_example: >-
+      Lương thực nhận 15.000.000₫: tiết kiệm 2.000.000₫, cố định 5.000.000₫
+      (nhà 3.500.000, điện nước internet 800.000, điện thoại 200.000, trả góp
+      500.000) → ngân sách chi tiêu 8.000.000₫ → chia 30 ngày ≈ 266.000₫/ngày.
+      EN version: same numbers in đồng, plus one sentence noting it works in any currency.
+    app_tie_in: Step 5 — auto-capture records each payment from the bank notification, so tracking survives past week two. Link /auto-capture/ (vi /vi/tu-ghi-giao-dich/).
+    internal_links:
+      vi: [/vi/huong-dan/ngan-sach-moi-ngay/, /vi/tu-ghi-giao-dich/]
+      en: [/guides/safe-to-spend-budget/, /auto-capture/]
+    faq_seed:
+      - Nên bắt đầu quản lý chi tiêu từ đâu?
+      - Lương thấp có cần lập ngân sách không?
+      - Ghi chép bằng sổ, Excel hay app thì tốt hơn?
+      - Mỗi tháng nên tiết kiệm bao nhiêu phần trăm?
+    words: 2000
+    needs_author_input: false
+    files: []
+
+  # ---------------------------------------------------------------- Dec 2026
+  - id: P02
+    status: planned
+    series: money-basics
+    draft_date: 2026-11-24
+    publish_date: 2026-12-01
+    langs:
+      vi:
+        slug: luong-15-trieu-chi-tieu-the-nao
+        title: "Lương 10, 15, 20 triệu chi tiêu thế nào? Áp dụng quy tắc 50/30/20"
+        seo_title: "Lương 15 triệu chi tiêu thế nào? Quy tắc 50/30/20"
+        description: "Quy tắc 50/30/20 áp dụng cho lương 10, 15, 20 và 30 triệu: bảng chia cụ thể, khi nào nên chỉnh tỷ lệ, và cách giữ được mỗi tháng."
+        keyword: lương 15 triệu chi tiêu thế nào
+        secondary: [quy tắc 50/30/20, lương 10 triệu tiết kiệm được bao nhiêu, cách chia lương hàng tháng]
+    intent: informational, specific. The reader wants a concrete split for their salary.
+    audience: Young workers in big cities; many rent and send money home.
+    angle: >-
+      50/30/20 is a starting point, not a law. In HCMC/Hà Nội rent alone can
+      take 30%+ of a 10 triệu salary, so show the honest version (e.g. 60/20/20
+      or 60/30/10) and how to move toward 50/30/20 as income grows. Include
+      "gửi tiền về nhà" as its own line, because many readers do it.
+    outline:
+      - Quy tắc 50/30/20 là gì (nhu cầu, mong muốn, tiết kiệm)
+      - Bảng chia cho lương 10, 15, 20 và 30 triệu
+      - Khi 50% không đủ cho nhu cầu (tiền nhà thành phố lớn) — chỉnh tỷ lệ thế nào
+      - Gửi tiền về nhà, trả góp, nợ nằm ở nhóm nào
+      - Từ tỷ lệ đến ngân sách mỗi ngày
+      - Giữ được tỷ lệ mỗi tháng
+    worked_example: >-
+      Table for 10/15/20/30 triệu at 50/30/20 (e.g. 15tr → 7.500.000 /
+      4.500.000 / 3.000.000), then a 10 triệu case at 60/30/10 with rent
+      3.500.000₫ shown line by line, then the "mong muốn" part turned into a
+      daily amount (4.500.000 ÷ 30 = 150.000₫/ngày).
+    app_tie_in: Category budgets — set the needs and wants groups as category budgets and see which runs hot. Link /vi/bang-gia/ or /vi/huong-dan/ngan-sach-moi-ngay/.
+    internal_links:
+      vi: [/vi/huong-dan/ngan-sach-moi-ngay/, /vi/blog/cach-quan-ly-chi-tieu-ca-nhan/]
+    faq_seed:
+      - Lương 10 triệu có tiết kiệm được không?
+      - Tiền gửi về cho bố mẹ tính vào nhóm nào?
+      - Trả góp điện thoại là nhu cầu hay mong muốn?
+      - Nên tiết kiệm trước hay chi tiêu trước?
+    words: 1600
+    needs_author_input: false
+    files: []
+
+  - id: P03
+    status: planned
+    series: cashless
+    draft_date: 2026-12-01
+    publish_date: 2026-12-08
+    langs:
+      vi:
+        slug: thanh-toan-qr-lam-sao-biet-da-tieu-bao-nhieu
+        title: "Thanh toán QR cả ngày: làm sao biết mình đã tiêu bao nhiêu?"
+        seo_title: "Quét QR cả ngày, làm sao biết đã tiêu bao nhiêu?"
+        description: "Quét mã QR tiện đến mức không còn cảm giác tiêu tiền. Cách theo dõi chi tiêu khi bạn trả bằng QR, thẻ và ví điện tử mà không phải gõ tay."
+        keyword: theo dõi chi tiêu khi thanh toán qr
+        secondary: [quản lý chi tiêu không dùng tiền mặt, chuyển khoản qr chi tiêu, app ghi chép chi tiêu tự động]
+      en:
+        slug: tracking-spending-when-you-pay-by-qr
+        title: "Paying by QR code all day? How to know what you've spent"
+        seo_title: "Paying by QR All Day? How to Track What You Spend"
+        description: "QR payments are so easy you stop feeling them. How to keep track of spending when you pay by QR, card and e-wallet, without typing it all in."
+        keyword: track spending qr payments
+        secondary: [cashless spending tracker, track e-wallet spending, automatic expense tracking]
+    intent: problem-aware. The reader notices balance dropping faster than expected.
+    audience: Vietnamese urban users paying almost everything by QR (VietQR) and e-wallets; EN readers in other QR-first markets.
+    angle: >-
+      Cash used to give friction (you saw the wallet empty). QR removes it.
+      Explain the "pain of paying" idea plainly, without citing studies unless
+      a source is added. Then four practical fixes, ending with the
+      notification-based approach.
+    outline:
+      - Vì sao quét QR khiến ta tiêu nhiều hơn mà không để ý
+      - "Cách 1: Xem lịch sử giao dịch ngân hàng mỗi tối (ưu và nhược)"
+      - "Cách 2: Một tài khoản riêng cho chi tiêu hằng ngày"
+      - "Cách 3: Đặt mức chi mỗi ngày và nhìn nó trước khi quét"
+      - "Cách 4: Để thông báo ngân hàng tự thành giao dịch"
+      - Tiền mặt vẫn cần ghi (2 chạm)
+    worked_example: >-
+      One ordinary day of QR payments: cà phê 35.000, cơm trưa 55.000, Grab
+      48.000, trà sữa 39.000, đi chợ 210.000 → 387.000₫, against a daily
+      budget of 266.000₫ → 121.000₫ over, which leaves less for each remaining
+      day (show the recalculation for a 30-day month on day 10 with
+      8.000.000₫ budget and 2.900.000₫ spent before today).
+    app_tie_in: Auto-capture reads the payment notification each QR payment already triggers. Link /vi/tu-ghi-giao-dich/ and /auto-capture/.
+    internal_links:
+      vi: [/vi/tu-ghi-giao-dich/, /vi/huong-dan/tu-ghi-chi-tieu-android/, /vi/huong-dan/tu-ghi-chi-tieu-iphone/]
+      en: [/auto-capture/, /guides/android-auto-capture/, /guides/iphone-auto-capture-shortcuts/]
+    faq_seed:
+      - Có cách nào tự ghi chi tiêu khi chuyển khoản QR không?
+      - Ngân hàng có thống kê chi tiêu không, có đủ dùng không?
+      - Có cần liên kết tài khoản ngân hàng với app không?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  - id: P04
+    status: planned
+    series: money-basics
+    seasonal: true
+    draft_date: 2026-12-08
+    publish_date: 2026-12-15
+    langs:
+      vi:
+        slug: tong-ket-tai-chinh-cuoi-nam
+        title: "Tổng kết tài chính cuối năm: 7 câu hỏi nên tự hỏi trước năm mới"
+        seo_title: "Tổng kết tài chính cuối năm: 7 câu hỏi nên tự hỏi"
+        description: "Năm nay tiền đã đi đâu, tiết kiệm được bao nhiêu, khoản nào đáng, khoản nào không? 7 câu hỏi để tổng kết tài chính cá nhân trong một buổi tối."
+        keyword: tổng kết tài chính cuối năm
+        secondary: [kế hoạch tài chính năm mới, tổng kết chi tiêu năm, mục tiêu tài chính 2027]
+      en:
+        slug: year-end-money-review
+        title: "Year-end money review: 7 questions to ask before the new year"
+        seo_title: "Year-End Money Review: 7 Questions to Ask Yourself"
+        description: "Where did the money go this year, what did you save, and what was worth it? Seven questions for a personal finance review in one evening."
+        keyword: year end money review
+        secondary: [personal finance review, financial goals 2027, annual budget review]
+    intent: seasonal reflection; high interest in mid–late December.
+    audience: Anyone who tracked at least part of the year, and those who didn't.
+    angle: >-
+      A one-evening exercise with a printable list of seven questions; works
+      even without a year of data (use bank statements for 3 months). Ends with
+      setting 1–3 goals for 2027 with a monthly amount.
+    outline:
+      - Chuẩn bị (sao kê 3 tháng gần nhất hoặc báo cáo từ app)
+      - "Câu 1–3: Tiền vào, tiền ra, tiết kiệm được bao nhiêu (tỷ lệ tiết kiệm)"
+      - "Câu 4–5: Ba khoản chi đáng nhất và ba khoản tiếc nhất"
+      - "Câu 6: Danh mục nào vượt nhiều tháng nhất"
+      - "Câu 7: Năm sau muốn tiền làm được gì cho mình"
+      - Biến câu trả lời thành 1–3 mục tiêu có số tiền mỗi tháng
+    worked_example: >-
+      Savings rate: thu 180.000.000₫/năm, chi 156.000.000₫ → tiết kiệm
+      24.000.000₫ = 13,3%. Goal: quỹ dự phòng 30.000.000₫ trong 12 tháng → 2.500.000₫/tháng.
+    app_tie_in: Monthly reports (money kept, savings rate, daily spend) and goals that compute the monthly amount. Link /vi/bang-gia/ (full report history in Bánh Xèo) — keep it soft.
+    internal_links:
+      vi: [/vi/blog/cach-quan-ly-chi-tieu-ca-nhan/, /vi/huong-dan/ngan-sach-moi-ngay/]
+      en: [/blog/how-to-manage-your-spending/, /guides/safe-to-spend-budget/]
+    faq_seed:
+      - Tỷ lệ tiết kiệm bao nhiêu là tốt?
+      - Không ghi chép cả năm thì tổng kết thế nào?
+      - Nên đặt bao nhiêu mục tiêu tài chính cho năm mới?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  - id: P05
+    status: planned
+    series: money-basics
+    seasonal: true
+    draft_date: 2026-12-15
+    publish_date: 2026-12-22
+    langs:
+      vi:
+        slug: lap-ngan-sach-tet
+        title: "Lập ngân sách Tết 2027: quà, lì xì, về quê và mua sắm"
+        seo_title: "Lập ngân sách Tết 2027: chi bao nhiêu là vừa?"
+        description: "Tết là tháng chi nhiều nhất năm. Cách lập ngân sách Tết 2027 theo từng khoản: về quê, quà biếu, lì xì, sắm Tết, và giữ lại tiền cho tháng sau."
+        keyword: lập ngân sách tết
+        secondary: [chi tiêu tết bao nhiêu, kế hoạch chi tiêu tết 2027, tiết kiệm tiền tết]
+    intent: seasonal planning, peaks late Dec – Jan.
+    audience: Workers going home for Tết, families hosting.
+    angle: >-
+      Tết spending isn't a failure to prevent; plan it as its own budget, funded
+      from savings set aside plus part of the Tết bonus, and ring-fence the
+      money needed for the month after Tết (rent and bills come due regardless).
+    outline:
+      - Vì sao cần một ngân sách Tết riêng
+      - Liệt kê các khoản (vé xe/máy bay, quà biếu, lì xì, sắm Tết, đồ ăn, đi chơi, tiền mừng, phát sinh)
+      - Đặt tổng ngân sách trước, chia sau
+      - Giữ lại tiền cho tháng sau Tết
+      - Mẹo giảm chi mà không mất vui (đặt vé sớm, gộp quà, đặt mức lì xì trước)
+      - Theo dõi trong những ngày Tết
+    worked_example: >-
+      Ngân sách Tết 10.000.000₫: về quê 2.000.000, quà biếu 2.500.000, lì xì
+      2.000.000, sắm Tết 1.500.000, ăn uống đi chơi 1.200.000, dự phòng 800.000
+      (tổng = 10.000.000). Plus "tiền tháng sau Tết": nhà 3.500.000 + hóa đơn
+      1.000.000 kept aside before Tết.
+    app_tie_in: A category budget for "Tết" and auto-capture so payments during the holiday get logged without effort. Link /vi/tu-ghi-giao-dich/.
+    internal_links:
+      vi: [/vi/huong-dan/ngan-sach-moi-ngay/, /vi/blog/cach-quan-ly-chi-tieu-ca-nhan/]
+    faq_seed:
+      - Tết nên chi bao nhiêu phần trăm thu nhập?
+      - Không có thưởng Tết thì lập ngân sách thế nào?
+      - Làm sao để không "cháy túi" sau Tết?
+    words: 1500
+    needs_author_input: false
+    files: []
+
+  - id: P06
+    status: planned
+    series: money-basics
+    seasonal: true
+    draft_date: 2026-12-22
+    publish_date: 2026-12-29
+    langs:
+      vi:
+        slug: thuong-tet-nen-dung-the-nao
+        title: "Thưởng Tết nên dùng thế nào để không hết sạch trước rằm tháng Giêng"
+        seo_title: "Thưởng Tết nên dùng thế nào cho hợp lý?"
+        description: "Chia thưởng Tết thành 4 phần: trả nợ, quỹ dự phòng, Tết, và một khoản cho bản thân. Ví dụ cụ thể với thưởng 1 tháng và 2 tháng lương."
+        keyword: thưởng tết nên dùng thế nào
+        secondary: [chia tiền thưởng tết, tiền thưởng cuối năm làm gì, tiết kiệm tiền thưởng]
+    intent: seasonal decision; bonus arrives late Dec – Jan.
+    audience: Salaried workers receiving lương tháng 13 or a Tết bonus.
+    angle: >-
+      Decide before the money arrives. A simple order: high-interest debt
+      first, then emergency fund, then the Tết budget, then a guilt-free
+      share for yourself. Show it for two bonus sizes.
+    outline:
+      - Quyết định trước khi tiền về
+      - "Thứ tự ưu tiên: nợ lãi cao → quỹ dự phòng → Tết → phần cho mình"
+      - Ví dụ với thưởng 15 triệu và 30 triệu
+      - Nếu không có nợ, không thiếu quỹ dự phòng thì sao
+      - Đừng tăng chi tiêu hằng tháng vì một khoản một lần
+    worked_example: >-
+      Thưởng 15.000.000₫: nợ thẻ tín dụng 4.000.000, quỹ dự phòng 4.000.000,
+      Tết 5.000.000, cho mình 2.000.000. Thưởng 30.000.000₫ without debt:
+      dự phòng 12.000.000, Tết 8.000.000, mục tiêu (du lịch) 6.000.000, cho
+      mình 4.000.000. Check both sums.
+    app_tie_in: Goals that work out the monthly amount, for the part set aside for a goal. Mention briefly; link /vi/huong-dan/ngan-sach-moi-ngay/ only if it reads naturally.
+    internal_links:
+      vi: [/vi/blog/lap-ngan-sach-tet/, /vi/blog/luong-15-trieu-chi-tieu-the-nao/]
+    faq_seed:
+      - Có nên dùng thưởng Tết để trả nợ trước?
+      - Thưởng Tết có bị tính thuế thu nhập cá nhân không?
+      - Nên để dành bao nhiêu phần trăm tiền thưởng?
+    words: 1300
+    needs_author_input: false
+    sources_note: >-
+      For the tax question, don't state thresholds or rates; say a Tết bonus
+      generally counts as taxable income in Vietnam and point to the employer's
+      payroll team or the tax authority (gdt.gov.vn) for the exact amount.
+    files: []
+
+  # ---------------------------------------------------------------- Jan 2027
+  - id: P07
+    status: planned
+    series: money-basics
+    seasonal: true
+    draft_date: 2026-12-29
+    publish_date: 2027-01-05
+    langs:
+      vi:
+        slug: li-xi-bao-nhieu-la-vua
+        title: "Lì xì bao nhiêu là vừa? Cách đặt ngân sách lì xì Tết 2027"
+        seo_title: "Lì xì bao nhiêu là vừa? Ngân sách lì xì Tết 2027"
+        description: "Lì xì cho con cháu, bố mẹ, người giúp việc bao nhiêu là hợp lý? Cách đặt tổng ngân sách lì xì trước rồi chia, để vui Tết mà không lo tháng sau."
+        keyword: lì xì bao nhiêu
+        secondary: [lì xì tết bao nhiêu là đủ, mừng tuổi bố mẹ bao nhiêu, ngân sách lì xì]
+    intent: seasonal, very high search volume in January.
+    audience: Adults giving lì xì for the first time or on a tight budget.
+    angle: >-
+      There is no correct amount: it depends on region, closeness and income.
+      Give commonly seen ranges as ranges, never as rules, and teach the method:
+      list everyone, set a total, assign tiers, prepare envelopes in advance.
+    outline:
+      - Không có con số "đúng" — điều gì quyết định mức lì xì
+      - "Lập danh sách: bố mẹ, ông bà, con cháu, họ hàng, người giúp việc, đồng nghiệp"
+      - Đặt tổng ngân sách trước, chia theo nhóm sau
+      - Mức thường gặp (theo khoảng, có ghi chú vùng miền và thu nhập)
+      - Chuẩn bị tiền mới và phong bao từ sớm
+      - Lì xì qua chuyển khoản/QR — vẫn ghi lại
+    worked_example: >-
+      Tổng 3.000.000₫: bố mẹ hai bên 2 × 500.000 = 1.000.000; ông bà 2 ×
+      200.000 = 400.000; 12 cháu nhỏ × 50.000 = 600.000; 4 cháu lớn × 100.000
+      = 400.000; dự phòng 600.000 → 3.000.000. Mark amounts as an example,
+      not a recommendation.
+    app_tie_in: Lì xì sent by bank transfer or QR produces a notification, so it gets recorded automatically. Link /vi/tu-ghi-giao-dich/.
+    internal_links:
+      vi: [/vi/blog/lap-ngan-sach-tet/, /vi/blog/thuong-tet-nen-dung-the-nao/]
+    faq_seed:
+      - Lì xì bố mẹ bao nhiêu là hợp lý?
+      - Chưa đi làm có cần lì xì không?
+      - Lì xì chuyển khoản có được không?
+      - Lì xì cho con của đồng nghiệp bao nhiêu?
+    words: 1300
+    needs_author_input: false
+    files: []
+
+  - id: P08
+    status: planned
+    series: build
+    draft_date: 2027-01-05
+    publish_date: 2027-01-12
+    langs:
+      en:
+        slug: building-an-expense-tracker-that-reads-bank-notifications
+        title: "How I built an expense tracker that reads bank notifications with Gemini"
+        seo_title: "Building an Expense Tracker That Reads Bank Notifications"
+        description: "Why myMoney reads payment notifications instead of asking for a bank login, and how Gemini turns messy bank text into clean transactions."
+        keyword: expense tracker bank notifications
+        secondary: [parse bank notifications, gemini structured output, android notification listener]
+    intent: developer curiosity; earns links and discussion.
+    audience: Developers (Hacker News, r/androiddev, r/FlutterDev or relevant stack, dev.to).
+    angle: >-
+      First-person story from the developer: the problem (manual tracking dies,
+      bank sync unavailable or creepy in Vietnam), the notification idea, what
+      was hard, what the AI does and doesn't do, privacy choices, results.
+    outline:
+      - The problem with typing and with bank sync
+      - The idea — every payment already sends a notification
+      - Android — reading notifications from chosen apps only
+      - Turning messy bank text into a transaction (prompt, output shape, categories, wallets by card digits)
+      - Skipping OTPs and promotions
+      - Privacy decisions (what's sent, what's kept, 30-day cleanup)
+      - What I'd do differently
+    app_tie_in: The whole post is about the app; link /auto-capture/ and /privacy-by-design/ once each.
+    internal_links:
+      en: [/auto-capture/, /privacy-by-design/]
+    faq_seed:
+      - Why not use bank APIs or an aggregator?
+      - How accurate is the AI at reading notifications?
+      - Does it work with notifications in Vietnamese?
+    words: 1800
+    needs_author_input: true
+    author_questions:
+      - What tech stack is the app built with (Flutter, native, other)?
+      - Why didn't you use bank sync/aggregators? Any specific experience with them in Vietnam?
+      - How does the prompt/structured output work, roughly? What fields does Gemini return?
+      - What were the 2–3 hardest problems (duplicates, refunds, transfers between own accounts, OTP filtering)?
+      - Any accuracy numbers or anecdotes you're happy to share (no user data)?
+      - What would you do differently?
+      - Can we share a short code snippet or a redacted example notification?
+    author_notes: ""
+    promote_on: [Hacker News (Show HN), r/androiddev, dev.to, LinkedIn, X]
+    files: []
+
+  - id: P09
+    status: planned
+    series: cashless
+    draft_date: 2027-01-12
+    publish_date: 2027-01-19
+    langs:
+      vi:
+        slug: co-an-toan-khi-cho-app-doc-thong-bao
+        title: "Có an toàn khi cho app đọc thông báo ngân hàng không?"
+        seo_title: "Cho app đọc thông báo ngân hàng có an toàn không?"
+        description: "Quyền truy cập thông báo cho phép app thấy những gì? Cách kiểm tra một app trước khi cấp quyền, và những dấu hiệu nên tránh. Áp dụng cho mọi app."
+        keyword: cho app đọc thông báo có an toàn không
+        secondary: [quyền truy cập thông báo android, bảo mật thông báo ngân hàng, mã otp bị lộ]
+      en:
+        slug: is-it-safe-to-let-an-app-read-notifications
+        title: "Is it safe to let an app read your bank notifications?"
+        seo_title: "Is It Safe to Let an App Read Your Notifications?"
+        description: "What notification access lets an app see, how to check an app before you allow it, and the red flags to watch for. Applies to any app."
+        keyword: is it safe to give app notification access
+        secondary: [android notification access permission, notification listener security, bank notification privacy]
+    intent: trust/objection; readers searching before granting the permission.
+    audience: Cautious users, including potential myMoney users hesitating at the permission screen.
+    angle: >-
+      Honest and general first: what the permission technically allows on
+      Android (reading all notifications, including OTPs) and how iPhone's
+      Shortcuts approach differs (only what you hand over). Give a checklist
+      that applies to any app. Then, briefly, how myMoney answers each item —
+      only facts from /privacy-by-design/.
+    outline:
+      - Quyền "truy cập thông báo" trên Android cho phép app thấy gì
+      - iPhone khác thế nào (chỉ những gì lệnh tự động chuyển cho app)
+      - "Checklist 6 câu trước khi cấp quyền: đọc app nào, gửi gì đi, gửi cho ai, lưu ở đâu, bao lâu, tắt thế nào"
+      - Dấu hiệu nên tránh (không có chính sách bảo mật, xin quyền không liên quan, yêu cầu mật khẩu ngân hàng)
+      - Mã OTP — nguyên tắc không bao giờ chia sẻ, dù app nào
+      - myMoney trả lời checklist thế nào
+    worked_example: none (trust post)
+    app_tie_in: The final section answers the checklist with myMoney's facts; link /vi/quyen-rieng-tu/ and /privacy-by-design/.
+    internal_links:
+      vi: [/vi/quyen-rieng-tu/, /privacypolicy/]
+      en: [/privacy-by-design/, /privacypolicy/]
+    faq_seed:
+      - App đọc thông báo có thấy được mã OTP không?
+      - Làm sao thu hồi quyền truy cập thông báo?
+      - Ngân hàng có cấm app khác đọc thông báo không?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  - id: P10
+    status: planned
+    series: build
+    draft_date: 2027-01-19
+    publish_date: 2027-01-26
+    langs:
+      en:
+        slug: ios-shortcuts-notification-automation-for-apps
+        title: "iOS 27's notification trigger in Shortcuts: what it lets third-party apps do"
+        seo_title: "iOS Shortcuts Notification Automations for App Developers"
+        description: "How a Shortcuts automation can hand a notification to your app's App Intent, what it took to make auto-capture work on iPhone, and the limits."
+        keyword: shortcuts notification automation
+        secondary: [ios 27 shortcuts when i receive a notification, app intents notification, ios automation third party app]
+    intent: developer and power-user; r/shortcuts is a natural audience.
+    audience: iOS developers and Shortcuts enthusiasts.
+    angle: First-person technical note on building the Capture Notification action and the setup flow users follow.
+    outline:
+      - The trigger — "When I receive a notification"
+      - Exposing an App Intent that accepts the notification
+      - Making setup understandable for non-technical users (the in-app guide)
+      - Limits and gotchas
+      - What this means for other apps
+    app_tie_in: Link /guides/iphone-auto-capture-shortcuts/ once.
+    internal_links:
+      en: [/guides/iphone-auto-capture-shortcuts/, /auto-capture/]
+    faq_seed:
+      - Which iOS version added this trigger?
+      - Does the automation run without opening the app?
+      - Can the app read notifications from other apps by itself?
+    words: 1300
+    needs_author_input: true
+    author_questions:
+      - What exactly does the Capture Notification App Intent receive (title, body, app name, date)?
+      - Was anything tricky (permissions, running immediately, background limits)?
+      - How did you design the in-app setup guide? What did users struggle with?
+      - Any limits users should know about?
+      - OK to share a code snippet of the App Intent?
+    author_notes: ""
+    promote_on: [r/shortcuts, r/iOSProgramming, Hacker News]
+    files: []
+
+  # ---------------------------------------------------------------- Feb 2027 (Tết on 6 Feb: no post 2 Feb)
+  - id: P11
+    status: planned
+    series: money-basics
+    seasonal: true
+    draft_date: 2027-02-09
+    publish_date: 2027-02-16
+    langs:
+      vi:
+        slug: het-tien-sau-tet
+        title: "Hết tiền sau Tết: kế hoạch 30 ngày để lấy lại cân bằng"
+        seo_title: "Hết tiền sau Tết? Kế hoạch 30 ngày lấy lại cân bằng"
+        description: "Tiêu quá tay dịp Tết là chuyện thường. Kế hoạch 30 ngày: xem lại đã chi gì, ưu tiên hóa đơn, đặt mức chi mỗi ngày thấp tạm thời và quay lại nhịp cũ."
+        keyword: hết tiền sau tết
+        secondary: [cháy túi sau tết, chi tiêu sau tết, tiết kiệm sau tết]
+    intent: seasonal problem, peaks in the 2 weeks after Tết.
+    audience: People back at work with a thin balance until next payday.
+    angle: No guilt. A week-by-week plan with a temporary lower daily number.
+    outline:
+      - Tuần 1 — nhìn thẳng vào con số (đã chi bao nhiêu dịp Tết)
+      - Ưu tiên tiền nhà, hóa đơn, trả nợ
+      - Tuần 2–3 — mức chi mỗi ngày tạm thời
+      - Tuần 4 — quay lại ngân sách bình thường
+      - Rút kinh nghiệm cho Tết năm sau (bắt đầu để dành từ tháng 9)
+    worked_example: >-
+      Còn 3.600.000₫ đến ngày lương (18 ngày), đã giữ riêng tiền nhà → mức chi
+      tạm thời 3.600.000 ÷ 18 = 200.000₫/ngày. Saving for next Tết: 10.000.000₫
+      over 5 months (Sep–Jan) = 2.000.000₫/tháng.
+    app_tie_in: Daily safe-to-spend recalculates after every payment. Link /vi/huong-dan/ngan-sach-moi-ngay/.
+    internal_links:
+      vi: [/vi/huong-dan/ngan-sach-moi-ngay/, /vi/blog/lap-ngan-sach-tet/]
+    faq_seed:
+      - Sau Tết hết tiền có nên vay không?
+      - Làm sao để Tết năm sau không cháy túi?
+    words: 1200
+    needs_author_input: false
+    files: []
+
+  - id: P12
+    status: planned
+    series: money-basics
+    draft_date: 2027-02-16
+    publish_date: 2027-02-23
+    langs:
+      vi:
+        slug: quy-du-phong-khan-cap
+        title: "Quỹ dự phòng khẩn cấp: cần bao nhiêu và xây thế nào"
+        seo_title: "Quỹ dự phòng khẩn cấp cần bao nhiêu là đủ?"
+        description: "Quỹ dự phòng nên bằng 3–6 tháng chi tiêu thiết yếu. Cách tính con số của bạn, xây dần từ 0 và giữ nó ở đâu để dễ lấy mà không tiêu mất."
+        keyword: quỹ dự phòng khẩn cấp
+        secondary: [quỹ khẩn cấp bao nhiêu là đủ, tiền dự phòng, cách tiết kiệm quỹ dự phòng]
+      en:
+        slug: emergency-fund-how-much
+        title: "Emergency fund: how much you need and how to build it"
+        seo_title: "Emergency Fund: How Much You Need and How to Build It"
+        description: "An emergency fund covers 3–6 months of essential costs. How to work out your number, build it from zero and keep it where you won't spend it."
+        keyword: how much emergency fund
+        secondary: [emergency fund calculator, build an emergency fund, emergency savings]
+    intent: informational, evergreen, high volume.
+    audience: Anyone without a buffer; post-Tết motivation.
+    angle: >-
+      Base the number on essential monthly costs, not salary. Start with a
+      first milestone (1 month) so it feels doable. Where to keep it: separate,
+      accessible, low risk — describe options generically, no specific banks
+      or rates.
+    outline:
+      - Quỹ dự phòng dùng cho việc gì (và không dùng cho việc gì)
+      - Tính con số của bạn (chi phí thiết yếu × 3–6 tháng)
+      - Mốc đầu tiên — 1 tháng
+      - Xây dần — tự động chuyển ngay ngày lương về
+      - Để ở đâu (tài khoản riêng, tiết kiệm có kỳ hạn ngắn/linh hoạt — so sánh theo tiêu chí, không nêu lãi suất)
+      - Dùng rồi thì nạp lại thế nào
+    worked_example: >-
+      Chi phí thiết yếu 7.000.000₫/tháng → mục tiêu 3 tháng 21.000.000₫,
+      6 tháng 42.000.000₫. Saving 2.000.000₫/tháng: first month's milestone
+      in 3,5 tháng; 21.000.000₫ in 10,5 tháng.
+    app_tie_in: Goals with a target and date compute the monthly amount. Mention once; link /vi/bang-gia/ only if it reads naturally, otherwise none.
+    internal_links:
+      vi: [/vi/blog/thuong-tet-nen-dung-the-nao/, /vi/blog/cach-quan-ly-chi-tieu-ca-nhan/]
+      en: [/blog/how-to-manage-your-spending/]
+    faq_seed:
+      - Quỹ dự phòng nên gửi tiết kiệm hay để tài khoản thanh toán?
+      - Vừa trả nợ vừa xây quỹ dự phòng được không?
+      - Freelancer cần quỹ dự phòng bao nhiêu tháng?
+    words: 1500
+    needs_author_input: false
+    files: []
+
+  # ---------------------------------------------------------------- Mar 2027
+  - id: P13
+    status: planned
+    series: cashless
+    draft_date: 2027-03-02
+    publish_date: 2027-03-09
+    langs:
+      vi:
+        slug: vi-sao-ghi-chep-chi-tieu-bo-cuoc
+        title: "Vì sao ghi chép chi tiêu thường bỏ cuộc sau 2 tuần (và cách sửa)"
+        seo_title: "Vì sao ghi chép chi tiêu hay bỏ cuộc sau 2 tuần?"
+        description: "Hầu hết mọi người bỏ sổ thu chi rất nhanh. Năm lý do phổ biến, và cách làm cho việc ghi chép tự chạy thay vì dựa vào ý chí."
+        keyword: ghi chép chi tiêu
+        secondary: [sổ thu chi cá nhân, thói quen ghi chép chi tiêu, cách ghi chép chi tiêu hàng ngày]
+      en:
+        slug: why-expense-tracking-fails
+        title: "Why expense tracking fails after two weeks (and how to fix it)"
+        seo_title: "Why Expense Tracking Fails After 2 Weeks (and the Fix)"
+        description: "Most people give up on tracking spending fast. Five common reasons, and how to make tracking run on its own instead of on willpower."
+        keyword: why expense tracking fails
+        secondary: [how to stick to tracking expenses, expense tracking habit, automatic expense tracker]
+    intent: problem-aware; strong product fit.
+    audience: People who've tried and quit before.
+    angle: >-
+      Present the reasons as common experience, not statistics: too many
+      steps, forgetting, too many categories, guilt when reviewing, no payoff.
+      Fix each, ending with automation.
+    outline:
+      - "Lý do 1: Mỗi khoản tốn quá nhiều bước"
+      - "Lý do 2: Quên ghi, rồi ngại ghi bù"
+      - "Lý do 3: Quá nhiều danh mục"
+      - "Lý do 4: Xem lại chỉ thấy tội lỗi"
+      - "Lý do 5: Ghi mà không dùng để quyết định gì"
+      - Thiết kế lại để không cần ý chí
+    worked_example: >-
+      Effort comparison: 6 payments/day × 30 days = 180 entries/month; at
+      ~20 seconds each by hand ≈ 60 minutes/month, versus confirming captured
+      ones with one tap. Label the 20 seconds as an estimate.
+    app_tie_in: Auto-capture plus one-tap confirm in To review. Link /vi/tu-ghi-giao-dich/ and /auto-capture/.
+    internal_links:
+      vi: [/vi/tu-ghi-giao-dich/, /vi/blog/thanh-toan-qr-lam-sao-biet-da-tieu-bao-nhieu/]
+      en: [/auto-capture/, /blog/tracking-spending-when-you-pay-by-qr/]
+    faq_seed:
+      - Nên có bao nhiêu danh mục chi tiêu?
+      - Quên ghi mấy ngày thì làm sao?
+      - Có cần ghi từng khoản nhỏ không?
+    words: 1300
+    needs_author_input: false
+    files: []
+
+  - id: P14
+    status: planned
+    series: money-basics
+    draft_date: 2027-03-16
+    publish_date: 2027-03-23
+    langs:
+      vi:
+        slug: vo-chong-quan-ly-tai-chinh
+        title: "Vợ chồng quản lý tài chính: tiền chung, tiền riêng hay cả hai?"
+        seo_title: "Vợ chồng quản lý tài chính thế nào cho êm?"
+        description: "Ba cách vợ chồng chia tiền: gộp hết, giữ riêng, hoặc góp chung một phần. Ưu nhược điểm, cách nói chuyện về tiền, và ví dụ chia theo tỷ lệ thu nhập."
+        keyword: vợ chồng quản lý tài chính
+        secondary: [vợ chồng chia tiền thế nào, quản lý tiền trong gia đình, quỹ chung vợ chồng]
+    intent: informational, relationship; evergreen.
+    audience: Newly married or cohabiting couples.
+    angle: Neutral and practical; no gender assumptions about who manages money.
+    outline:
+      - "Ba mô hình: gộp hết, giữ riêng, góp chung một phần"
+      - Góp theo tỷ lệ thu nhập — công bằng hơn chia đôi
+      - Cuộc nói chuyện về tiền đầu tiên (5 câu hỏi)
+      - Mục tiêu chung (nhà, con, du lịch)
+      - Khi một người kiếm nhiều hơn hẳn
+      - Họp tiền mỗi tháng 20 phút
+    worked_example: >-
+      Thu nhập 18.000.000₫ và 12.000.000₫ (60/40). Chi chung 15.000.000₫/tháng
+      → góp 9.000.000 và 6.000.000; còn lại riêng 9.000.000 và 6.000.000.
+    app_tie_in: A shared wallet for the household fund, tracked separately from personal wallets. Mention once; no deep link needed beyond /vi/tu-ghi-giao-dich/ if relevant.
+    internal_links:
+      vi: [/vi/blog/quy-du-phong-khan-cap/, /vi/blog/luong-15-trieu-chi-tieu-the-nao/]
+    faq_seed:
+      - Vợ chồng có nên gộp chung tiền không?
+      - Chia đôi chi phí có công bằng không?
+      - Ai nên giữ tiền trong gia đình?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  # ---------------------------------------------------------------- Apr 2027
+  - id: P15
+    status: planned
+    series: compare
+    draft_date: 2027-03-23
+    publish_date: 2027-04-06
+    langs:
+      vi:
+        slug: app-quan-ly-chi-tieu-tot-nhat
+        title: "App quản lý chi tiêu tốt nhất 2027: so sánh thật, dùng thật"
+        seo_title: "App quản lý chi tiêu tốt nhất 2027 (đã dùng thử)"
+        description: "So sánh các app quản lý chi tiêu phổ biến tại Việt Nam theo những gì quan trọng: ghi tự động, ngân sách, quyền riêng tư, giá. Có cả điểm yếu của từng app."
+        keyword: app quản lý chi tiêu tốt nhất
+        secondary: [app ghi chép chi tiêu, ứng dụng quản lý tài chính cá nhân, app quản lý tiền]
+      en:
+        slug: best-expense-tracker-apps
+        title: "Best expense tracker apps in 2027, tested"
+        seo_title: "Best Expense Tracker Apps in 2027 (Tested)"
+        description: "Popular expense tracker apps compared on what matters: automatic logging, budgets, privacy and price, including where each one falls short."
+        keyword: best expense tracker app
+        secondary: [expense tracker app comparison, budget app 2027, money manager app]
+    intent: commercial investigation; heavily cited by AI assistants.
+    audience: People choosing an app.
+    angle: >-
+      Fair and dated. myMoney is included and disclosed as the author's own
+      app at the top. Each app gets "best for", strengths, weaknesses. Name
+      where competitors are better.
+    outline:
+      - Công khai — tác giả làm myMoney
+      - Tiêu chí so sánh
+      - Bảng so sánh nhanh
+      - Từng app — phù hợp với ai, điểm mạnh, điểm yếu
+      - Chọn app theo nhu cầu
+    app_tie_in: myMoney is one entry in the list; no extra promotion.
+    internal_links:
+      vi: [/vi/tu-ghi-giao-dich/, /vi/bang-gia/]
+      en: [/auto-capture/, /pricing/]
+    faq_seed:
+      - App quản lý chi tiêu nào miễn phí?
+      - App nào tự ghi chi tiêu từ ngân hàng?
+      - App nào không cần liên kết tài khoản ngân hàng?
+    words: 2200
+    needs_author_input: true
+    author_questions:
+      - Which apps to include (e.g. Money Lover, MISA MoneyKeeper, Spendee, Sổ Thu Chi, Monefy, YNAB)?
+      - For each, from your own testing on a current version — price, free-tier limits, auto-import/bank sync, budgets, platforms, languages, strengths, weaknesses, date tested.
+      - Anything a competitor clearly does better than myMoney?
+    author_notes: ""
+    promote_on: [AlternativeTo listing, Reddit threads asking for app recommendations]
+    files: []
+
+  - id: P16
+    status: planned
+    series: money-basics
+    draft_date: 2027-04-13
+    publish_date: 2027-04-20
+    langs:
+      vi:
+        slug: quy-tac-6-chiec-lo
+        title: "Quy tắc 6 chiếc lọ: còn hợp khi mọi thứ trả bằng QR?"
+        seo_title: "Quy tắc 6 chiếc lọ: cách áp dụng khi tiêu bằng QR"
+        description: "Quy tắc 6 chiếc lọ (JARS) chia thu nhập thành 6 phần. Cách áp dụng khi bạn không dùng tiền mặt, và khi nào nên đơn giản hóa còn 3 lọ."
+        keyword: quy tắc 6 chiếc lọ
+        secondary: [phương pháp 6 chiếc lọ, jars quản lý tài chính, chia thu nhập thành 6 phần]
+    intent: informational; very popular method in Vietnam.
+    audience: People who heard of 6 jars and want to apply it.
+    angle: >-
+      Explain the six jars with the usual percentages (55/10/10/10/10/5) as
+      the commonly taught version, then how to run it digitally (wallets or
+      category budgets instead of envelopes), and a simpler 3-jar version.
+    outline:
+      - 6 chiếc lọ là gì (nhu cầu thiết yếu 55%, tiết kiệm dài hạn 10%, giáo dục 10%, hưởng thụ 10%, tự do tài chính 10%, cho đi 5%)
+      - Áp dụng với lương 15 triệu
+      - Không dùng tiền mặt — "lọ" thành ví hoặc ngân sách danh mục
+      - Khi 55% không đủ cho thiết yếu
+      - Phiên bản 3 lọ cho người mới
+    worked_example: >-
+      15.000.000₫ × 55/10/10/10/10/5 = 8.250.000 / 1.500.000 / 1.500.000 /
+      1.500.000 / 1.500.000 / 750.000 (sum 15.000.000).
+    app_tie_in: Separate wallets per jar, or category budgets. Mention once.
+    internal_links:
+      vi: [/vi/blog/luong-15-trieu-chi-tieu-the-nao/, /vi/huong-dan/ngan-sach-moi-ngay/]
+    faq_seed:
+      - 6 chiếc lọ hay 50/30/20 tốt hơn?
+      - Thu nhập thấp có áp dụng được 6 chiếc lọ không?
+      - Lọ tự do tài chính nên dùng vào việc gì?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  # ---------------------------------------------------------------- May 2027
+  - id: P17
+    status: planned
+    series: money-basics
+    draft_date: 2027-04-27
+    publish_date: 2027-05-04
+    langs:
+      vi:
+        slug: sinh-vien-quan-ly-chi-tieu
+        title: "Sinh viên quản lý chi tiêu với 3–5 triệu mỗi tháng"
+        seo_title: "Sinh viên quản lý chi tiêu 3–5 triệu/tháng thế nào?"
+        description: "Ngân sách mẫu cho sinh viên với 3, 4 và 5 triệu mỗi tháng: tiền trọ, ăn uống, đi lại, học tập. Mẹo tiết kiệm thực tế và cách không hết tiền cuối tháng."
+        keyword: sinh viên quản lý chi tiêu
+        secondary: [sinh viên chi tiêu 3 triệu, cách tiết kiệm tiền cho sinh viên, ngân sách sinh viên]
+    intent: informational; large audience, seasonal bump at semester start (also republish in Aug).
+    audience: University students living away from home.
+    angle: Realistic budgets for city students with and without shared rent; part-time income as optional.
+    outline:
+      - Tiền vào — tiền nhà gửi, làm thêm, học bổng
+      - Ngân sách mẫu 3, 4 và 5 triệu
+      - Ăn uống — khoản dễ vỡ nhất
+      - Tiền mặt và QR — ghi cả hai
+      - Cuối tháng không hết tiền — mức chi mỗi ngày
+      - Bắt đầu tiết kiệm dù chỉ 100k/tháng
+    worked_example: >-
+      4.000.000₫: trọ ở ghép 1.300.000, ăn 1.700.000, đi lại 300.000, học tập
+      200.000, điện thoại 100.000, khác 400.000 (sum 4.000.000); daily food
+      1.700.000 ÷ 30 ≈ 56.700₫.
+    app_tie_in: Free version is enough for a student (unlimited manual transactions, 1 wallet, monthly budget). Link /vi/bang-gia/.
+    internal_links:
+      vi: [/vi/bang-gia/, /vi/huong-dan/ngan-sach-moi-ngay/]
+    faq_seed:
+      - Sinh viên một tháng tiêu bao nhiêu là đủ?
+      - Có nên đi làm thêm để có tiền tiêu?
+      - App quản lý chi tiêu nào miễn phí cho sinh viên?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  - id: P18
+    status: planned
+    series: build
+    draft_date: 2027-05-11
+    publish_date: 2027-05-18
+    langs:
+      en:
+        slug: why-mymoney-is-a-one-time-purchase
+        title: "Why myMoney is a one-time purchase, not a subscription"
+        seo_title: "Why My Finance App Is a One-Time Purchase, Not Monthly"
+        description: "The case for selling an indie app once instead of monthly, what the free tier includes and why, and what it means for the business."
+        keyword: one time purchase vs subscription app
+        secondary: [indie app pricing, app without subscription, lifetime purchase app]
+    intent: opinion/indie-dev; good for HN, Indie Hackers.
+    audience: Indie developers and subscription-fatigued users.
+    angle: First-person reasoning, honest about trade-offs.
+    outline:
+      - Subscription fatigue — and finance apps charging monthly to track your money
+      - The decision and the free tier's limits
+      - Why "Bánh Xèo"
+      - How it's going (only numbers the author agrees to share)
+      - Would I do it again
+    app_tie_in: Link /pricing/ once.
+    internal_links:
+      en: [/pricing/]
+    faq_seed:
+      - Will myMoney ever switch to a subscription?
+      - What does the free version include?
+    words: 1200
+    needs_author_input: true
+    author_questions:
+      - Why did you choose one-time over subscription?
+      - How did you pick the free-tier limits?
+      - Anything about results (conversion, reviews) you're comfortable sharing?
+      - Any plans that affect pricing (don't publish anything not decided)?
+    author_notes: ""
+    promote_on: [Indie Hackers, Hacker News, r/iOSProgramming]
+    files: []
+
+  # ---------------------------------------------------------------- Jun 2027
+  - id: P19
+    status: planned
+    series: cashless
+    draft_date: 2027-05-25
+    publish_date: 2027-06-01
+    langs:
+      vi:
+        slug: 3-cach-ghi-chep-chi-tieu
+        title: "Tự gõ, liên kết ngân hàng hay đọc thông báo: 3 cách ghi chép chi tiêu"
+        seo_title: "3 cách ghi chép chi tiêu: tự gõ, liên kết, đọc thông báo"
+        description: "So sánh ba cách ghi chép chi tiêu: gõ tay, liên kết tài khoản ngân hàng và tự đọc thông báo. Công sức, độ chính xác, quyền riêng tư của từng cách."
+        keyword: cách ghi chép chi tiêu
+        secondary: [liên kết tài khoản ngân hàng với app, ghi chép chi tiêu tự động, app đọc thông báo ngân hàng]
+      en:
+        slug: manual-vs-bank-sync-vs-notifications
+        title: "Typing, bank sync or reading notifications: 3 ways to track spending"
+        seo_title: "Manual vs Bank Sync vs Notifications: Tracking Compared"
+        description: "Three ways to log your spending compared: typing it in, connecting your bank, and reading payment notifications. Effort, accuracy and privacy."
+        keyword: bank sync vs manual expense tracking
+        secondary: [expense tracker without bank sync, automatic expense tracking methods, notification based expense tracking]
+    intent: comparison of methods (not apps), so no competitor facts needed.
+    audience: People deciding how to track.
+    angle: Balanced; each method has a best-fit user. Bank sync described generally (availability varies by country and bank).
+    outline:
+      - Tự gõ tay — kiểm soát nhất, tốn công nhất
+      - Liên kết ngân hàng — tự động, nhưng cần đăng nhập và tùy ngân hàng/quốc gia
+      - Đọc thông báo — tự động, không cần đăng nhập, cần bật thông báo
+      - Bảng so sánh
+      - Kết hợp — tự động cho thẻ/QR, tay cho tiền mặt
+    worked_example: Comparison table only.
+    app_tie_in: myMoney uses the notification method; link /vi/tu-ghi-giao-dich/ and /auto-capture/.
+    internal_links:
+      vi: [/vi/tu-ghi-giao-dich/, /vi/blog/co-an-toan-khi-cho-app-doc-thong-bao/]
+      en: [/auto-capture/, /blog/is-it-safe-to-let-an-app-read-notifications/]
+    faq_seed:
+      - Liên kết tài khoản ngân hàng với app có an toàn không?
+      - Cách nào chính xác nhất?
+      - Không bật thông báo ngân hàng thì sao?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  - id: P20
+    status: planned
+    series: cashless
+    draft_date: 2027-06-08
+    publish_date: 2027-06-15
+    langs:
+      vi:
+        slug: quan-ly-nhieu-tai-khoan-ngan-hang-va-vi-dien-tu
+        title: "Quản lý tiền khi có nhiều tài khoản ngân hàng và ví điện tử"
+        seo_title: "Quản lý nhiều tài khoản ngân hàng và ví điện tử"
+        description: "Lương một ngân hàng, chi tiêu ngân hàng khác, thêm ví điện tử: cách xem tổng tiền một chỗ, tránh ghi trùng khi chuyển tiền và giao việc cho từng tài khoản."
+        keyword: quản lý nhiều tài khoản ngân hàng
+        secondary: [quản lý ví điện tử, tổng hợp chi tiêu nhiều ngân hàng, chuyển tiền giữa các tài khoản]
+      en:
+        slug: managing-multiple-bank-accounts-and-e-wallets
+        title: "Managing money across several bank accounts and e-wallets"
+        seo_title: "Managing Multiple Bank Accounts and E-Wallets"
+        description: "Salary in one bank, spending in another, plus e-wallets: how to see your total in one place, avoid double-counting transfers and give each account a job."
+        keyword: manage multiple bank accounts
+        secondary: [track multiple bank accounts, e-wallet tracking, transfers between own accounts]
+    intent: informational, practical.
+    audience: People juggling 2–5 accounts and wallets.
+    angle: Give every account a job (nhận lương, chi tiêu, tiết kiệm, ví cho đi lại/ăn uống); transfers between own accounts aren't spending.
+    outline:
+      - Vì sao ai cũng có nhiều tài khoản
+      - Giao cho mỗi tài khoản một việc
+      - Nhìn tổng tiền ở một chỗ
+      - Chuyển tiền giữa tài khoản của mình — không phải chi tiêu
+      - Ví điện tử — nạp tiền khác chi tiền
+      - Gộp bớt những tài khoản không cần
+    worked_example: >-
+      Lương 15.000.000₫ vào ngân hàng A; chuyển 8.000.000 sang ngân hàng B
+      (chi tiêu) và 2.000.000 sang tài khoản tiết kiệm; nạp 500.000 vào ví
+      điện tử. Show that spending is only what leaves to merchants, not the
+      transfers; net worth unchanged by transfers.
+    app_tie_in: Wallets for each account with net worth on top; card digits route captured payments to the right wallet. Link /vi/tu-ghi-giao-dich/.
+    internal_links:
+      vi: [/vi/tu-ghi-giao-dich/, /vi/blog/3-cach-ghi-chep-chi-tieu/]
+      en: [/auto-capture/, /blog/manual-vs-bank-sync-vs-notifications/]
+    faq_seed:
+      - Có nên có nhiều tài khoản ngân hàng không?
+      - Nạp tiền vào ví điện tử có tính là chi tiêu không?
+      - Làm sao xem tổng tài sản ở một chỗ?
+    words: 1300
+    needs_author_input: false
+    sources_note: Don't state how myMoney handles transfers between own accounts unless it's on a site page; describe the principle only.
+    files: []
+
+  - id: P21
+    status: planned
+    series: compare
+    draft_date: 2027-06-15
+    publish_date: 2027-06-29
+    langs:
+      vi:
+        slug: mymoney-money-lover-misa-moneykeeper
+        title: "myMoney, Money Lover hay MISA MoneyKeeper: chọn app nào?"
+        seo_title: "myMoney vs Money Lover vs MISA MoneyKeeper: so sánh"
+        description: "So sánh ba app quản lý chi tiêu phổ biến ở Việt Nam: cách ghi giao dịch, ngân sách, quyền riêng tư và giá. Công khai: tác giả là người làm myMoney."
+        keyword: money lover hay misa moneykeeper
+        secondary: [app thay thế money lover, so sánh app quản lý chi tiêu, misa moneykeeper đánh giá]
+      en:
+        slug: mymoney-vs-money-lover-vs-misa-moneykeeper
+        title: "myMoney vs Money Lover vs MISA MoneyKeeper: which one to pick"
+        seo_title: "myMoney vs Money Lover vs MISA MoneyKeeper Compared"
+        description: "Three popular expense trackers in Vietnam compared on logging, budgets, privacy and price. Disclosure: written by the maker of myMoney."
+        keyword: money lover alternative
+        secondary: [money lover vs misa moneykeeper, expense tracker vietnam]
+    intent: bottom-of-funnel comparison.
+    audience: Users of the two big local apps considering a switch.
+    angle: Disclosed, fair, dated; clear "pick this if…" for each.
+    outline:
+      - Công khai
+      - Tóm tắt — chọn app nào nếu…
+      - Bảng so sánh
+      - Ghi giao dịch
+      - Ngân sách và báo cáo
+      - Quyền riêng tư
+      - Giá
+      - Chuyển dữ liệu sang app khác
+    app_tie_in: One of the three; no extra promotion.
+    internal_links:
+      vi: [/vi/blog/app-quan-ly-chi-tieu-tot-nhat/, /vi/bang-gia/]
+      en: [/blog/best-expense-tracker-apps/, /pricing/]
+    faq_seed:
+      - App nào tự ghi giao dịch ngân hàng?
+      - Chuyển dữ liệu từ Money Lover sang app khác được không?
+      - App nào không có phí hằng tháng?
+    words: 1800
+    needs_author_input: true
+    author_questions:
+      - Current-version facts for Money Lover and MISA MoneyKeeper from your own testing — pricing, free limits, bank sync/auto-import, budgets, reports, platforms, data export, date tested.
+      - Can myMoney import data from either app (or from CSV/Excel)? If not, say so.
+      - What does each competitor do better than myMoney?
+    author_notes: ""
+    files: []
+
+  # ---------------------------------------------------------------- Jul 2027
+  - id: P22
+    status: planned
+    series: cashless
+    draft_date: 2027-07-06
+    publish_date: 2027-07-13
+    langs:
+      vi:
+        slug: quan-ly-chi-tieu-bang-excel-hay-app
+        title: "Quản lý chi tiêu bằng Excel hay app: khi nào dùng cái nào?"
+        seo_title: "Quản lý chi tiêu bằng Excel hay app tốt hơn?"
+        description: "Excel linh hoạt và miễn phí, app tiện và tự động. So sánh thật lòng, mẫu cột Excel nếu bạn chọn bảng tính, và khi nào nên chuyển sang app."
+        keyword: quản lý chi tiêu bằng excel
+        secondary: [file excel quản lý chi tiêu cá nhân, mẫu bảng chi tiêu hàng tháng, excel hay app]
+      en:
+        slug: spreadsheet-vs-budget-app
+        title: "Spreadsheet or budget app: which one should you use?"
+        seo_title: "Spreadsheet vs Budget App: Which Should You Use?"
+        description: "Spreadsheets are flexible and free; apps are quick and automatic. An honest comparison, a simple spreadsheet layout, and when to switch."
+        keyword: spreadsheet vs budget app
+        secondary: [excel budget template, google sheets expense tracker, budget app vs excel]
+    intent: comparison; high volume for "excel quản lý chi tiêu".
+    audience: Spreadsheet users and people deciding.
+    angle: Fair; give a usable column layout (Ngày, Số tiền, Danh mục, Ví, Ghi chú) and formulas described in text.
+    outline:
+      - Excel/Google Sheets — điểm mạnh, điểm yếu
+      - App — điểm mạnh, điểm yếu
+      - Mẫu cột và công thức cơ bản (SUMIFS theo tháng/danh mục)
+      - Khi nào nên chuyển sang app
+      - Dùng cả hai — xuất Excel từ app để phân tích
+    worked_example: >-
+      Example SUMIFS for food in March written out, e.g.
+      =SUMIFS(B:B; C:C; "Ăn uống"; A:A; ">=01/03/2027"; A:A; "<=31/03/2027")
+      (VI locale uses ";"; EN uses ","). Verify syntax.
+    app_tie_in: Excel export in Bánh Xèo for people who want both. Link /vi/bang-gia/ and /pricing/.
+    internal_links:
+      vi: [/vi/bang-gia/, /vi/blog/vi-sao-ghi-chep-chi-tieu-bo-cuoc/]
+      en: [/pricing/, /blog/why-expense-tracking-fails/]
+    faq_seed:
+      - Có file Excel quản lý chi tiêu miễn phí không?
+      - Google Sheets hay Excel tốt hơn?
+      - Xuất dữ liệu từ app sang Excel được không?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  - id: P23
+    status: planned
+    series: money-basics
+    draft_date: 2027-07-20
+    publish_date: 2027-07-27
+    langs:
+      vi:
+        slug: tiet-kiem-mua-nha-mua-xe
+        title: "Tiết kiệm mua nhà, mua xe: tính mỗi tháng cần để dành bao nhiêu"
+        seo_title: "Tiết kiệm mua nhà, mua xe: mỗi tháng cần bao nhiêu?"
+        description: "Từ số tiền mục tiêu và thời hạn, tính số tiền cần để dành mỗi tháng. Ví dụ cho tiền đặt cọc mua nhà, mua xe máy và ô tô, kèm cách giữ tiến độ."
+        keyword: tiết kiệm mua nhà
+        secondary: [tiết kiệm mua xe, mỗi tháng tiết kiệm bao nhiêu, kế hoạch tiết kiệm dài hạn]
+    intent: informational, goal-based.
+    audience: People 25–35 planning a big purchase.
+    angle: >-
+      The simple maths (target ÷ months), then reality checks (start with a
+      deposit, not the full price; don't count on interest — mention it only
+      as "a bonus, check current rates"). No mortgage or investment advice.
+    outline:
+      - Công thức đơn giản
+      - Mục tiêu tiền đặt cọc, không phải toàn bộ giá nhà
+      - Ví dụ — xe máy, ô tô, tiền cọc nhà
+      - Khi con số quá lớn — kéo dài thời gian hay tăng thu nhập
+      - Giữ tiến độ — trích ngay ngày lương
+    worked_example: >-
+      Xe máy 45.000.000₫ trong 12 tháng → 3.750.000₫/tháng. Ô tô cọc
+      150.000.000₫ trong 36 tháng → 4.166.667₫/tháng (≈ 4,17 triệu). Tiền cọc
+      nhà 500.000.000₫ trong 60 tháng → 8.333.333₫/tháng.
+    app_tie_in: Goals pick a target and date and set the monthly amount, with reminders. Mention once.
+    internal_links:
+      vi: [/vi/blog/quy-du-phong-khan-cap/, /vi/blog/tong-ket-tai-chinh-cuoi-nam/]
+    faq_seed:
+      - Lương 15 triệu bao lâu mua được nhà?
+      - Nên tiết kiệm mua xe hay trả góp?
+      - Nên gửi tiết kiệm hay để tài khoản thanh toán?
+    words: 1400
+    needs_author_input: false
+    files: []
+
+  # ---------------------------------------------------------------- Aug 2027
+  - id: P24
+    status: planned
+    series: money-basics
+    draft_date: 2027-08-03
+    publish_date: 2027-08-10
+    langs:
+      vi:
+        slug: chi-tieu-nho-moi-ngay
+        title: "50k mỗi ngày thành bao nhiêu một năm? Sức nặng của những khoản chi nhỏ"
+        seo_title: "50k mỗi ngày thành bao nhiêu một năm? Khoản chi nhỏ"
+        description: "Cà phê, trà sữa, phí ship: khoản nhỏ mỗi ngày cộng lại thành bao nhiêu một năm, và cách quyết định khoản nào đáng giữ thay vì cắt hết."
+        keyword: khoản chi nhỏ hàng ngày
+        secondary: [tiết kiệm từ cà phê, chi tiêu vặt, cắt giảm chi tiêu]
+      en:
+        slug: small-daily-spending-adds-up
+        title: "What 2 dollars a day adds up to in a year (and what to keep)"
+        seo_title: "How Small Daily Spending Adds Up Over a Year"
+        description: "Coffee, bubble tea, delivery fees: what small daily spending adds up to in a year, and how to decide which ones are worth keeping instead of cutting all."
+        keyword: small daily expenses add up
+        secondary: [latte factor, cut small expenses, daily spending habits]
+    intent: informational, shareable.
+    audience: Broad.
+    angle: Don't shame small pleasures; make them a choice. Keep the ones you value, drop the ones on autopilot.
+    outline:
+      - Phép tính
+      - Không phải cắt hết — chọn khoản đáng
+      - Phí ẩn (ship, phí dịch vụ, gói đăng ký quên hủy)
+      - Thử 2 tuần nhìn khoản nhỏ
+      - Biến khoản đã cắt thành mục tiêu
+    worked_example: >-
+      50.000₫ × 365 = 18.250.000₫/năm; trà sữa 40.000 × 3 lần/tuần × 52 =
+      6.240.000₫; phí ship 15.000 × 20 đơn/tháng × 12 = 3.600.000₫. EN uses
+      the same đồng figures (≈ 2 USD is fine as a rough note; no exact rate).
+    app_tie_in: Reports show daily spend; keyword rules put each café in the same category so the total is visible. Mention once.
+    internal_links:
+      vi: [/vi/blog/thanh-toan-qr-lam-sao-biet-da-tieu-bao-nhieu/, /vi/huong-dan/ngan-sach-moi-ngay/]
+      en: [/blog/tracking-spending-when-you-pay-by-qr/, /guides/safe-to-spend-budget/]
+    faq_seed:
+      - Có nên cắt cà phê để tiết kiệm không?
+      - Làm sao biết mình tiêu bao nhiêu cho trà sữa một tháng?
+    words: 1100
+    needs_author_input: false
+    files: []
+
+  - id: P25
+    status: planned
+    series: money-basics
+    draft_date: 2027-08-17
+    publish_date: 2027-08-24
+    langs:
+      vi:
+        slug: so-thu-chi-gia-dinh
+        title: "Sổ thu chi gia đình: ghi gì, ai ghi, và xem lại thế nào"
+        seo_title: "Sổ thu chi gia đình: cách ghi đơn giản, dễ duy trì"
+        description: "Cách giữ sổ thu chi gia đình mà không ai phải làm kế toán: danh mục tối thiểu, ai ghi khoản nào, và buổi xem lại 15 phút mỗi cuối tháng."
+        keyword: sổ thu chi gia đình
+        secondary: [quản lý chi tiêu gia đình, bảng chi tiêu gia đình hàng tháng, danh mục chi tiêu gia đình]
+    intent: informational; high volume.
+    audience: Households with kids; parents.
+    angle: Minimal categories (8–10), shared responsibility, a monthly review that's about decisions not blame.
+    outline:
+      - Thu nhập của cả nhà
+      - 8–10 danh mục là đủ
+      - Ai ghi khoản nào
+      - Khoản theo năm (học phí, bảo hiểm, Tết) — chia ra theo tháng
+      - Xem lại 15 phút mỗi tháng
+    worked_example: >-
+      Học phí 12.000.000₫/năm + bảo hiểm 6.000.000₫/năm + Tết 10.000.000₫/năm
+      = 28.000.000₫ → để riêng 2.333.333₫/tháng (≈ 2,33 triệu).
+    app_tie_in: Recurring transactions and goals for yearly costs. Mention once.
+    internal_links:
+      vi: [/vi/blog/vo-chong-quan-ly-tai-chinh/, /vi/blog/lap-ngan-sach-tet/]
+    faq_seed:
+      - Gia đình 4 người chi tiêu bao nhiêu một tháng?
+      - Nên ghi sổ thu chi bằng giấy hay app?
+    words: 1300
+    needs_author_input: false
+    files: []
+
+  # ---------------------------------------------------------------- Sep 2027 (wedding season starts)
+  - id: P26
+    status: planned
+    series: money-basics
+    seasonal: true
+    draft_date: 2027-08-31
+    publish_date: 2027-09-07
+    langs:
+      vi:
+        slug: di-dam-cuoi-mung-bao-nhieu
+        title: "Đi đám cưới mừng bao nhiêu? Và cách để mùa cưới không vỡ ngân sách"
+        seo_title: "Đi đám cưới mừng bao nhiêu là vừa?"
+        description: "Mừng cưới bao nhiêu tùy độ thân, nơi tổ chức và thu nhập. Cách đặt quỹ mùa cưới từ trước, và xử lý khi một tháng có nhiều đám."
+        keyword: đi đám cưới mừng bao nhiêu
+        secondary: [mừng cưới bao nhiêu, tiền mừng cưới, mùa cưới chi tiêu]
+    intent: very high search volume, seasonal (Sep–Dec, around lunar calendar).
+    audience: Young workers with many friends' weddings.
+    angle: >-
+      Ranges by closeness and venue as commonly seen, explicitly not rules;
+      the real tool is a wedding fund saved monthly from September and a rule
+      for busy months.
+    outline:
+      - Điều gì quyết định tiền mừng (độ thân, đi một mình hay đi cùng, nơi tổ chức, vùng miền)
+      - Mức thường gặp (khoảng, có ghi chú)
+      - Quỹ mùa cưới — để dành từ trước
+      - Tháng có 4–5 đám thì sao
+      - Không đi được — gửi mừng thế nào cho khéo
+    worked_example: >-
+      Dự kiến 8 đám từ tháng 9 đến tháng 12, trung bình 700.000₫ → 5.600.000₫.
+      Để dành từ tháng 5 đến tháng 8: 4 tháng × 1.400.000₫ = 5.600.000₫.
+      Mark amounts as examples.
+    app_tie_in: A goal or category budget for "mùa cưới". Mention once.
+    internal_links:
+      vi: [/vi/blog/li-xi-bao-nhieu-la-vua/, /vi/blog/luong-15-trieu-chi-tieu-the-nao/]
+    faq_seed:
+      - Đi đám cưới đồng nghiệp mừng bao nhiêu?
+      - Đi cưới cùng người yêu thì mừng chung hay riêng?
+      - Không đi được có cần gửi tiền mừng không?
+    words: 1300
+    needs_author_input: false
+    files: []
