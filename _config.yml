@@ -105,6 +105,7 @@ sass:
 
 exclude:
   - tool
+  - docs
   - _refs
   - habita/node_modules
   - LICENSE
