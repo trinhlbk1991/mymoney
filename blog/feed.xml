@@ -1,0 +1,27 @@
+---
+layout: null
+sitemap: false
+---
+{%- assign items = site.posts | where: 'lang', 'en' -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>myMoney blog</title>
+		<link>{{ '/blog/' | absolute_url }}</link>
+		<description>{{ site.app_description | strip_newlines | strip | xml_escape }}</description>
+		<language>en</language>
+		<atom:link href="{{ '/blog/feed.xml' | absolute_url }}" rel="self" type="application/rss+xml"/>
+		{%- if items.size > 0 %}
+		<lastBuildDate>{{ items.first.date | date_to_rfc822 }}</lastBuildDate>
+		{%- endif %}
+		{%- for post in items limit: 30 %}
+		<item>
+			<title>{{ post.title | xml_escape }}</title>
+			<link>{{ post.url | absolute_url }}</link>
+			<guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+			<pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+			<description>{{ post.description | xml_escape }}</description>
+		</item>
+		{%- endfor %}
+	</channel>
+</rss>

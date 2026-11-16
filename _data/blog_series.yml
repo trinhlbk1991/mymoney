@@ -1,0 +1,13 @@
+# Display names for the `series` front-matter field of blog posts.
+money-basics:
+  en: "Everyday money"
+  vi: "Tiền đi đâu?"
+cashless:
+  en: "Cashless spending"
+  vi: "Chi tiêu không tiền mặt"
+compare:
+  en: "Comparisons"
+  vi: "So sánh"
+build:
+  en: "Building myMoney"
+  vi: "Xây myMoney"

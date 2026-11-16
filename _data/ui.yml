@@ -8,6 +8,7 @@ en:
     - [/privacy-by-design/, Privacy]
     - [/pricing/, Pricing]
     - [/guides/, Guides]
+    - [/blog/, Blog]
   get_app: Get the app
   updated: Updated
   alt_label: Đọc bằng tiếng Việt
@@ -22,6 +23,7 @@ en:
     - [/privacy-by-design/, How privacy works]
     - [/pricing/, Pricing]
     - [/guides/, Guides]
+    - [/blog/, Blog]
   legal:
     - [/privacypolicy/, Privacy policy]
     - [/terms/, Terms]
@@ -29,6 +31,15 @@ en:
     - [/deleteaccount/, Delete account]
   support: Support
   related: Keep reading
+  blog_h: Blog
+  blog_lede: Plain-language money habits, Tết budgets and notes on building myMoney.
+  by: By
+  author_bio: builds myMoney in Ho Chi Minh City.
+  series: Series
+  more_posts: More posts
+  no_posts: The first posts are coming soon.
+  read_more: Read
+  rss: RSS feed
 vi:
   home: Trang chủ
   home_url: /vi/
@@ -37,6 +48,7 @@ vi:
     - [/vi/quyen-rieng-tu/, Quyền riêng tư]
     - [/vi/bang-gia/, Bảng giá]
     - [/vi/huong-dan/, Hướng dẫn]
+    - [/vi/blog/, Blog]
   get_app: Tải ứng dụng
   updated: Cập nhật
   alt_label: Read in English
@@ -51,6 +63,7 @@ vi:
     - [/vi/quyen-rieng-tu/, Quyền riêng tư]
     - [/vi/bang-gia/, Bảng giá]
     - [/vi/huong-dan/, Hướng dẫn]
+    - [/vi/blog/, Blog]
   legal:
     - [/privacypolicy/, Chính sách bảo mật]
     - [/terms/, Điều khoản]
@@ -58,3 +71,12 @@ vi:
     - [/deleteaccount/, Xóa tài khoản]
   support: Hỗ trợ
   related: Đọc tiếp
+  blog_h: Blog
+  blog_lede: Thói quen tiền bạc dễ làm, ngân sách Tết và chuyện xây myMoney.
+  by: Tác giả
+  author_bio: làm myMoney tại TP. Hồ Chí Minh.
+  series: Chuyên mục
+  more_posts: Bài viết khác
+  no_posts: Những bài đầu tiên sẽ sớm có mặt.
+  read_more: Đọc bài
+  rss: RSS

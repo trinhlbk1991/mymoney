@@ -895,3 +895,14 @@ a.brand:hover .brandName { color: var(--ink); }
 .prose ol { padding-left: 24px; }
 .prose ol > li { padding-left: 4px; }
 .pageCta .storeRow { flex: 0 1 auto; min-width: 0; }
+
+/* Blog */
+.postList { display: grid; gap: 14px; }
+.postCard { background: var(--card); border-radius: 22px; padding: clamp(20px, 3vw, 30px); }
+.postCard h2 { margin: 6px 0 8px; font-size: clamp(20px, 2.6vw, 26px); line-height: 1.15; font-weight: 800; letter-spacing: -0.03em; }
+.postCard h2 a { color: var(--ink); }
+.postCard p { margin: 0; font-weight: 500; color: oklch(0.32 0.012 155); }
+.postEmpty { background: var(--card); border-radius: 22px; padding: 26px; margin: 0; font-weight: 600; }
+.authorBox { display: flex; gap: 14px; align-items: center; background: var(--card); border-radius: 22px; padding: 18px 22px; }
+.authorBox img { border-radius: 12px; flex: none; }
+.authorBox p { margin: 0; font-weight: 500; }

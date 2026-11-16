@@ -42,6 +42,8 @@
 
 	<link rel="icon" type="image/png" sizes="180x180" href="{{ site.app_icon | relative_url }}">
 	<link rel="apple-touch-icon" href="{{ site.app_icon | relative_url }}">
+	<link rel="alternate" type="application/rss+xml" title="myMoney blog" href="{{ '/blog/feed.xml' | relative_url }}">
+	<link rel="alternate" type="application/rss+xml" title="Blog myMoney (tiếng Việt)" href="{{ '/vi/blog/feed.xml' | relative_url }}">
 	<link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | relative_url }}">
 
 	<meta property="og:site_name" content="{{ site.app_name }}">
@@ -160,8 +162,13 @@
 					{ "@type": "ListItem", "position": 1, "name": {{ crumbs_home | jsonify }}, "item": "{{ home_url | absolute_url }}" }
 					{%- for c in page.breadcrumb %},
 					{ "@type": "ListItem", "position": {{ forloop.index | plus: 1 }}, "name": {{ c[0] | jsonify }}, "item": "{{ c[1] | absolute_url }}" }
-					{%- endfor %},
+					{%- endfor %}
+					{%- if page.layout == 'post' %},
+					{ "@type": "ListItem", "position": 2, "name": "Blog", "item": "{% if lang == 'vi' %}{{ '/vi/blog/' | absolute_url }}{% else %}{{ '/blog/' | absolute_url }}{% endif %}" },
+					{ "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": "{{ canonical }}" }
+					{%- else %},
 					{ "@type": "ListItem", "position": {{ page.breadcrumb.size | default: 0 | plus: 2 }}, "name": {{ page.title | jsonify }}, "item": "{{ canonical }}" }
+					{%- endif %}
 				]
 			}
 			{%- if page.schema %},
@@ -173,7 +180,7 @@
 				"inLanguage": "{{ lang }}",
 				"url": "{{ canonical }}",
 				"image": "{{ share_image }}",
-				{% if page.schema != 'howto' %}"datePublished": "{{ page.date_published | default: page.last_modified }}",
+				{% if page.schema != 'howto' %}"datePublished": "{% if page.layout == 'post' %}{{ page.date | date: '%Y-%m-%d' }}{% else %}{{ page.date_published | default: page.last_modified }}{% endif %}",
 				"dateModified": "{{ page.last_modified }}",
 				"author": { "@type": "Person", "name": {{ site.your_name | jsonify }}, "url": {{ site.your_link | jsonify }} },
 				"publisher": { "@id": "{{ org_id }}" },

@@ -1,0 +1,44 @@
+---
+# Blog index (/blog/ and /vi/blog/): lists posts in the page's language.
+---
+{%- assign lang = page.lang | default: 'en' -%}
+{%- assign ui = site.data.ui[lang] -%}
+{%- assign items = site.posts | where: 'lang', lang -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+{% include head.html %}
+
+<body>
+<div class="pageShell">
+
+	{% include site-header.html %}
+
+	<main>
+		<div class="pageHead">
+			<div class="eyebrow">{{ page.eyebrow }}</div>
+			<h1>{{ page.title }}</h1>
+			<p class="pageLede">{{ page.lede }}</p>
+			<p class="pageMeta">
+				<a href="{% if lang == 'vi' %}/vi/blog/feed.xml{% else %}/blog/feed.xml{% endif %}">{{ ui.rss }}</a>
+				{%- if page.alt %} · <a href="{{ page.alt }}" hreflang="{% if lang == 'vi' %}en{% else %}vi{% endif %}">{{ ui.alt_label }}</a>{% endif %}
+			</p>
+		</div>
+		<section class="postList">
+			{%- for post in items %}
+			<article class="postCard">
+				<div class="eyebrow">{{ site.data.blog_series[post.series][lang] | default: post.series }} · <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{% if lang == 'vi' %}{{ post.date | date: '%d/%m/%Y' }}{% else %}{{ post.date | date: '%-d %B %Y' }}{% endif %}</time></div>
+				<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+				<p>{{ post.description }}</p>
+			</article>
+			{%- else %}
+			<p class="postEmpty">{{ ui.no_posts }}</p>
+			{%- endfor %}
+		</section>
+	</main>
+
+	{% include site-footer.html %}
+
+</div>
+</body>
+</html>

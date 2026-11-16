@@ -36,6 +36,11 @@ myMoney (also "myMoney Finance", made by Iced Tea Labs) is a personal finance ap
 - [Log spending from bank notifications on Android]({{ '/guides/android-auto-capture/' | absolute_url }})
 - [The safe-to-spend method for a monthly budget]({{ '/guides/safe-to-spend-budget/' | absolute_url }})
 
+## Blog
+
+- [Blog]({{ '/blog/' | absolute_url }}): money habits, budgeting and notes on building myMoney (English; feed at {{ '/blog/feed.xml' | absolute_url }})
+- [Blog tiếng Việt]({{ '/vi/blog/' | absolute_url }}): ghi chép chi tiêu, ngân sách và chi tiêu dịp Tết
+
 ## Vietnamese
 
 - [Trang chủ]({{ '/vi/' | absolute_url }})

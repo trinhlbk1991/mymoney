@@ -129,3 +129,7 @@ collections:
     permalink: /:path/
 
 markdown: kramdown
+
+# Blog posts live in _posts/ with explicit permalinks. Posts dated in the future
+# are not built (Jekyll default), so merging a post early does not publish it.
+future: false

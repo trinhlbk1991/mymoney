@@ -1,0 +1,66 @@
+---
+# Blog posts (_posts/). Front matter: see docs/blog/README.md section 2.
+#   lang, title, seo_title, description, lede, date, last_modified, alt,
+#   series, tags, related [[/url/, Title]], faq [{q, a}], schema: article
+---
+{%- assign lang = page.lang | default: 'en' -%}
+{%- assign ui = site.data.ui[lang] -%}
+{%- if lang == 'vi' %}{% assign blog_url = '/vi/blog/' %}{% else %}{% assign blog_url = '/blog/' %}{% endif -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+{% include head.html %}
+
+<body>
+<div class="pageShell">
+
+	{% include site-header.html %}
+
+	<main>
+		<nav class="crumbs" aria-label="Breadcrumb">
+			<a href="{{ ui.home_url }}">{{ ui.home }}</a><span aria-hidden="true">/</span><a href="{{ blog_url }}">{{ ui.blog_h }}</a>
+		</nav>
+		<div class="pageHead">
+			{%- if page.series %}
+			<div class="eyebrow">{{ site.data.blog_series[page.series][lang] | default: page.series }}</div>
+			{%- endif %}
+			<h1>{{ page.title }}</h1>
+			{% if page.lede %}<p class="pageLede">{{ page.lede }}</p>{% endif %}
+			<p class="pageMeta">
+				{{ ui.by }} <a href="{{ site.your_link }}" rel="author">{{ site.your_name }}</a>
+				· <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{% if lang == 'vi' %}{{ page.date | date: '%d/%m/%Y' }}{% else %}{{ page.date | date: '%-d %B %Y' }}{% endif %}</time>
+				{%- if page.last_modified and page.last_modified != page.date %} · {{ ui.updated }} <time datetime="{{ page.last_modified | date: '%Y-%m-%d' }}">{% if lang == 'vi' %}{{ page.last_modified | date: '%d/%m/%Y' }}{% else %}{{ page.last_modified | date: '%-d %B %Y' }}{% endif %}</time>{% endif %}
+				{%- if page.alt %} · <a href="{{ page.alt }}" hreflang="{% if lang == 'vi' %}en{% else %}vi{% endif %}">{{ ui.alt_label }}</a>{% endif %}
+			</p>
+		</div>
+		<article class="prose">
+			{{ content }}
+			{%- if page.faq %}
+			<h2 id="faq">{% if lang == 'vi' %}Câu hỏi thường gặp{% else %}FAQ{% endif %}</h2>
+			{%- for item in page.faq %}
+			<h3>{{ item.q }}</h3>
+			<p>{{ item.a }}</p>
+			{%- endfor %}
+			{%- endif %}
+			{%- if page.related %}
+			<h2>{{ ui.related }}</h2>
+			<ul>
+				{%- for r in page.related %}<li><a href="{{ r[0] }}">{{ r[1] }}</a></li>{% endfor %}
+			</ul>
+			{%- endif %}
+		</article>
+		<aside class="authorBox">
+			<img src="{{ site.app_icon | relative_url }}" width="48" height="48" alt="">
+			<p><strong><a href="{{ site.your_link }}" rel="author">{{ site.your_name }}</a></strong> {{ ui.author_bio }}</p>
+		</aside>
+		<section class="cta pageCta" id="get">
+			<div class="ctaCopy"><h2>{{ ui.cta_h }}</h2><p>{{ ui.cta_p }}</p></div>
+			{% include store-buttons.html src='blog' %}
+		</section>
+	</main>
+
+	{% include site-footer.html %}
+
+</div>
+</body>
+</html>

@@ -38,4 +38,17 @@ translation as an hreflang alternate. Pages with sitemap: false are left out.
 	</url>
 	{%- endif -%}
 	{%- endfor %}
+	{%- comment -%} Blog posts (future-dated ones are not built, so they are not listed). {%- endcomment -%}
+	{%- for p in site.posts %}
+	<url>
+		<loc>{{ p.url | absolute_url }}</loc>
+		<lastmod>{{ p.last_modified | default: p.date | date: '%Y-%m-%d' }}</lastmod>
+		{%- if p.alt %}
+		{%- if p.lang == 'vi' %}{% assign en_url = p.alt %}{% assign vi_url = p.url %}{% else %}{% assign en_url = p.url %}{% assign vi_url = p.alt %}{% endif %}
+		<xhtml:link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}"/>
+		<xhtml:link rel="alternate" hreflang="vi" href="{{ vi_url | absolute_url }}"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="{{ en_url | absolute_url }}"/>
+		{%- endif %}
+	</url>
+	{%- endfor %}
 </urlset>

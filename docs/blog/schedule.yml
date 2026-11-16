@@ -35,7 +35,7 @@ posts:
 
   # ------------------------------------------------------------ prerequisite
   - id: B00
-    status: planned
+    status: published
     kind: infrastructure
     draft_date: 2026-11-17
     publish_date: 2026-11-20
