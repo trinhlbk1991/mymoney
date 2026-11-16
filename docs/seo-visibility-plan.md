@@ -2,7 +2,32 @@
 
 Site: https://mymoney.icedtealabs.com · Prepared 2026-11-16
 
-## 0. Where the site stands today (audit of this repo)
+## Status (updated 2026-11-16)
+
+**Done in the code:**
+
+- The home page is rendered as static HTML from `_data/home/en.yml` and `vi.yml`. A crawler that doesn't run JavaScript went from 460 words and no store links to 1,039 words (EN) and 1,400 (VI), with both store links.
+- A real Vietnamese home page at `/vi/`, with hreflang pairs and a VI title and description. The EN/VI switch is now a link and remembers the choice.
+- `/habita/` removed, with a 301 redirect to `/`.
+- The sitemap has per-page `lastmod` dates and hreflang alternates. `robots.txt` names the AI crawlers. Added `llms.txt`.
+- Structured data: Organization, WebSite, MobileApplication (with both offers), FAQPage, plus BreadcrumbList and Article/HowTo/FAQPage on content pages.
+- 14 new pages (EN + VI): auto-capture, privacy, pricing, guides index, iPhone setup, Android setup, safe-to-spend budgeting.
+- Keyword-led hero subline, internal links from the home sections to the new pages, campaign tags on store buttons, changelog headings fixed (h1 → h2).
+
+**Still to do (needs you, outside the repo):**
+
+1. Cloudflare → Security → Bots: make sure AI-bot blocking is off for this zone.
+2. Verify the site in Google Search Console and Bing Webmaster Tools, submit `/sitemap.xml`, turn on Crawler Hints / IndexNow.
+3. Set `appstore_provider_token` in `_config.yml` (App Store Connect → Analytics → Campaigns).
+4. Use the positioning line from `_config.yml` `app_long_description` in both store listings, and link the website from them.
+5. Wikidata item, Product Hunt, AlternativeTo and other profiles; then add their URLs to `org_same_as`.
+6. Community posts, listicle outreach, launches (sections 4–5).
+7. Comparison pages (section 3.3) and a "which Vietnamese banks work" page: these need checked facts about competitors and real tested banks, so they were left for you.
+8. Self-host the fonts (Phase 1, item 8).
+
+---
+
+## 0. Where the site stood (audit of this repo, before the changes above)
 
 What's already good: a keyword-led `<title>`, a description under 160 characters, canonical and OG/Twitter tags, a 1200×630 social card, `MobileApplication` + `FAQPage` JSON-LD, sitemap, robots.txt, WebP images, preloaded hero.
 

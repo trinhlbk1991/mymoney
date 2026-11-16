@@ -4,6 +4,7 @@ title: How to Delete Account?
 eyebrow: Account & data removal
 description: Steps to delete your myMoney account and everything associated with it.
 include_in_header: false
+last_modified: 2026-09-12
 ---
 
 ## App information

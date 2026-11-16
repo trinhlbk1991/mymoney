@@ -1,0 +1,312 @@
+# English copy for the home page (/). The Vietnamese page (/vi/) reads
+# _data/home/vi.yml, which has the same keys. Both are rendered to static HTML
+# by _layouts/home.html, so crawlers see every word without running JS.
+
+lang: en
+locale: en_US
+last_modified: 2026-11-16 # bump when the home page copy changes; feeds the sitemap
+url: /
+# <title>. Leads with the words people search for.
+seo_title: "myMoney: AI Expense Tracker That Logs Payments for You"
+# Meta and OG description. Keep it under 160 characters.
+description: >-
+  Budget & expense tracker for iPhone and Android. AI reads your bank's
+  payment notifications and records each transaction. No bank login, no typing.
+share_title: "myMoney: Pay as usual. It's already written down."
+
+nav:
+  how: How it works
+  features: Features
+  privacy: Privacy
+  pricing: Pricing
+  faq: FAQ
+  get_app: Get the app
+  lang_label: Language
+
+store:
+  ios_small: Download on the
+  play_small: Get it on
+
+hero:
+  h1: Pay as usual. It's already written down.
+  sub: >-
+    myMoney is an automatic expense tracker for iPhone and Android. It reads
+    the payment notifications your bank already sends and records each
+    transaction for you, with no bank login and no typing.
+  note: Free to download · No bank login · Paid version bought once
+  picker_label: Features
+  prev: Previous feature
+  next: Next feature
+  learn_more: Learn more
+  screen_alt: "myMoney %s screen"
+
+feats:
+  - icon: bolt
+    col: lime
+    grad: g-lime
+    shot: capture-inbox
+    y: 0.15
+    href: /auto-capture/
+    tag: Auto-capture
+    h: Every payment logged, without typing
+    p: >-
+      Pick your bank and e-wallet apps. Each payment notification becomes a
+      transaction with the amount, place, category and wallet filled in.
+  - icon: gauge
+    col: sky
+    grad: g-sky
+    shot: budget
+    y: 0.06
+    href: "#plan"
+    tag: Budget
+    h: Know what's safe to spend today
+    p: >-
+      Set one monthly budget. myMoney turns it into a daily amount that
+      updates with every payment.
+  - icon: flag
+    col: peach
+    grad: g-peach
+    shot: goals
+    y: 0.06
+    href: "#plan"
+    tag: Goals
+    h: Save for what matters, month by month
+    p: >-
+      Pick a target and a date. myMoney works out how much to put aside each
+      month and reminds you when it's time.
+  - icon: chart
+    col: lilac
+    grad: g-sky
+    shot: report
+    y: 0.07
+    href: "#plan"
+    tag: Reports
+    h: See where the month went
+    p: >-
+      Money kept, savings rate and daily spend, with an overspent month
+      called out in plain words.
+
+flow:
+  eyebrow: How it works
+  h2: Built for the way you already pay
+  p: Card, QR code or e-wallet. You pay the way you always do, and myMoney does the bookkeeping.
+  cta: Get myMoney free
+  methods: [Card, QR code, E-wallet]
+  steps:
+    - icon: card
+      methods: true
+      grad: g-sky
+      h: Pay
+      lead: Use your card, a QR code or an e-wallet, as usual.
+      items:
+        - [bell, sky, Your bank app sends its usual notification]
+        - [phone, lime, "Nothing to open, nothing to type"]
+    - icon: bolt
+      shot: capture-inbox
+      y: 0.15
+      grad: g-lime
+      h: Capture
+      lead: Gemini reads the notification and fills in the transaction.
+      items:
+        - [tag, lime, "Amount, place and category"]
+        - [card, sky, The right wallet from the card's last digits]
+        - [ban, peach, Promotions and OTP codes skipped]
+    - icon: inbox
+      shot: capture-inbox
+      y: 0.33
+      grad: g-peach
+      h: Review
+      lead: "Confirm with one tap, or let it save on its own."
+      items:
+        - [inbox, peach, Everything waits in To review]
+        - [check, lime, Edit any field before saving]
+        - [tag, lilac, Keyword rules for categories]
+    - icon: gauge
+      shot: budget
+      y: 0.06
+      grad: g-mint
+      h: Plan
+      lead: Your budget and goals update the moment a payment lands.
+      items:
+        - [gauge, mint, Safe to spend per day]
+        - [flag, peach, Goals with a monthly amount]
+        - [chart, sky, A report every month]
+
+guide_caption: "iPhone: one Shortcuts automation"
+guide_alt: ["Shortcuts automation: When I receive a notification", "Shortcuts action: Capture Notification with myMoney"]
+free_card:
+  label: free auto-captured payments
+  then: Then Bánh Xèo, bought once
+
+acc:
+  - id: capture
+    icon: bolt
+    col: lime
+    grad: g-lime
+    tag: Auto-capture
+    h: A calmer way to track spending
+    more: { href: /auto-capture/, text: How auto-capture works }
+    items:
+      - icon: bell
+        shot: capture-inbox
+        y: 0.15
+        t: Only the apps you pick
+        b: "Notifications from every other app are never read, stored or sent."
+      - icon: card
+        shot: capture-inbox
+        y: 0.26
+        t: The right wallet, by card digits
+        b: Add the last 3–4 digits of a card and its payments land in that wallet.
+      - icon: phone
+        kind: guide
+        t: Android and iPhone
+        b: >-
+          Android reads notifications once you allow access. iPhone (iOS 27+)
+          uses one Shortcuts automation, with a step-by-step guide in the app.
+      - icon: gift
+        kind: free
+        t: Try 3 for free
+        b: Your first 3 captured payments are free. Bánh Xèo reads every one after that.
+  - id: plan
+    flip: true
+    icon: gauge
+    col: sky
+    grad: g-sky
+    tag: Budget & goals
+    h: Spend with a number in mind
+    more: { href: /guides/safe-to-spend-budget/, text: The safe-to-spend method }
+    items:
+      - icon: gauge
+        shot: budget
+        y: 0.06
+        t: Safe to spend per day
+        b: One monthly budget becomes a daily amount you can keep in your head.
+      - icon: tag
+        shot: budget
+        y: 0.33
+        t: Category budgets
+        b: "Cap food, transport or anything else, and see which one is running hot."
+      - icon: flag
+        shot: goal-detail
+        y: 0.05
+        t: Goals that do the maths
+        b: Pick a target and a date. myMoney sets the monthly amount and reminds you.
+      - icon: wallet
+        shot: wallets
+        y: 0.13
+        t: Every wallet in one place
+        b: "Cash, cards, bank and e-wallets, with net worth on top."
+  - id: privacy
+    priv: true
+    icon: lock
+    col: peach
+    grad: g-peach
+    tag: Privacy
+    h: Your money, your data
+    more: { href: /privacy-by-design/, text: What myMoney reads, and what it never touches }
+    items:
+      - icon: send
+        t: What Gemini sees
+        b: "Only the text of a notification from an app you picked, that app's name, and your category names."
+      - icon: ban
+        t: No bank login, ever
+        b: myMoney never connects to your bank. It reads what's already on your phone.
+      - icon: phone
+        t: Kept on your phone
+        b: >-
+          Transactions, budgets and goals live on your device. Backups go to
+          your own Google Drive, only if you turn them on.
+    card:
+      - [send, lime, Sent to Gemini, "Notification text, app name, category names"]
+      - [ban, peach, Never read or sent, "Bank login, other apps, your history"]
+      - [phone, sky, Kept on your phone, "Transactions, budgets, goals"]
+
+facts:
+  eyebrow: In numbers
+  h2: What it adds up to
+  items:
+    - [0, g-lime, bank logins needed]
+    - [2, g-sky, taps to log a cash payment by hand]
+    - [3, g-peach, free auto-captures to try it]
+    - [1, g-mint, "payment for Bánh Xèo, no subscription"]
+
+pricing:
+  eyebrow: Pricing
+  h2: Start free. Buy it once if it sticks.
+  free:
+    h: Free
+    sub: Everything you need to start
+    price: "0, forever"
+    rows:
+      - [Transactions, Unlimited]
+      - [Auto-captured payments, First 3]
+      - [Wallets, "1"]
+      - [Monthly budget + category budgets, "1 + 2"]
+      - [Goals · recurring, "1 · 1"]
+      - [Reports, This month and last]
+      - [Ads, "Yes", muted]
+    note: Used myMoney before the limits? You keep everything you had.
+  pro:
+    badge: Bought once
+    sub: The Premium version of myMoney
+    price: Local price in store
+    rows:
+      - ["Auto-capture, every payment", Unlimited]
+      - ["Wallets, budgets, goals, recurring", Unlimited]
+      - [Reports, Full history]
+      - [Daily Drive backup, Included]
+      - [Excel export, Included]
+      - [Ads, None]
+    note: No subscription and nothing sold on. Every future update included. Refunds go through Apple or Google.
+  more: { href: /pricing/, text: Compare Free and Bánh Xèo in detail }
+
+faq:
+  h2: Questions, answered
+  items:
+    - q: Does it work with my bank?
+      a: >-
+        If your bank or e-wallet app shows a notification when you pay, yes.
+        myMoney reads the text, so it doesn't need a list of supported banks,
+        and it reads notifications in any language.
+    - q: Does auto-capture work on iPhone?
+      a: >-
+        Yes, on iOS 27 or later. You set up one Shortcuts automation, and the
+        app walks you through it with screenshots. On Android, you allow
+        notification access and you're done.
+    - q: Does myMoney need my bank login?
+      a: >-
+        No. myMoney never connects to your bank or asks for a password. It
+        reads the payment notifications that are already on your phone, and
+        only from the apps you pick.
+    - q: What if it gets a payment wrong?
+      a: >-
+        Every field stays editable. If you'd rather check first, turn on review
+        and each capture waits in To review until you confirm it. You can also
+        tie keywords to a category so a merchant always lands in the same place.
+    - q: What happens after the 3 free captures?
+      a: >-
+        Payments still land in To review, marked Premium only, and wait there
+        unread. Buy Bánh Xèo and they're all read, so nothing is lost if you
+        decide later.
+    - q: Which languages and currencies?
+      a: >-
+        The app is in English and Vietnamese and works with any currency, from
+        the đồng to the dollar, euro or yen.
+
+close:
+  h2: Let your next payment log itself.
+  p: Free on both stores. Try three captures, then decide.
+  qr: On a computer? Scan to open the right store.
+
+footer:
+  made: "myMoney · made by Trinh Le in Ho Chi Minh City"
+  learn:
+    - [/auto-capture/, Auto-capture]
+    - [/privacy-by-design/, How privacy works]
+    - [/pricing/, Pricing]
+    - [/guides/, Guides]
+  legal:
+    - [/privacypolicy/, Privacy policy]
+    - [/terms/, Terms]
+    - [/changelog/, Changelog]
+    - [/deleteaccount/, Delete account]

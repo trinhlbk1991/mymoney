@@ -1,0 +1,310 @@
+# Vietnamese copy for /vi/. Same keys as _data/home/en.yml.
+
+lang: vi
+locale: vi_VN
+last_modified: 2026-11-16 # bump when the home page copy changes; feeds the sitemap
+url: /vi/
+seo_title: "myMoney: App quản lý chi tiêu tự ghi giao dịch bằng AI"
+description: >-
+  App quản lý chi tiêu cho iPhone và Android. AI đọc thông báo thanh toán từ
+  ngân hàng và tự ghi từng giao dịch. Không cần đăng nhập ngân hàng.
+share_title: "myMoney: Tự ghi chi tiêu từ thông báo ngân hàng"
+
+nav:
+  how: Cách hoạt động
+  features: Tính năng
+  privacy: Quyền riêng tư
+  pricing: Bảng giá
+  faq: Hỏi đáp
+  get_app: Tải ứng dụng
+  lang_label: Ngôn ngữ
+
+store:
+  ios_small: Tải về trên
+  play_small: Tải về trên
+
+hero:
+  h1: Tự ghi chi tiêu từ thông báo ngân hàng.
+  sub: >-
+    myMoney là app quản lý chi tiêu tự động cho iPhone và Android. Ứng dụng
+    đọc thông báo thanh toán mà ngân hàng gửi về và tự ghi lại từng giao dịch,
+    không cần đăng nhập ngân hàng, không cần gõ.
+  note: Tải miễn phí · Không cần đăng nhập ngân hàng · Bản trả phí mua một lần
+  picker_label: Tính năng
+  prev: Tính năng trước
+  next: Tính năng tiếp theo
+  learn_more: Xem thêm
+  screen_alt: "Màn hình %s của myMoney"
+
+feats:
+  - icon: bolt
+    col: lime
+    grad: g-lime
+    shot: capture-inbox
+    y: 0.15
+    href: /vi/tu-ghi-giao-dich/
+    tag: Tự ghi giao dịch
+    h: Mỗi khoản chi đều được ghi, không cần gõ
+    p: >-
+      Chọn ứng dụng ngân hàng và ví điện tử. Mỗi thông báo thanh toán sẽ thành
+      một giao dịch, có sẵn số tiền, nơi chi, danh mục và ví.
+  - icon: gauge
+    col: sky
+    grad: g-sky
+    shot: budget
+    y: 0.06
+    href: "#plan"
+    tag: Ngân sách
+    h: Biết hôm nay còn được tiêu bao nhiêu
+    p: >-
+      Đặt một ngân sách tháng. myMoney chia thành số tiền có thể chi mỗi ngày,
+      cập nhật sau mỗi khoản chi.
+  - icon: flag
+    col: peach
+    grad: g-peach
+    shot: goals
+    y: 0.06
+    href: "#plan"
+    tag: Mục tiêu
+    h: Tiết kiệm cho điều quan trọng, từng tháng một
+    p: >-
+      Chọn số tiền và ngày cần đạt. myMoney tính mỗi tháng cần để dành bao
+      nhiêu và nhắc bạn khi đến lúc.
+  - icon: chart
+    col: lilac
+    grad: g-sky
+    shot: report
+    y: 0.07
+    href: "#plan"
+    tag: Báo cáo
+    h: Xem tháng này tiền đã đi đâu
+    p: >-
+      Số tiền giữ lại, tỷ lệ tiết kiệm và mức chi mỗi ngày, kèm nhận xét dễ
+      hiểu khi bạn chi quá tay.
+
+flow:
+  eyebrow: Cách hoạt động
+  h2: Hợp với cách bạn vẫn thanh toán mỗi ngày
+  p: Quẹt thẻ, quét mã QR hay dùng ví điện tử, bạn cứ thanh toán như mọi khi. Phần ghi chép để myMoney lo.
+  cta: Tải myMoney miễn phí
+  methods: [Thẻ, Mã QR, Ví]
+  steps:
+    - icon: card
+      methods: true
+      grad: g-sky
+      h: Thanh toán
+      lead: Dùng thẻ, mã QR hoặc ví điện tử như bình thường.
+      items:
+        - [bell, sky, Ngân hàng gửi thông báo như mọi khi]
+        - [phone, lime, "Không cần mở ứng dụng, không cần gõ"]
+    - icon: bolt
+      shot: capture-inbox
+      y: 0.15
+      grad: g-lime
+      h: Tự ghi
+      lead: Gemini đọc thông báo và điền sẵn giao dịch.
+      items:
+        - [tag, lime, "Số tiền, nơi chi và danh mục"]
+        - [card, sky, Đúng ví nhờ số cuối của thẻ]
+        - [ban, peach, Bỏ qua tin khuyến mãi và mã OTP]
+    - icon: inbox
+      shot: capture-inbox
+      y: 0.33
+      grad: g-peach
+      h: Xem lại
+      lead: "Xác nhận bằng một chạm, hoặc để ứng dụng tự lưu."
+      items:
+        - [inbox, peach, Mọi giao dịch chờ trong mục Cần xem lại]
+        - [check, lime, Sửa được mọi thông tin trước khi lưu]
+        - [tag, lilac, Quy tắc từ khóa cho danh mục]
+    - icon: gauge
+      shot: budget
+      y: 0.06
+      grad: g-mint
+      h: Lên kế hoạch
+      lead: Ngân sách và mục tiêu cập nhật ngay khi có giao dịch mới.
+      items:
+        - [gauge, mint, Số tiền có thể chi mỗi ngày]
+        - [flag, peach, Mục tiêu kèm số tiền mỗi tháng]
+        - [chart, sky, Báo cáo mỗi tháng]
+
+guide_caption: "iPhone: một lệnh tự động trong Phím tắt"
+guide_alt: ["Lệnh tự động trong Phím tắt: Khi tôi nhận được thông báo", "Tác vụ Phím tắt: Capture Notification với myMoney"]
+free_card:
+  label: giao dịch tự ghi miễn phí
+  then: "Sau đó: Bánh Xèo, mua một lần"
+
+acc:
+  - id: capture
+    icon: bolt
+    col: lime
+    grad: g-lime
+    tag: Tự ghi giao dịch
+    h: Ghi chép chi tiêu nhẹ nhàng hơn
+    more: { href: /vi/tu-ghi-giao-dich/, text: Tự ghi giao dịch hoạt động thế nào }
+    items:
+      - icon: bell
+        shot: capture-inbox
+        y: 0.15
+        t: Chỉ những ứng dụng bạn chọn
+        b: "Thông báo từ mọi ứng dụng khác không bao giờ được đọc, lưu hay gửi đi."
+      - icon: card
+        shot: capture-inbox
+        y: 0.26
+        t: Đúng ví nhờ số cuối của thẻ
+        b: "Thêm 3–4 số cuối của thẻ, giao dịch của thẻ đó sẽ tự vào đúng ví."
+      - icon: phone
+        kind: guide
+        t: Dùng được trên Android và iPhone
+        b: >-
+          Android đọc thông báo sau khi bạn cho phép truy cập. iPhone (iOS 27
+          trở lên) dùng một lệnh tự động trong Phím tắt, có hướng dẫn từng bước
+          trong ứng dụng.
+      - icon: gift
+        kind: free
+        t: Dùng thử 3 lần miễn phí
+        b: "3 giao dịch tự ghi đầu tiên được miễn phí. Từ giao dịch thứ 4 trở đi cần Bánh Xèo."
+  - id: plan
+    flip: true
+    icon: gauge
+    col: sky
+    grad: g-sky
+    tag: Ngân sách & mục tiêu
+    h: Chi tiêu có con số rõ ràng
+    more: { href: /vi/huong-dan/ngan-sach-moi-ngay/, text: Cách chi tiêu theo mức mỗi ngày }
+    items:
+      - icon: gauge
+        shot: budget
+        y: 0.06
+        t: Có thể chi mỗi ngày
+        b: Ngân sách tháng được chia thành mức chi mỗi ngày, dễ nhớ.
+      - icon: tag
+        shot: budget
+        y: 0.33
+        t: Ngân sách theo danh mục
+        b: "Đặt hạn mức cho ăn uống, đi lại hay bất kỳ danh mục nào, và biết ngay mục nào sắp vượt."
+      - icon: flag
+        shot: goal-detail
+        y: 0.05
+        t: Mục tiêu tự tính giúp
+        b: Chọn số tiền và ngày cần đạt. myMoney tính số tiền mỗi tháng và nhắc bạn.
+      - icon: wallet
+        shot: wallets
+        y: 0.13
+        t: Mọi ví ở một nơi
+        b: "Tiền mặt, thẻ, ngân hàng và ví điện tử, tổng tài sản ở trên cùng."
+  - id: privacy
+    priv: true
+    icon: lock
+    col: peach
+    grad: g-peach
+    tag: Quyền riêng tư
+    h: Tiền của bạn, dữ liệu của bạn
+    more: { href: /vi/quyen-rieng-tu/, text: myMoney đọc gì và không bao giờ đụng tới gì }
+    items:
+      - icon: send
+        t: Gemini nhận được gì
+        b: "Chỉ nội dung thông báo từ ứng dụng bạn chọn, tên ứng dụng đó và tên các danh mục của bạn."
+      - icon: ban
+        t: Không bao giờ cần đăng nhập ngân hàng
+        b: "myMoney không kết nối với ngân hàng, chỉ đọc những gì đã có trên điện thoại."
+      - icon: phone
+        t: Lưu trên điện thoại
+        b: >-
+          Giao dịch, ngân sách và mục tiêu nằm trên máy bạn. Bản sao lưu lên
+          Google Drive của chính bạn, chỉ khi bạn bật.
+    card:
+      - [send, lime, Gửi cho Gemini, "Nội dung thông báo, tên ứng dụng, tên danh mục"]
+      - [ban, peach, Không bao giờ đọc hay gửi, "Đăng nhập ngân hàng, ứng dụng khác, lịch sử giao dịch"]
+      - [phone, sky, Lưu trên điện thoại, "Giao dịch, ngân sách, mục tiêu"]
+
+facts:
+  eyebrow: Con số
+  h2: Tóm lại là
+  items:
+    - [0, g-lime, lần đăng nhập ngân hàng]
+    - [2, g-sky, chạm để ghi tay một khoản tiền mặt]
+    - [3, g-peach, lần tự ghi miễn phí để dùng thử]
+    - [1, g-mint, "lần thanh toán cho Bánh Xèo, không trả theo tháng"]
+
+pricing:
+  eyebrow: Bảng giá
+  h2: Bắt đầu miễn phí. Thấy hợp thì mua một lần.
+  free:
+    h: Miễn phí
+    sub: Đủ để bắt đầu
+    price: "0đ, mãi mãi"
+    rows:
+      - [Giao dịch, Không giới hạn]
+      - [Giao dịch tự ghi, 3 giao dịch đầu]
+      - [Ví, "1"]
+      - [Ngân sách tháng + ngân sách danh mục, "1 + 2"]
+      - [Mục tiêu · giao dịch định kỳ, "1 · 1"]
+      - [Báo cáo, Tháng này và tháng trước]
+      - [Quảng cáo, Có, muted]
+    note: Đã dùng myMoney từ trước khi có giới hạn? Mọi thứ bạn đang có vẫn được giữ nguyên.
+  pro:
+    badge: Mua một lần
+    sub: Bản Premium của myMoney
+    price: Giá theo cửa hàng
+    rows:
+      - [Tự ghi mọi giao dịch, Không giới hạn]
+      - ["Ví, ngân sách, mục tiêu, giao dịch định kỳ", Không giới hạn]
+      - [Báo cáo, Toàn bộ lịch sử]
+      - [Sao lưu hằng ngày lên Drive, Có]
+      - [Xuất file Excel, Có]
+      - [Quảng cáo, Không]
+    note: Không trả theo tháng, không bán dữ liệu. Được cập nhật miễn phí về sau. Hoàn tiền qua Apple hoặc Google.
+  more: { href: /vi/bang-gia/, text: So sánh chi tiết bản Miễn phí và Bánh Xèo }
+
+faq:
+  h2: Câu hỏi thường gặp
+  items:
+    - q: Có dùng được với ngân hàng của tôi không?
+      a: >-
+        Được, miễn là ứng dụng ngân hàng hoặc ví điện tử của bạn có gửi thông
+        báo khi thanh toán. myMoney đọc nội dung thông báo nên không cần danh
+        sách ngân hàng hỗ trợ, và đọc được cả thông báo tiếng Việt lẫn tiếng Anh.
+    - q: iPhone có dùng được Tự ghi không?
+      a: >-
+        Được, từ iOS 27 trở lên. Bạn chỉ cần tạo một lệnh tự động trong Phím
+        tắt, ứng dụng có hướng dẫn từng bước kèm ảnh. Với Android, chỉ cần cho
+        phép myMoney truy cập thông báo là xong.
+    - q: myMoney có cần đăng nhập ngân hàng không?
+      a: >-
+        Không. myMoney không kết nối với ngân hàng và không bao giờ hỏi mật
+        khẩu. Ứng dụng chỉ đọc thông báo thanh toán đã có trên điện thoại, và
+        chỉ từ những ứng dụng bạn chọn.
+    - q: Nếu ứng dụng ghi sai thì sao?
+      a: >-
+        Bạn sửa được mọi thông tin. Nếu muốn kiểm tra trước, hãy bật chế độ
+        duyệt: mỗi giao dịch sẽ nằm trong mục Cần xem lại cho đến khi bạn xác
+        nhận. Bạn cũng có thể gắn từ khóa với danh mục để một nơi chi luôn vào
+        đúng chỗ.
+    - q: Hết 3 giao dịch tự ghi miễn phí thì sao?
+      a: >-
+        Thông báo thanh toán vẫn được giữ trong mục Cần xem lại, gắn nhãn Chỉ
+        dành cho Premium, chỉ là chưa được đọc. Khi bạn mua Bánh Xèo, tất cả sẽ
+        được đọc, nên không sót giao dịch nào.
+    - q: Hỗ trợ ngôn ngữ và loại tiền nào?
+      a: >-
+        Ứng dụng có tiếng Việt và tiếng Anh, dùng được với mọi loại tiền, từ
+        đồng, đô la đến euro hay yên.
+
+close:
+  h2: Lần thanh toán tới, để myMoney ghi giúp.
+  p: Miễn phí trên cả hai cửa hàng. Dùng thử 3 lần tự ghi rồi hãy quyết định.
+  qr: Đang dùng máy tính? Quét mã để mở đúng cửa hàng.
+
+footer:
+  made: "myMoney · do Trinh Le làm tại TP.HCM"
+  learn:
+    - [/vi/tu-ghi-giao-dich/, Tự ghi giao dịch]
+    - [/vi/quyen-rieng-tu/, Quyền riêng tư]
+    - [/vi/bang-gia/, Bảng giá]
+    - [/vi/huong-dan/, Hướng dẫn]
+  legal:
+    - [/privacypolicy/, Chính sách bảo mật]
+    - [/terms/, Điều khoản]
+    - [/changelog/, Nhật ký cập nhật]
+    - [/deleteaccount/, Xóa tài khoản]

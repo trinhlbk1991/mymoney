@@ -2,21 +2,39 @@
 layout: null
 sitemap: false
 ---
+{%- comment -%}
+Every indexable page with its own last_modified date (front matter), and its
+translation as an hreflang alternate. Pages with sitemap: false are left out.
+{%- endcomment -%}
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+	{%- comment -%} The collection named "pages" shadows Jekyll's site.pages, so the two home pages (index.html, vi/index.html) are listed by hand. {%- endcomment -%}
+	{%- for h in site.data.home %}
 	<url>
-		<loc>{{ '/' | absolute_url }}</loc>
-		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>1.0</priority>
+		<loc>{{ h[1].url | absolute_url }}</loc>
+		<lastmod>{{ h[1].last_modified | date: '%Y-%m-%d' }}</lastmod>
+		<xhtml:link rel="alternate" hreflang="en" href="{{ '/' | absolute_url }}"/>
+		<xhtml:link rel="alternate" hreflang="vi" href="{{ '/vi/' | absolute_url }}"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}"/>
 	</url>
+	{%- endfor -%}
 	{%- assign docs = site.documents | where: 'collection', 'pages' -%}
 	{%- for p in docs -%}
 	{%- if p.sitemap != false %}
+	{%- assign loc = p.url | replace: 'index.html', '' -%}
+	{%- assign lang = p.lang | default: 'en' -%}
+	{%- assign alt = p.alt %}
 	<url>
-		<loc>{{ p.url | absolute_url }}</loc>
-		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-		<priority>{% if p.url contains 'changelog' %}0.6{% else %}0.3{% endif %}</priority>
+		<loc>{{ loc | absolute_url }}</loc>
+		{%- if p.last_modified %}
+		<lastmod>{{ p.last_modified | date: '%Y-%m-%d' }}</lastmod>
+		{%- endif %}
+		{%- if alt %}
+		{%- if lang == 'vi' %}{% assign en_url = alt %}{% assign vi_url = loc %}{% else %}{% assign en_url = loc %}{% assign vi_url = alt %}{% endif %}
+		<xhtml:link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}"/>
+		<xhtml:link rel="alternate" hreflang="vi" href="{{ vi_url | absolute_url }}"/>
+		<xhtml:link rel="alternate" hreflang="x-default" href="{{ en_url | absolute_url }}"/>
+		{%- endif %}
 	</url>
 	{%- endif -%}
 	{%- endfor %}

@@ -1,0 +1,60 @@
+# Interface strings for the long-form pages (_layouts/page.html and its
+# includes). The home page's copy is in _data/home/.
+en:
+  home: Home
+  home_url: /
+  nav:
+    - [/auto-capture/, Auto-capture]
+    - [/privacy-by-design/, Privacy]
+    - [/pricing/, Pricing]
+    - [/guides/, Guides]
+  get_app: Get the app
+  updated: Updated
+  alt_label: Đọc bằng tiếng Việt
+  ios_small: Download on the
+  play_small: Get it on
+  cta_h: Let your next payment log itself.
+  cta_p: Free on the App Store and Google Play. Try three auto-captures, then decide.
+  made: made by
+  in: in
+  learn:
+    - [/auto-capture/, Auto-capture]
+    - [/privacy-by-design/, How privacy works]
+    - [/pricing/, Pricing]
+    - [/guides/, Guides]
+  legal:
+    - [/privacypolicy/, Privacy policy]
+    - [/terms/, Terms]
+    - [/changelog/, Changelog]
+    - [/deleteaccount/, Delete account]
+  support: Support
+  related: Keep reading
+vi:
+  home: Trang chủ
+  home_url: /vi/
+  nav:
+    - [/vi/tu-ghi-giao-dich/, Tự ghi giao dịch]
+    - [/vi/quyen-rieng-tu/, Quyền riêng tư]
+    - [/vi/bang-gia/, Bảng giá]
+    - [/vi/huong-dan/, Hướng dẫn]
+  get_app: Tải ứng dụng
+  updated: Cập nhật
+  alt_label: Read in English
+  ios_small: Tải về trên
+  play_small: Tải về trên
+  cta_h: Lần thanh toán tới, để myMoney ghi giúp.
+  cta_p: Miễn phí trên App Store và Google Play. Dùng thử 3 lần tự ghi rồi hãy quyết định.
+  made: do
+  in: làm tại
+  learn:
+    - [/vi/tu-ghi-giao-dich/, Tự ghi giao dịch]
+    - [/vi/quyen-rieng-tu/, Quyền riêng tư]
+    - [/vi/bang-gia/, Bảng giá]
+    - [/vi/huong-dan/, Hướng dẫn]
+  legal:
+    - [/privacypolicy/, Chính sách bảo mật]
+    - [/terms/, Điều khoản]
+    - [/changelog/, Nhật ký cập nhật]
+    - [/deleteaccount/, Xóa tài khoản]
+  support: Hỗ trợ
+  related: Đọc tiếp

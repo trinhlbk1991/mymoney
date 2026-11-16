@@ -4,6 +4,7 @@ title: Privacy Policy
 eyebrow: Last updated 24 October 2026
 description: How myMoney handles your data — what stays on your device, what third-party services see, and how to delete everything.
 include_in_header: false
+last_modified: 2026-10-24
 ---
 
 Trinh Le built the myMoney app. This Service is provided by Trinh Le and is intended for use as is. This page informs you of the policies regarding the collection, use, and disclosure of Personal Information for anyone who uses the Service.

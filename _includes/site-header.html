@@ -1,14 +1,13 @@
-{% if page.url == '/' %}{% assign home = '' %}{% else %}{% assign home = '/' | relative_url %}{% endif %}
-
+{%- assign lang = page.lang | default: 'en' -%}{%- assign ui = site.data.ui[lang] -%}
 <header class="siteHeader">
-	<a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.app_name }} home">
+	<a class="brand" href="{{ ui.home_url }}" aria-label="{{ site.app_name }} — {{ ui.home }}">
 		<img class="brandMark" src="{{ site.app_icon | relative_url }}" width="34" height="34" alt="" aria-hidden="true">
 		<div class="brandName">{{ site.app_name }}</div>
 	</a>
 	<nav class="siteNav">
-		<a class="navLink" href="{{ home }}#capture">Auto-capture</a>
-		<a class="navLink" href="{{ home }}#features">Features</a>
-		<a class="navLink" href="{{ home }}#faq">FAQ</a>
-		<a class="navCta" href="{{ home }}#get">Get the app</a>
+		{%- for l in ui.nav %}
+		<a class="navLink" href="{{ l[0] }}"{% if page.url == l[0] %} aria-current="page"{% endif %}>{{ l[1] }}</a>
+		{%- endfor %}
+		<a class="navCta" href="{% if page.schema %}#get{% else %}{{ ui.home_url }}#get{% endif %}">{{ ui.get_app }}</a>
 	</nav>
 </header>

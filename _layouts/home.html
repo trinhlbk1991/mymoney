@@ -1,29 +1,34 @@
 ---
-# The home page. Its English copy is the markup below; the Vietnamese copy and
-# the switcher, workflow and accordion content are in assets/js/home.js.
+# The home page, in English (/, index.html) and Vietnamese (/vi/, vi/index.html).
+# The copy is in _data/home/<lang>.yml and is rendered here as static HTML, so
+# search engines and AI crawlers read every word without running JS.
+# assets/js/home.js only adds behaviour: the switcher timer, the accordions and
+# the store order on Android.
 ---
+{%- assign t = site.data.home[page.lang] -%}
+{%- assign other = 'vi' -%}{%- if page.lang == 'vi' -%}{%- assign other = 'en' -%}{%- endif -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ t.lang }}">
 
 {% include head.html %}
 
 <body>
 <header class="top" id="top">
   <div class="wrap topIn">
-    <a class="brand" href="#top"><img src="{{ site.app_icon | relative_url }}" alt="" width="32" height="32">myMoney</a>
+    <a class="brand" href="{{ t.url }}"><img src="{{ site.app_icon | relative_url }}" alt="" width="32" height="32">myMoney</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#how" data-i18n="navHow">How it works</a>
-      <a href="#capture" data-i18n="navFeatures">Features</a>
-      <a href="#privacy" data-i18n="navPrivacy">Privacy</a>
-      <a href="#pricing" data-i18n="navPricing">Pricing</a>
-      <a href="#faq" data-i18n="navFaq">FAQ</a>
+      <a href="#how">{{ t.nav.how }}</a>
+      <a href="#capture">{{ t.nav.features }}</a>
+      <a href="#privacy">{{ t.nav.privacy }}</a>
+      <a href="#pricing">{{ t.nav.pricing }}</a>
+      <a href="#faq">{{ t.nav.faq }}</a>
     </nav>
     <div class="topRight">
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" id="lang-en" aria-pressed="true">EN</button>
-        <button type="button" id="lang-vi" aria-pressed="false">VI</button>
-      </div>
-      <a class="btnDark" href="#get" data-store-link data-i18n="getApp">Get the app</a>
+      <nav class="lang" aria-label="{{ t.nav.lang_label }}">
+        <a href="/" hreflang="en" lang="en" data-lang="en"{% if t.lang == 'en' %} aria-current="page"{% endif %}>EN</a>
+        <a href="/vi/" hreflang="vi" lang="vi" data-lang="vi"{% if t.lang == 'vi' %} aria-current="page"{% endif %}>VI</a>
+      </nav>
+      <a class="btnDark" href="#get" data-store-link>{{ t.nav.get_app }}</a>
     </div>
   </div>
 </header>
@@ -31,55 +36,95 @@
 <main>
   <div class="wrap">
     <section class="heroPanel">
-      <h1 data-i18n="heroH1">Pay as usual. It's already written down.</h1>
-      <p class="sub" data-i18n="heroSub">myMoney reads the payment notifications your bank already sends and records each transaction for you. Budgets, goals and reports take care of the rest.</p>
-      <div class="stores" data-stores></div>
-      <p class="heroNote" data-i18n="heroNote">Free to download · No bank login · Paid version bought once</p>
+      <h1>{{ t.hero.h1 }}</h1>
+      <p class="sub">{{ t.hero.sub }}</p>
+      {% include home-stores.html t=t src="hero" %}
+      <p class="heroNote">{{ t.hero.note }}</p>
 
-      <div class="picker" role="tablist" aria-label="Features">
-        <button type="button" class="arrow" id="prevFeat" aria-label="Previous feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-        <span id="picks" style="display:flex; gap:10px"></span>
-        <button type="button" class="arrow" id="nextFeat" aria-label="Next feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <div class="picker" role="tablist" aria-label="{{ t.hero.picker_label }}">
+        <button type="button" class="arrow" id="prevFeat" aria-label="{{ t.hero.prev }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <span id="picks" style="display:flex; gap:10px">
+          {%- for f in t.feats %}
+          <button type="button" class="pick" role="tab" id="pick-{{ forloop.index0 }}" aria-controls="feat-{{ forloop.index0 }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ f.tag }}" data-i="{{ forloop.index0 }}">{% include icon.html n=f.icon %}<svg class="ring" viewBox="0 0 54 54" aria-hidden="true"><rect x="1.5" y="1.5" width="51" height="51" rx="16" pathLength="100"/></svg></button>
+          {%- endfor %}
+        </span>
+        <button type="button" class="arrow" id="nextFeat" aria-label="{{ t.hero.next }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
-      <div class="featCard" role="tabpanel" id="featCard"></div>
+      {%- for f in t.feats %}
+      <div class="featCard" role="tabpanel" id="feat-{{ forloop.index0 }}" aria-labelledby="pick-{{ forloop.index0 }}"{% unless forloop.first %} hidden{% endunless %}>
+        <div class="featText"><span class="tag"><i style="background:var(--{{ f.col }})">{% include icon.html n=f.icon %}</i>{{ f.tag }}</span>
+          <h2>{{ f.h }}</h2><p>{{ f.p }}</p>
+          <a class="more" href="{{ f.href }}">{{ t.hero.learn_more }} <span aria-hidden="true">→</span></a></div>
+        <div class="featVis {{ f.grad }}">{% assign alt = t.hero.screen_alt | replace: '%s', f.tag %}{% if forloop.first %}{% assign lz = false %}{% else %}{% assign lz = true %}{% endif %}{% include screen.html n=f.shot y=f.y lang=t.lang alt=alt lazy=lz %}</div>
+      </div>
+      {%- endfor %}
     </section>
   </div>
 
   <section class="sec" id="how">
     <div class="wrap">
       <div class="flowPanel">
-        <div class="eyebrow" data-i18n="flowEyebrow">How it works</div>
-        <h2 data-i18n="flowH2">Built for the way you already pay</h2>
-        <p data-i18n="flowP">Card, QR code or e-wallet. You pay the way you always do, and myMoney does the bookkeeping.</p>
-        <a class="btnDark" href="#get" data-i18n="flowCta">Get myMoney free</a>
-        <div class="flow" id="flow"></div>
+        <div class="eyebrow">{{ t.flow.eyebrow }}</div>
+        <h2>{{ t.flow.h2 }}</h2>
+        <p>{{ t.flow.p }}</p>
+        <a class="btnDark" href="#get">{{ t.flow.cta }}</a>
+        <div class="flow" id="flow">
+          {%- for s in t.flow.steps %}
+          <button type="button" class="step" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" data-i="{{ forloop.index0 }}"><h3>{{ s.h }}</h3><span class="lead">{{ s.lead }}</span><ul>
+            {%- for it in s.items %}<li><i style="background:var(--{{ it[1] }})">{% assign icn = it[0] %}{% include icon.html n=icn %}</i>{{ it[2] }}</li>{% endfor -%}
+            </ul><span class="stepVis {{ s.grad }}"><span class="stepIcon"><b>{% include icon.html n=s.icon %}</b></span>
+            {%- if s.methods -%}
+            <span class="methods"><span>{% include icon.html n='card' %}{{ t.flow.methods[0] }}</span><span>{% include icon.html n='qr' %}{{ t.flow.methods[1] }}</span><span>{% include icon.html n='phone' %}{{ t.flow.methods[2] }}</span></span>
+            {%- else -%}
+            {% include screen.html n=s.shot y=s.y lang=t.lang alt="" lazy=true %}
+            {%- endif -%}
+          </span></button>
+          {%- endfor %}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="capture" style="padding-top: 0">
-    <div class="wrap narrow"><div class="feat" data-acc="capture"></div></div>
+  {%- for d in t.acc %}
+  <section class="sec" id="{{ d.id }}" style="padding-top: 0">
+    <div class="wrap narrow"><div class="feat{% if d.flip %} flip{% endif %}" data-acc="{{ d.id }}">
+      <div class="featLeft"><span class="tag"><i style="background:var(--{{ d.col }})">{% include icon.html n=d.icon %}</i>{{ d.tag }}</span><h2>{{ d.h }}</h2>
+        <ul class="acc">
+          {%- for it in d.items %}
+          <li><button type="button" class="accBtn" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" data-k="{{ forloop.index0 }}">{% include icon.html n=it.icon cls='ic' %}<strong>{{ it.t }}</strong><span class="go">{% include icon.html n='arrow' %}</span><span class="body">{{ it.b }}</span></button></li>
+          {%- endfor %}
+        </ul>
+        {% if d.more %}<a class="more accMore" href="{{ d.more.href }}">{{ d.more.text }} <span aria-hidden="true">→</span></a>{% endif %}
+      </div>
+      {%- if d.priv %}
+      <div class="featTile priv {{ d.grad }}"><div class="privCard">
+        {%- for r in d.card %}<div class="privRow{% if forloop.first %} on{% endif %}" data-k="{{ forloop.index0 }}"><i style="background:var(--{{ r[1] }})">{% assign icn = r[0] %}{% include icon.html n=icn %}</i><span><b>{{ r[2] }}</b><span>{{ r[3] }}</span></span></div>{% endfor -%}
+      </div></div>
+      {%- else %}
+      {%- for it in d.items %}
+      {%- if it.kind == 'guide' %}
+      <div class="featTile center {{ d.grad }}" data-k="{{ forloop.index0 }}" hidden><div class="guide"><img src="/assets/guide/step_5.webp" alt="{{ t.guide_alt[0] }}" width="804" height="328" loading="lazy"><img src="/assets/guide/step_7.webp" alt="{{ t.guide_alt[1] }}" width="804" height="270" loading="lazy"><small>{{ t.guide_caption }}</small></div></div>
+      {%- elsif it.kind == 'free' %}
+      <div class="featTile center {{ d.grad }}" data-k="{{ forloop.index0 }}" hidden><div class="freeCard"><b>3</b><span>{{ t.free_card.label }}</span><em>{{ t.free_card.then }}</em></div></div>
+      {%- else %}
+      <div class="featTile {{ d.grad }}" data-k="{{ forloop.index0 }}"{% unless forloop.first %} hidden{% endunless %}>{% assign alt = 'myMoney: ' | append: it.t %}{% include screen.html n=it.shot y=it.y lang=t.lang alt=alt lazy=true %}</div>
+      {%- endif %}
+      {%- endfor %}
+      {%- endif %}
+    </div></div>
   </section>
-
-  <section class="sec" id="plan" style="padding-top: 0">
-    <div class="wrap narrow"><div class="feat flip" data-acc="plan"></div></div>
-  </section>
-
-  <section class="sec" id="privacy" style="padding-top: 0">
-    <div class="wrap narrow"><div class="feat" data-acc="privacy"></div></div>
-  </section>
+  {%- endfor %}
 
   <section class="sec" style="padding-top: 0">
     <div class="wrap">
       <div class="center">
-        <div class="eyebrow" data-i18n="factsEyebrow">In numbers</div>
-        <h2 class="secTitle" data-i18n="factsH2">What it adds up to</h2>
+        <div class="eyebrow">{{ t.facts.eyebrow }}</div>
+        <h2 class="secTitle">{{ t.facts.h2 }}</h2>
       </div>
       <div class="facts">
-        <div class="fact g-lime"><b>0</b><span data-i18n="fact1">bank logins needed</span></div>
-        <div class="fact g-sky"><b>2</b><span data-i18n="fact2">taps to log a cash payment by hand</span></div>
-        <div class="fact g-peach"><b>3</b><span data-i18n="fact3">free auto-captures to try it</span></div>
-        <div class="fact g-mint"><b>1</b><span data-i18n="fact4">payment for Bánh Xèo, no subscription</span></div>
+        {%- for f in t.facts.items %}
+        <div class="fact {{ f[1] }}"><b>{{ f[0] }}</b><span>{{ f[2] }}</span></div>
+        {%- endfor %}
       </div>
     </div>
   </section>
@@ -87,37 +132,31 @@
   <section class="sec" id="pricing" style="padding-top: 0">
     <div class="wrap narrow">
       <div class="center">
-        <div class="eyebrow" data-i18n="priceEyebrow">Pricing</div>
-        <h2 class="secTitle" data-i18n="priceH2">Start free. Buy it once if it sticks.</h2>
+        <div class="eyebrow">{{ t.pricing.eyebrow }}</div>
+        <h2 class="secTitle">{{ t.pricing.h2 }}</h2>
       </div>
       <div class="plans">
         <div class="plan">
-          <div class="planTop"><h3><span data-i18n="freeH">Free</span><small data-i18n="freeSub">Everything you need to start</small></h3><span class="price" data-i18n="freePrice">0, forever</span></div>
+          <div class="planTop"><h3><span>{{ t.pricing.free.h }}</span><small>{{ t.pricing.free.sub }}</small></h3><span class="price">{{ t.pricing.free.price }}</span></div>
           <ul>
-            <li><span data-i18n="fT">Transactions</span><span data-i18n="unlimited">Unlimited</span></li>
-            <li><span data-i18n="fCap">Auto-captured payments</span><span data-i18n="first3">First 3</span></li>
-            <li><span data-i18n="fW">Wallets</span><span>1</span></li>
-            <li><span data-i18n="fB">Monthly budget + category budgets</span><span>1 + 2</span></li>
-            <li><span data-i18n="fG">Goals · recurring</span><span>1 · 1</span></li>
-            <li><span data-i18n="fR">Reports</span><span data-i18n="fRv">This month and last</span></li>
-            <li class="muted"><span data-i18n="fAds">Ads</span><span data-i18n="yes">Yes</span></li>
+            {%- for r in t.pricing.free.rows %}
+            <li{% if r[2] %} class="{{ r[2] }}"{% endif %}><span>{{ r[0] }}</span><span>{{ r[1] }}</span></li>
+            {%- endfor %}
           </ul>
-          <p class="planNote" data-i18n="freeNote">Used myMoney before the limits? You keep everything you had.</p>
+          <p class="planNote">{{ t.pricing.free.note }}</p>
         </div>
         <div class="plan pro">
-          <span class="badge" data-i18n="proBadge">Bought once</span>
-          <div class="planTop"><h3>Bánh Xèo<small data-i18n="proSub">The Premium version of myMoney</small></h3><span class="price" data-i18n="proPrice">Local price in store</span></div>
+          <span class="badge">{{ t.pricing.pro.badge }}</span>
+          <div class="planTop"><h3>Bánh Xèo<small>{{ t.pricing.pro.sub }}</small></h3><span class="price">{{ t.pricing.pro.price }}</span></div>
           <ul>
-            <li><span data-i18n="pCap">Auto-capture, every payment</span><span data-i18n="unlimited">Unlimited</span></li>
-            <li><span data-i18n="pAll">Wallets, budgets, goals, recurring</span><span data-i18n="unlimited">Unlimited</span></li>
-            <li><span data-i18n="pR">Reports</span><span data-i18n="pRv">Full history</span></li>
-            <li><span data-i18n="pBk">Daily Drive backup</span><span data-i18n="incl">Included</span></li>
-            <li><span data-i18n="pX">Excel export</span><span data-i18n="incl">Included</span></li>
-            <li><span data-i18n="pAds">Ads</span><span data-i18n="none">None</span></li>
+            {%- for r in t.pricing.pro.rows %}
+            <li><span>{{ r[0] }}</span><span>{{ r[1] }}</span></li>
+            {%- endfor %}
           </ul>
-          <p class="planNote" data-i18n="proNote">No subscription and nothing sold on. Every future update included. Refunds go through Apple or Google.</p>
+          <p class="planNote">{{ t.pricing.pro.note }}</p>
         </div>
       </div>
+      <p class="center" style="margin-top: 28px"><a class="more" href="{{ t.pricing.more.href }}">{{ t.pricing.more.text }} <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
@@ -125,35 +164,37 @@
     <div class="wrap" style="max-width: 860px">
       <div class="center">
         <div class="eyebrow">FAQ</div>
-        <h2 class="secTitle" data-i18n="faqH2">Questions, answered</h2>
+        <h2 class="secTitle">{{ t.faq.h2 }}</h2>
       </div>
       <div class="qs">
-        <details><summary data-i18n="q1">Does it work with my bank?</summary><p data-i18n="a1">If your bank or e-wallet app shows a notification when you pay, yes. myMoney reads the text, so it doesn't need a list of supported banks, and it reads notifications in any language.</p></details>
-        <details><summary data-i18n="q2">Does auto-capture work on iPhone?</summary><p data-i18n="a2">Yes, on iOS 27 or later. You set up one Shortcuts automation, and the app walks you through it with screenshots. On Android, you allow notification access and you're done.</p></details>
-        <details><summary data-i18n="q3">What if it gets a payment wrong?</summary><p data-i18n="a3">Every field stays editable. If you'd rather check first, turn on review and each capture waits in To review until you confirm it. You can also tie keywords to a category so a merchant always lands in the same place.</p></details>
-        <details><summary data-i18n="q4">What happens after the 3 free captures?</summary><p data-i18n="a4">Payments still land in To review, marked Premium only, and wait there unread. Buy Bánh Xèo and they're all read, so nothing is lost if you decide later.</p></details>
-        <details><summary data-i18n="q5">Which languages and currencies?</summary><p data-i18n="a5">The app is in English and Vietnamese and works with any currency, from the đồng to the dollar, euro or yen.</p></details>
+        {%- for item in t.faq.items %}
+        <details><summary>{{ item.q }}</summary><p>{{ item.a }}</p></details>
+        {%- endfor %}
       </div>
     </div>
   </section>
 
   <section class="wrap" id="get">
     <div class="closePanel">
-      <h2 data-i18n="closeH2">Let your next payment log itself.</h2>
-      <p data-i18n="closeP">Free on both stores. Try three captures, then decide.</p>
-      <div class="stores" data-stores></div>
-      <div class="qrRow" aria-hidden="true"><div class="qr"><div id="qrcode"></div></div><span data-i18n="qr">On a computer? Scan to open the right store.</span></div>
+      <h2>{{ t.close.h2 }}</h2>
+      <p>{{ t.close.p }}</p>
+      {% include home-stores.html t=t src="footer" %}
+      <div class="qrRow" aria-hidden="true"><div class="qr"><div id="qrcode"></div></div><span>{{ t.close.qr }}</span></div>
     </div>
   </section>
 </main>
 
 <footer class="wrap foot">
-  <span data-i18n="made">myMoney · made by Trinh Le in Ho Chi Minh City</span>
+  <span>{{ t.footer.made }}</span>
+  <nav aria-label="Learn more">
+    {%- for l in t.footer.learn %}
+    <a href="{{ l[0] | relative_url }}">{{ l[1] }}</a>
+    {%- endfor %}
+  </nav>
   <nav aria-label="Legal">
-    <a href="{{ '/privacypolicy/' | relative_url }}" data-i18n="fPriv">Privacy</a>
-    <a href="{{ '/terms/' | relative_url }}" data-i18n="fTerms">Terms</a>
-    <a href="{{ '/changelog/' | relative_url }}" data-i18n="fLog">Changelog</a>
-    <a href="{{ '/deleteaccount/' | relative_url }}" data-i18n="fDel">Delete account</a>
+    {%- for l in t.footer.legal %}
+    <a href="{{ l[0] | relative_url }}">{{ l[1] }}</a>
+    {%- endfor %}
   </nav>
 </footer>
 

@@ -28,6 +28,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; font-weight: 500; -webkit-font-smoothing: antialiased; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
 a { color: inherit; }
 h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; text-wrap: balance; }
 p { margin: 0; text-wrap: pretty; }
@@ -47,9 +48,10 @@ button { font: inherit; color: inherit; }
 .nav a:hover { color: var(--ink); }
 .topRight { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 .lang { display: flex; border: 1px solid var(--rule); border-radius: 10px; padding: 3px; font-size: 12.5px; font-weight: 800; background: var(--card); }
-.lang button { all: unset; cursor: pointer; padding: 5px 10px; border-radius: 7px; color: var(--ink-3); }
-.lang button[aria-pressed="true"] { background: var(--panel); color: var(--ink); }
-.lang button:focus-visible { outline: 3px solid var(--green); }
+.lang a { padding: 5px 10px; border-radius: 7px; color: var(--ink-3); text-decoration: none; line-height: 1.6; }
+.lang a:hover { color: var(--ink); }
+.lang a[aria-current="page"] { background: var(--panel); color: var(--ink); }
+.lang a:focus-visible { outline: 3px solid var(--green); }
 .btnDark { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: 10px; background: var(--ink); color: #fff; text-decoration: none; font-weight: 800; font-size: 14.5px; white-space: nowrap; border: 0; cursor: pointer; }
 .btnDark:hover { background: #1B4634; }
 @media (max-width: 860px) { .nav { display: none; } }
@@ -154,6 +156,7 @@ button { font: inherit; color: inherit; }
 .feat.flip .featLeft { order: 2; }
 .featLeft { min-width: 0; }
 .featLeft .tag { margin-bottom: 12px; }
+.featLeft .accMore { margin-top: 22px; }
 .featLeft h2 { font-size: clamp(30px, 3.8vw, 44px); letter-spacing: -0.04em; padding-bottom: 26px; border-bottom: 1px solid var(--rule); }
 .acc { list-style: none; margin: 0; padding: 0; }
 .acc li { border-bottom: 1px solid var(--rule); }

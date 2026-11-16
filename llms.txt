@@ -1,0 +1,51 @@
+---
+layout: null
+---
+# myMoney
+
+> {{ site.app_long_description | strip_newlines | strip }}
+
+myMoney (also "myMoney Finance", made by Iced Tea Labs) is a personal finance app for iPhone and Android, made by {{ site.your_name }} in {{ site.your_city }}, Vietnam. It is available in English and Vietnamese and works with any currency.
+
+## Key facts
+
+- **What it does:** expense and income tracking, monthly budgets with a daily "safe to spend" amount, category budgets, savings goals, recurring transactions, monthly reports, multiple wallets (cash, cards, bank accounts, e-wallets).
+- **Auto-capture (the main difference):** myMoney reads the payment notifications that bank and e-wallet apps already show on the phone. Google's Gemini AI turns each one into a transaction with the amount, merchant, category and wallet filled in. Payments go to the right wallet by the card's last 3–4 digits. Promotions and OTP codes are skipped. Captures can wait in a "To review" list or save automatically.
+- **Works with any bank or e-wallet** that sends a payment notification, in any language. There is no list of supported banks.
+- **No bank login:** myMoney never connects to a bank account and never asks for banking credentials.
+- **Platforms:** Android (allow notification access, pick apps) and iPhone on iOS 27 or later (one Shortcuts automation using myMoney's "Capture Notification" action).
+- **Privacy:** records are stored on the device. For auto-capture, only the notification's title and text, the posting app's name, the user's category names and the wallet currency are sent to Gemini (via Google Firebase AI Logic); the developer does not receive them. Notifications from apps the user didn't pick are never read. Optional backup goes to the user's own Google Drive.
+- **Pricing:** free to download, with unlimited manual transactions and the first 3 auto-captured payments free (the free version shows ads and has limits: 1 wallet, 1 monthly budget + 2 category budgets, 1 goal, 1 recurring transaction, reports for this month and last). "Bánh Xèo" is the Premium version: a one-time in-app purchase, no subscription, priced per country by the store. It unlocks unlimited auto-capture, wallets, budgets, goals and recurring transactions, full report history, daily Google Drive backup, Excel export, and removes ads.
+- **Current version:** {{ site.app_version }}
+- **Website:** {{ '/' | absolute_url }} (Vietnamese: {{ '/vi/' | absolute_url }})
+- **App Store:** {{ site.appstore_link }}
+- **Google Play:** {{ site.playstore_link }}
+- **Contact:** {{ site.email_address }}
+
+## Pages
+
+- [Home]({{ '/' | absolute_url }}): overview, features, pricing and FAQ
+- [How auto-capture works]({{ '/auto-capture/' | absolute_url }}): automatic expense tracking from bank notifications
+- [How privacy works]({{ '/privacy-by-design/' | absolute_url }}): what is read, what is sent, what stays on the phone
+- [Pricing]({{ '/pricing/' | absolute_url }}): Free compared with Bánh Xèo
+- [Changelog]({{ '/changelog/' | absolute_url }}): every release
+
+## Guides
+
+- [Track expenses automatically on iPhone with Shortcuts]({{ '/guides/iphone-auto-capture-shortcuts/' | absolute_url }})
+- [Log spending from bank notifications on Android]({{ '/guides/android-auto-capture/' | absolute_url }})
+- [The safe-to-spend method for a monthly budget]({{ '/guides/safe-to-spend-budget/' | absolute_url }})
+
+## Vietnamese
+
+- [Trang chủ]({{ '/vi/' | absolute_url }})
+- [Tự ghi giao dịch]({{ '/vi/tu-ghi-giao-dich/' | absolute_url }})
+- [Quyền riêng tư]({{ '/vi/quyen-rieng-tu/' | absolute_url }})
+- [Bảng giá]({{ '/vi/bang-gia/' | absolute_url }})
+- [Hướng dẫn]({{ '/vi/huong-dan/' | absolute_url }})
+
+## Optional
+
+- [Privacy policy]({{ '/privacypolicy/' | absolute_url }})
+- [Terms]({{ '/terms/' | absolute_url }})
+- [Delete your account]({{ '/deleteaccount/' | absolute_url }})

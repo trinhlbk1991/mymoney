@@ -1,0 +1,2 @@
+{%- comment -%} A real app screen in a phone frame, cropped from include.y (a fraction of the screenshot's height). include.n: screenshot name; include.lang; include.alt; include.lazy. {%- endcomment -%}
+<span class="screen"><img src="/assets/real/{{ include.lang }}-light-{{ include.n }}.webp" alt="{{ include.alt | escape }}" width="660" height="1435"{% if include.lazy %} loading="lazy"{% endif %} style="margin-top: calc(-217.4% * {{ include.y | default: 0 }})"></span>

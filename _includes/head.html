@@ -2,36 +2,55 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	{%- comment -%}
+	Page language: `lang` in front matter (en or vi; English by default).
+	Translations: `alt` is the other language's URL; hreflang links are emitted
+	in both directions when it is set.
+	{%- endcomment -%}
+	{%- assign lang = page.lang | default: 'en' -%}
 	{%- assign is_home = false -%}
-	{%- if page.url == '/' or page.url == '/index.html' -%}{%- assign is_home = true -%}{%- endif -%}
+	{%- if page.layout == 'home' -%}{%- assign is_home = true -%}{%- assign t = site.data.home[lang] -%}{%- endif -%}
 	{%- if is_home -%}
-	{%- assign doc_title = site.seo_title | default: site.page_title -%}
-	{%- assign share_title = site.capture.headline | prepend: ' — ' | prepend: site.app_name -%}
+	{%- assign doc_title = t.seo_title -%}
+	{%- assign share_title = t.share_title -%}
+	{%- assign page_desc = t.description | strip_newlines | strip -%}
 	{%- else -%}
-	{%- assign doc_title = page.title | append: ' · ' | append: site.app_name -%}
-	{%- assign share_title = doc_title -%}
-	{%- endif -%}
+	{%- if page.seo_title -%}{%- assign doc_title = page.seo_title -%}{%- else -%}{%- assign doc_title = page.title | append: ' · ' | append: site.app_name -%}{%- endif -%}
+	{%- assign share_title = page.seo_title | default: page.title -%}
 	{%- assign page_desc = page.description | default: site.app_description | strip_newlines | strip -%}
+	{%- endif -%}
 	{%- assign share_image = page.image | default: site.social_image | absolute_url -%}
+	{%- assign canonical = page.url | replace: 'index.html', '' | absolute_url -%}
+	{%- assign home_url = '/' -%}{%- if lang == 'vi' -%}{%- assign home_url = '/vi/' -%}{%- endif -%}
 
 	<title>{{ doc_title }}</title>
 	<meta name="description" content="{{ page_desc }}">
-	<meta name="robots" content="index, follow, max-image-preview:large">
+	<meta name="robots" content="{% if page.noindex %}noindex, follow{% else %}index, follow, max-image-preview:large{% endif %}">
 	<meta name="author" content="{{ site.your_name }}">
 	<meta name="theme-color" content="#EDEDE8">
-	<link rel="canonical" href="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+	<link rel="canonical" href="{{ canonical }}">
+	{%- if is_home %}
+	<link rel="alternate" hreflang="en" href="{{ '/' | absolute_url }}">
+	<link rel="alternate" hreflang="vi" href="{{ '/vi/' | absolute_url }}">
+	<link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
+	{%- elsif page.alt %}
+	{%- if lang == 'vi' %}{% assign en_url = page.alt %}{% assign vi_url = page.url %}{% else %}{% assign en_url = page.url %}{% assign vi_url = page.alt %}{% endif %}
+	<link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">
+	<link rel="alternate" hreflang="vi" href="{{ vi_url | absolute_url }}">
+	<link rel="alternate" hreflang="x-default" href="{{ en_url | absolute_url }}">
+	{%- endif %}
 
 	<link rel="icon" type="image/png" sizes="180x180" href="{{ site.app_icon | relative_url }}">
 	<link rel="apple-touch-icon" href="{{ site.app_icon | relative_url }}">
 	<link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | relative_url }}">
 
 	<meta property="og:site_name" content="{{ site.app_name }}">
-	<meta property="og:locale" content="en_US">
-	<meta property="og:locale:alternate" content="vi_VN">
-	<meta property="og:type" content="website">
+	<meta property="og:locale" content="{% if lang == 'vi' %}vi_VN{% else %}en_US{% endif %}">
+	{% if is_home or page.alt %}<meta property="og:locale:alternate" content="{% if lang == 'vi' %}en_US{% else %}vi_VN{% endif %}">{% endif %}
+	<meta property="og:type" content="{% if page.schema %}article{% else %}website{% endif %}">
 	<meta property="og:title" content="{{ share_title }}">
 	<meta property="og:description" content="{{ page_desc }}">
-	<meta property="og:url" content="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+	<meta property="og:url" content="{{ canonical }}">
 	<meta property="og:image" content="{{ share_image }}">
 	<meta property="og:image:secure_url" content="{{ share_image }}">
 	<meta property="og:image:type" content="image/jpeg">
@@ -56,65 +75,69 @@
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 	{% if is_home %}<link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">{% else %}<link rel="stylesheet" href="{{ '/main.css' | relative_url }}">{% endif %}
 
+	{%- comment -%} Structured data. The Organization and the app are declared once, on the home pages, and referenced by @id everywhere else. {%- endcomment -%}
+	{%- capture org_id %}{{ '/' | absolute_url }}#org{% endcapture -%}
+	{%- capture app_id %}{{ '/' | absolute_url }}#app{% endcapture -%}
+	{%- capture site_id %}{{ '/' | absolute_url }}#website{% endcapture -%}
 	{% if is_home %}
-	<link rel="preload" as="image" href="{{ '/assets/real/en-light-capture-inbox.webp' | relative_url }}" fetchpriority="high">
-	{%- capture app_desc -%}{{ site.capture.body | strip_newlines | strip }}{%- endcapture -%}
+	<link rel="preload" as="image" href="{{ '/assets/real/' | append: lang | append: '-light-capture-inbox.webp' | relative_url }}" fetchpriority="high">
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
 		"@graph": [
 			{
+				"@type": "Organization",
+				"@id": "{{ org_id }}",
+				"name": {{ site.org_name | jsonify }},
+				"url": "{{ '/' | absolute_url }}",
+				"logo": "{{ site.app_icon | absolute_url }}",
+				"email": {{ site.email_address | prepend: 'mailto:' | jsonify }},
+				"founder": { "@type": "Person", "name": {{ site.your_name | jsonify }}, "url": {{ site.your_link | jsonify }}, "sameAs": {{ site.founder_same_as | jsonify }} },
+				"address": { "@type": "PostalAddress", "addressLocality": {{ site.your_city | jsonify }}, "addressCountry": "VN" },
+				"sameAs": {{ site.org_same_as | jsonify }}
+			},
+			{
 				"@type": "WebSite",
-				"@id": "{{ '/' | absolute_url }}#website",
+				"@id": "{{ site_id }}",
 				"url": "{{ '/' | absolute_url }}",
 				"name": {{ site.app_name | jsonify }},
-				"description": {{ page_desc | jsonify }},
-				"inLanguage": "en"
+				"alternateName": ["myMoney Finance", "myMoney by Iced Tea Labs"],
+				"description": {{ site.app_description | strip_newlines | strip | jsonify }},
+				"publisher": { "@id": "{{ org_id }}" },
+				"inLanguage": ["en", "vi"]
 			},
 			{
 				"@type": "MobileApplication",
-				"@id": "{{ '/' | absolute_url }}#app",
+				"@id": "{{ app_id }}",
 				"name": {{ site.app_name | jsonify }},
-				"alternateName": "myMoney Finance",
+				"alternateName": ["myMoney Finance", "myMoney by Iced Tea Labs"],
 				"url": "{{ '/' | absolute_url }}",
-				"description": {{ app_desc | jsonify }},
+				"description": {{ site.app_long_description | strip_newlines | strip | jsonify }},
 				"applicationCategory": "FinanceApplication",
+				"applicationSubCategory": "Expense tracker",
 				"operatingSystem": "iOS, Android",
 				"softwareVersion": {{ site.app_version | jsonify }},
 				"inLanguage": ["en", "vi"],
 				"image": "{{ site.app_icon | absolute_url }}",
 				"screenshot": [
-					{% for f in site.features %}"{{ f.image | absolute_url }}"{% unless forloop.last %}, {% endunless %}{% endfor %}
+					{% for f in site.screenshots %}"{{ f | absolute_url }}"{% unless forloop.last %}, {% endunless %}{% endfor %}
 				],
-				"featureList": [
-					"AI auto-capture of bank and e-wallet payment notifications",
-					"Expense and income tracking across multiple accounts",
-					"Monthly budget with a daily safe-to-spend amount",
-					"Savings goals",
-					"Monthly reports",
-					"Recurring transactions",
-					"Google Drive backup",
-					"Dark mode"
-				],
+				"featureList": {{ site.feature_list | jsonify }},
 				"installUrl": [{{ site.appstore_link | jsonify }}, {{ site.playstore_link | jsonify }}],
 				"sameAs": [{{ site.appstore_link | jsonify }}, {{ site.playstore_link | jsonify }}],
-				"offers": {
-					"@type": "Offer",
-					"price": "0",
-					"priceCurrency": "USD",
-					"category": "free"
-				},
-				"author": {
-					"@type": "Person",
-					"name": {{ site.your_name | jsonify }},
-					"url": {{ site.your_link | jsonify }}
-				}
+				"offers": [
+					{ "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "category": "free" },
+					{ "@type": "Offer", "name": "Bánh Xèo (Premium, one-time in-app purchase)", "category": "one-time purchase", "url": "{{ '/pricing/' | absolute_url }}" }
+				],
+				"author": { "@id": "{{ org_id }}" },
+				"publisher": { "@id": "{{ org_id }}" }
 			},
 			{
 				"@type": "FAQPage",
-				"@id": "{{ '/' | absolute_url }}#faq",
+				"@id": "{{ canonical }}#faq",
+				"inLanguage": "{{ lang }}",
 				"mainEntity": [
-					{% for item in site.faq %}{
+					{% for item in t.faq.items %}{
 						"@type": "Question",
 						"name": {{ item.q | jsonify }},
 						"acceptedAnswer": { "@type": "Answer", "text": {{ item.a | strip_newlines | strip | jsonify }} }
@@ -122,6 +145,58 @@
 					{% endfor %}
 				]
 			}
+		]
+	}
+	</script>
+	{% else %}
+	{%- assign crumbs_home = 'Home' -%}{%- if lang == 'vi' -%}{%- assign crumbs_home = 'Trang chủ' -%}{%- endif -%}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": {{ crumbs_home | jsonify }}, "item": "{{ home_url | absolute_url }}" }
+					{%- for c in page.breadcrumb %},
+					{ "@type": "ListItem", "position": {{ forloop.index | plus: 1 }}, "name": {{ c[0] | jsonify }}, "item": "{{ c[1] | absolute_url }}" }
+					{%- endfor %},
+					{ "@type": "ListItem", "position": {{ page.breadcrumb.size | default: 0 | plus: 2 }}, "name": {{ page.title | jsonify }}, "item": "{{ canonical }}" }
+				]
+			}
+			{%- if page.schema %},
+			{
+				"@type": {% if page.schema == 'howto' %}"HowTo"{% else %}"Article"{% endif %},
+				"@id": "{{ canonical }}#main",
+				{% if page.schema == 'howto' %}"name"{% else %}"headline"{% endif %}: {{ page.title | jsonify }},
+				"description": {{ page_desc | jsonify }},
+				"inLanguage": "{{ lang }}",
+				"url": "{{ canonical }}",
+				"image": "{{ share_image }}",
+				{% if page.schema != 'howto' %}"datePublished": "{{ page.date_published | default: page.last_modified }}",
+				"dateModified": "{{ page.last_modified }}",
+				"author": { "@type": "Person", "name": {{ site.your_name | jsonify }}, "url": {{ site.your_link | jsonify }} },
+				"publisher": { "@id": "{{ org_id }}" },
+				"about": { "@id": "{{ app_id }}" },
+				{% endif %}{% if page.steps %}"step": [
+					{% for s in page.steps %}{ "@type": "HowToStep", "position": {{ forloop.index }}, "name": {{ s[0] | jsonify }}, "text": {{ s[1] | jsonify }} }{% unless forloop.last %},{% endunless %}
+					{% endfor %}
+				],
+				"tool": [{ "@type": "HowToTool", "name": {{ page.tool | default: 'myMoney' | jsonify }} }],
+				{% endif %}"isPartOf": { "@id": "{{ site_id }}" }
+			}
+			{%- endif %}
+			{%- if page.faq %},
+			{
+				"@type": "FAQPage",
+				"@id": "{{ canonical }}#faq",
+				"inLanguage": "{{ lang }}",
+				"mainEntity": [
+					{% for item in page.faq %}{ "@type": "Question", "name": {{ item.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | strip_newlines | strip | jsonify }} } }{% unless forloop.last %},{% endunless %}
+					{% endfor %}
+				]
+			}
+			{%- endif %}
 		]
 	}
 	</script>

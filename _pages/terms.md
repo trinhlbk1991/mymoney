@@ -4,6 +4,7 @@ title: Terms & Conditions
 eyebrow: Last updated 12 September 2026
 description: The terms you agree to when you use the myMoney app.
 include_in_header: false
+last_modified: 2026-09-12
 ---
 
 By downloading or using the myMoney app ("the App"), these terms will automatically apply to you. Please read them carefully before using the App. You are not allowed to copy or modify the App, any part of the App, or its trademarks in any way. You are not allowed to attempt to extract the source code of the App, translate the App into other languages, or make derivative versions. The App itself, and all the trademarks, copyright, database rights, and other intellectual property rights related to it, still belong to Trinh Le.

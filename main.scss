@@ -470,7 +470,7 @@ a.brand:hover .brandName { color: var(--ink); }
 }
 
 /* The changelog reads as a version list, so its H1s become compact markers. */
-.prose--changelog h1 {
+.prose--changelog h2 {
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 0.14em;
@@ -481,7 +481,7 @@ a.brand:hover .brandName { color: var(--ink); }
   margin-bottom: 12px;
 }
 
-.prose--changelog h1:first-child { margin-top: 0; }
+.prose--changelog h2:first-child { margin-top: 0; }
 
 @media (max-width: 720px) {
   .siteNav .navLink { display: none; }
@@ -879,3 +879,19 @@ a.brand:hover .brandName { color: var(--ink); }
 
 .section { scroll-margin-top: 24px; }
 
+
+/* ------------------------------------------------- guides and feature pages */
+
+.crumbs { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13.5px; font-weight: 700; color: var(--ink-4); }
+.crumbs a { color: var(--ink-3); }
+.crumbs a:hover { color: var(--ink); }
+.pageLede { margin: 0; font-size: clamp(17px, 2vw, 19.5px); line-height: 1.55; font-weight: 600; color: var(--ink-2); max-width: 60ch; text-wrap: pretty; }
+.pageMeta { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--ink-4); }
+.pageMeta a { font-weight: 700; }
+.siteNav a[aria-current="page"] { color: var(--ink); }
+.prose table { width: 100%; border-collapse: collapse; margin: 6px 0 22px; font-size: 15px; display: block; overflow-x: auto; }
+.prose th, .prose td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.prose th { font-weight: 800; color: var(--ink); background: var(--muted); }
+.prose ol { padding-left: 24px; }
+.prose ol > li { padding-left: 4px; }
+.pageCta .storeRow { flex: 0 1 auto; min-width: 0; }
