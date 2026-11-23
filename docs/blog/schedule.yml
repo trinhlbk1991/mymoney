@@ -52,7 +52,7 @@ posts:
 
   # ---------------------------------------------------------------- Nov 2026
   - id: P01
-    status: planned
+    status: drafted
     series: money-basics
     draft_date: 2026-11-17
     publish_date: 2026-11-24
@@ -103,7 +103,9 @@ posts:
       - Mỗi tháng nên tiết kiệm bao nhiêu phần trăm?
     words: 2000
     needs_author_input: false
-    files: []
+    files:
+      - _posts/2026-11-24-cach-quan-ly-chi-tieu-ca-nhan.md
+      - _posts/2026-11-24-how-to-manage-your-spending.md
 
   # ---------------------------------------------------------------- Dec 2026
   - id: P02
